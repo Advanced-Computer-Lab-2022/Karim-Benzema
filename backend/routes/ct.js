@@ -33,5 +33,5 @@ router.patch('/:id', (req,res) =>
 {
     res.json({mssg: "UPDATE a new workout"})
 })
-const x =100;
+const x =50;
 module.exports = router 
