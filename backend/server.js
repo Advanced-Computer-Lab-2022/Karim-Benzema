@@ -4,7 +4,10 @@ require('dotenv').config()
 
 const { response } = require('express')
 const express = require('express')
-const workoutRoutes = require('./routes/workouts')
+const adminRoutes = require('./routes/admin')
+const instructorRoutes = require('./routes/instructor')
+const itRoutes = require('./routes/it')
+const ctRoutes = require('./routes/ct')
 const mongoose = require('mongoose')
 
 // express app
@@ -19,7 +22,10 @@ app.use((req,res,next) => {
 })
 
 //route handler 
-app.use('/api/workouts',workoutRoutes)
+app.use('/api/admin',adminRoutes)
+app.use('/api/instructor',instructorRoutes)
+app.use('/api/it',itRoutes)
+app.use('/api/ct',ctRoutes)
 
 //connect to DB
 mongoose.connect(process.env.MONGO_URI)

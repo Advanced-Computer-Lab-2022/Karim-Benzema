@@ -1,5 +1,6 @@
-const express = require('express')
 
+const express = require('express')
+const ct = require('../models/ctModel') //vip
 const router = express.Router()
 
 router.get('/', (req,res) => 
@@ -12,9 +13,15 @@ router.get('/:id', (req,res) =>
     res.json({mssg: "get a single workout"})
 })
 
-router.post('/', (req,res) => 
+router.post('/', async (req,res) => 
 {
-    res.json({mssg: "POST a new workout"})
+    const{name,username,password,country} = req.body
+    try{
+        const data= await ct.create({name,username,password,country}) //change
+        res.status(200).json(data)
+    }catch(error) {
+        res.status(400).json({error: error.message})
+    }
 })
 
 router.delete('/:id', (req,res) => 
