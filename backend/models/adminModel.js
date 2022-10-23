@@ -5,7 +5,7 @@ const Schema = mongoose.Schema
 const adminSchema = new Schema ({
     name: {
         type: String,
-        required: true 
+        required: false 
     },
     username: {
         type: String,

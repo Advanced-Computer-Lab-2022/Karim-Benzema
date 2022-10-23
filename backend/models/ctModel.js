@@ -5,7 +5,7 @@ const Schema = mongoose.Schema
 const ctSchema = new Schema ({
     name: {
         type: String,
-        required: true 
+        required: false 
     },
     username: {
         type: String,
@@ -17,7 +17,7 @@ const ctSchema = new Schema ({
     },
     country: {
         type: String,
-        required: true  
+        required: false  
     }
 }, {timestamps: true})
 
