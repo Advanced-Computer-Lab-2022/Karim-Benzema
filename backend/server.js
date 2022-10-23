@@ -41,6 +41,7 @@ mongoose.connect(process.env.MONGO_URI)
     console.log(error)
   })
 
-const x =0
+const x =100
+
 
 
