@@ -38,7 +38,7 @@ mongoose.connect(process.env.MONGO_URI)
   .catch((error)=>{
     console.log(error)
   })
-const x = 2
-
+  const x = 2
+  
 
 
