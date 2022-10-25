@@ -25,7 +25,7 @@ const coursesSchema = new Schema ({
     },
     subject: {
         type: String,
-        required: false
+        required: true
     },
     Instructor: {
         type: String,

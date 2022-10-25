@@ -16,20 +16,66 @@ const mongoose = require('mongoose')
         ...req.body
     })
     if(!data){
-        return res.status(404).json({error: "Not found"})
+        return res.status(404).json({error: "Not found"})//redundant prob
     }
     res.status(200).json(data)
     
 }
 //title,totalHours,rating  .sort({createdAt: -1})
 //.project({ title:1,totalHours:1,rating :1}) ;
+
 //get all course 
 const getcourse = async (req,res) => {
-    const data = await courses.find({})//desc order
-
+    //const data = await courses.find({},{projection : {title:1,totalHours:1,rating:1}});
+    const data = await courses.find({}).select('title totalHours rating')
+    res.status(200).json(data)
+}
+//get price of each course
+const getpriceof1course = async (req,res) => {
+    const { title } = req.params
+    const data = await courses.find({title:title}).select('title price')
     res.status(200).json(data)
 }
 
+//filter courses by price
+const getcoursebyprice = async (req,res) => {
+    const { price } = req.params
+    // const search = req.params.price
+    const data = await courses.find({price: price})//desc order
+
+    res.status(200).json(data)
+}
+// //filter courses by subject 
+// const getcoursebysubject = async (req,res) => {
+//     const { subject } = req.params
+//     const data = await courses.find({subject: subject})//desc order
+
+//     res.status(200).json(data)
+// }
+// //filter courses by rating  
+// const getcoursebyrating = async (req,res) => {
+//     const { rating } = req.params
+//     const data = await courses.find({rating: rating})//desc order
+
+//     res.status(200).json(data)
+// }
+//filter courses by subject and rating 
+
+const getcoursebysubjectRating = async (req,res) => {
+    const { subject } = req.params
+    const { rating } = req.params
+    const data1 = await courses.find({$and: [{subject:subject},{rating: rating}]})
+
+    res.status(200).json(data1)
+}
+//filter courses by subject or rating 
+const getcoursebysubjectorRating = async (req,res) => {
+    const { subject } = req.params
+    const { rating } = req.params
+    const data1 = await courses.find({$or: [{subject:subject},{rating: rating}]})
+
+    res.status(200).json(data1)
+}
 // trial
 const getit = async (req,res) => {
     const {id} = req.params
@@ -51,5 +97,12 @@ const getit = async (req,res) => {
 module.exports = {
     updateCountry,
     getit,
-    getcourse
+    getcourse,
+    getcoursebyprice,
+    // getcoursebysubject,
+    // getcoursebyrating,
+    getcoursebysubjectRating,
+    getcoursebysubjectorRating,
+    getpriceof1course
+    
 }
