@@ -9,7 +9,7 @@ const coursesSchema = new Schema ({
     },
     subtitle: {
         type: String,
-        required: true 
+        required: false 
     },
     totalHours: {
         type: String,
@@ -25,23 +25,23 @@ const coursesSchema = new Schema ({
     },
     subject: {
         type: String,
-        required: true
+        required: false
     },
     Instructor: {
         type: String,
-        required: true
+        required: false
     },
     Exercises: {
         type: String,
-        required: true
+        required: false
     },
     discount: {
         type: Number,
-        required: true
+        required: false
     },
     shortSummary: {
         type: String,
-        required: true
+        required: false
     },
 
 }, {timestamps: true})

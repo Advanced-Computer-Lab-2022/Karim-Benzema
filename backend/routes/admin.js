@@ -3,10 +3,6 @@ const {
     createAdmin,
     createinstructor,
     createct
-    // getAdmin,
-    // getAdmins,
-    // deleteAdmin,
-    // updateAdmin
 } = require('../controllers/adminController') //new
 const router = express.Router()
 

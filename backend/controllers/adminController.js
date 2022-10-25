@@ -92,7 +92,7 @@ const createct = async (req,res) => {
 //     }
 
 //     const data = await admin.findOneAndUpdate({_id : id},{
-//         //name : "yasmine"
+//         //name : "yasmine" ,
 //         ...req.body
 //     })
 //     if(!data){
