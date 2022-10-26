@@ -8,7 +8,8 @@ const {
     // getcoursebyrating,
     getcoursebysubjectRating,
     getcoursebysubjectorRating,
-    getpriceof1course
+    getpriceof1course,
+    searchawy
 } = require('../controllers/itController') //new
 
 const router = express.Router()
@@ -22,6 +23,8 @@ router.get('/prices/:price', getcoursebyprice)
 router.get('/subjectRating/:subject/:rating', getcoursebysubjectRating)
 router.get('/subjectorRating/:subject/:rating', getcoursebysubjectorRating)
 router.get('/getpriceof1course/:title', getpriceof1course)
+router.get('/search/:input', searchawy)
+
 
 // router.get('/', (req,res) => 
 // {

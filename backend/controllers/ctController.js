@@ -1,5 +1,5 @@
 const { json } = require('express')
-const it = require('../models/itModel')
+const ct = require('../models/ctModel')
 const courses = require('../models/coursesModel')
 const mongoose = require('mongoose')
 
@@ -11,7 +11,7 @@ const mongoose = require('mongoose')
         return res.status(404).json({ error: "No such individual trainee" })
     }
 
-    const data = await it.findOneAndUpdate({_id : id},{
+    const data = await ct.findOneAndUpdate({_id : id},{
         country : "Egypt",
         ...req.body
     })
@@ -30,21 +30,7 @@ const getcourse = async (req,res) => {
     const data = await courses.find({}).select('title totalHours rating')
     res.status(200).json(data)
 }
-//get price of each course
-const getpriceof1course = async (req,res) => {
-    const { title } = req.params
-    const data = await courses.find({title:title}).select('title price')
-    res.status(200).json(data)
-}
 
-//filter courses by price
-const getcoursebyprice = async (req,res) => {
-    const { price } = req.params
-    // const search = req.params.price
-    const data = await courses.find({price: price})//desc order
-
-    res.status(200).json(data)
-}
 // //filter courses by subject 
 // const getcoursebysubject = async (req,res) => {
 //     const { subject } = req.params
@@ -85,16 +71,17 @@ const searchawy = async (req,res) => {
     }
     res.status(200).json(data)
 }
+
 // trial
-const getit = async (req,res) => {
+const getct = async (req,res) => {
     const {id} = req.params
    
     
     if(!mongoose.Types.ObjectId.isValid(id)){
-        return res.status(404).json({ error: "No such it" })
+        return res.status(404).json({ error: "No such ct" })
     }
 
-    const data= await it.findById(id)
+    const data= await ct.findById(id)
 
     if(!data){
         return res.status(404).json({error: "Not found"})
@@ -105,14 +92,12 @@ const getit = async (req,res) => {
 
 module.exports = {
     updateCountry,
-    getit,
+    getct,
     getcourse,
-    getcoursebyprice,
     // getcoursebysubject,
     // getcoursebyrating,
     getcoursebysubjectRating,
     getcoursebysubjectorRating,
-    getpriceof1course,
     searchawy
     
 }
