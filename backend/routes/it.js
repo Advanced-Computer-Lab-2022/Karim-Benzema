@@ -25,6 +25,7 @@ router.get('/subjectorRating/:subject/:rating', getcoursebysubjectorRating)
 router.get('/getpriceof1course/:title', getpriceof1course)
 router.get('/search/:input', searchawy)
 
+module.exports = router 
 
 // router.get('/', (req,res) => 
 // {
@@ -56,4 +57,3 @@ router.get('/search/:input', searchawy)
 // {
 //     res.json({mssg: "UPDATE a new workout"})
 // })
-module.exports = router 

@@ -21,10 +21,8 @@ const mongoose = require('mongoose')
     res.status(200).json(data)
     
 }
-//title,totalHours,rating  .sort({createdAt: -1})
-//.project({ title:1,totalHours:1,rating :1}) ;
 
-//get all course 
+//get all course with title, total hrs ,rating
 const getcourse = async (req,res) => {
     //const data = await courses.find({},{projection : {title:1,totalHours:1,rating:1}});
     const data = await courses.find({}).select('title totalHours rating')
@@ -59,8 +57,8 @@ const getcoursebyprice = async (req,res) => {
 
 //     res.status(200).json(data)
 // }
-//filter courses by subject and rating 
 
+//filter courses by subject and rating 
 const getcoursebysubjectRating = async (req,res) => {
     const { subject } = req.params
     const { rating } = req.params

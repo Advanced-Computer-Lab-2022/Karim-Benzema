@@ -1,8 +1,6 @@
 const { json, application } = require('express')
-//const admin = require('../models/adminModel')
 const instructor = require('../models/instructorModel')
 const courses = require('../models/coursesModel')
-//const ct = require('../models/ctModel')
 const mongoose = require('mongoose')
 const course = require('../models/coursesModel')
 
@@ -49,11 +47,83 @@ const searchSubjectOrTitle = async (req,res) => {
         res.status(400).json({error: error.message})
     }
 }
+//add country 
+const updateCountry = async (req,res) => {
+    const { id } = req.params
+
+    if(!mongoose.Types.ObjectId.isValid(id)){
+        return res.status(404).json({ error: "No such individual trainee" })
+    }
+
+    const data = await it.findOneAndUpdate({_id : id},{
+        country : "Egypt",
+        ...req.body
+    })
+    if(!data){
+        return res.status(404).json({error: "Not found"})//redundant prob
+    }
+    res.status(200).json(data)
+    
+}
+//get all course with title, total hrs ,rating
+const getcourse = async (req,res) => {
+    //const data = await courses.find({},{projection : {title:1,totalHours:1,rating:1}});
+    const data = await courses.find({}).select('title totalHours rating')
+    res.status(200).json(data)
+}
+//get price of each course
+const getpriceof1course = async (req,res) => {
+    const { title } = req.params
+    const data = await courses.find({title:title}).select('title price')
+    res.status(200).json(data)
+}
+//filter courses by price
+const getcoursebyprice = async (req,res) => {
+    const { price } = req.params
+    // const search = req.params.price
+    const data = await courses.find({price: price})//desc order
+
+    res.status(200).json(data)
+}
+//filter courses by subject and rating 
+const getcoursebysubjectRating = async (req,res) => {
+    const { subject } = req.params
+    const { rating } = req.params
+    const data1 = await courses.find({$and: [{subject:subject},{rating: rating}]})
+
+    res.status(200).json(data1)
+}
+//filter courses by subject or rating 
+const getcoursebysubjectorRating = async (req,res) => {
+    const { subject } = req.params
+    const { rating } = req.params
+    const data1 = await courses.find({$or: [{subject:subject},{rating: rating}]})
+
+    res.status(200).json(data1)
+}
+const searchawy = async (req,res) => {
+    const { input } = req.params
+    const data = await courses.find({$or:[{title:{$regex:input}},{subject:{$regex:input}},{Instructor:{$regex:input}}]})
+
+    if(!data){
+        return res.status(404).json({error: "No results!"})
+    }
+    res.status(200).json(data)
+}
+
  //add route f instructors 
  //new 
 module.exports = {
     getCourseTitle,
     createcourse,
     filterSubjectOrPrice,
-    searchSubjectOrTitle
+    searchSubjectOrTitle,
+//yasm
+    updateCountry,
+    getcourse,
+    getcoursebyprice,
+    getcoursebysubjectRating,
+    getcoursebysubjectorRating,
+    getpriceof1course,
+    searchawy
 }
