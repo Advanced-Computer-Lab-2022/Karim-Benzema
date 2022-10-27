@@ -55,7 +55,7 @@ const updateCountry = async (req,res) => {
         return res.status(404).json({ error: "No such individual trainee" })
     }
 
-    const data = await it.findOneAndUpdate({_id : id},{
+    const data = await instructor.findOneAndUpdate({_id : id},{
         country : "Egypt",
         ...req.body
     })
