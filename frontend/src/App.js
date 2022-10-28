@@ -2,6 +2,7 @@ import {BrowserRouter , Routes, Route} from 'react-router-dom';
 //pages & components
 import Home from './pages/Home';
 import NavBar from './components/Navbar';
+import AddAdmin from './pages/AddAdmin';
 
 
 
@@ -16,6 +17,10 @@ function App() {
           <Route 
           path="/"
           element={<Home />}
+          />
+          <Route 
+          path="/AddAdmin"
+          element={<AddAdmin />}
           />
         </Routes> 
       </div>
