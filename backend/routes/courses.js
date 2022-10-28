@@ -2,12 +2,15 @@
 const express = require('express')
 
 const {
-    createcourse
+    createcourse,
+    getCourses
 } = require('../controllers/courseController') //new
 
 const router = express.Router()
 
 router.post('/createcourse', createcourse)
+
+router.get('/getCourses', getCourses)
 
 
 
