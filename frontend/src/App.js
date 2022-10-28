@@ -3,6 +3,8 @@ import {BrowserRouter , Routes, Route} from 'react-router-dom';
 import Home from './pages/Home';
 import NavBar from './components/Navbar';
 import AddAdmin from './pages/AddAdmin';
+import Home1 from './pages/CourseHome';
+
 
 
 
@@ -17,6 +19,10 @@ function App() {
           <Route 
           path="/"
           element={<Home />}
+          />
+          <Route
+          path="/Courses1"
+          element={<Home1/>}
           />
           <Route 
           path="/AddAdmin"

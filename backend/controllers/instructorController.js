@@ -52,7 +52,7 @@ const updateCountry = async (req,res) => {
     const { id } = req.params
 
     if(!mongoose.Types.ObjectId.isValid(id)){
-        return res.status(404).json({ error: "No such individual trainee" })
+        return res.status(404).json({ error: "No such instructor" })
     }
 
     const data = await instructor.findOneAndUpdate({_id : id},{
@@ -110,6 +110,7 @@ const searchawy = async (req,res) => {
     }
     res.status(200).json(data)
 }
+
 
  //add route f instructors 
  //new 
