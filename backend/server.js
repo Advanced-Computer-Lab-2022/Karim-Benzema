@@ -9,6 +9,7 @@ const instructorRoutes = require('./routes/instructor')
 const itRoutes = require('./routes/it')
 const ctRoutes = require('./routes/ct')
 const coursesRoutes = require('./routes/courses')
+const guestRoutes = require('./routes/guest')
 const mongoose = require('mongoose')
 
 // express app
@@ -28,6 +29,7 @@ app.use('/api/instructor',instructorRoutes)
 app.use('/api/it',itRoutes)
 app.use('/api/ct',ctRoutes)
 app.use('/api/courses',coursesRoutes)
+app.use('/api/guest',guestRoutes)
 
 //connect to DB
 mongoose.connect(process.env.MONGO_URI)

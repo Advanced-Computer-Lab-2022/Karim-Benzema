@@ -9,7 +9,7 @@ const coursesSchema = new Schema ({
     },
     subtitle: {
         type: String,
-        required: false 
+        required: true 
     },
     totalHours: {
         type: String,
@@ -27,22 +27,23 @@ const coursesSchema = new Schema ({
         type: String,
         required: true
     },
-    Instructor: {
-        type: mongoose.Types.ObjectId,
-        ref:'instructorModel',
-        required: false
-    },
-    Exercises: {
+    instructor: {
         type: String,
-        required: false
+       // type: mongoose.Types.ObjectId,
+        ref:'instructorModel',
+        required: true
+    },
+    exercises: {
+        type: String,
+        required: true
     },
     discount: {
         type: Number,
-        required: false
+        required: true
     },
     shortSummary: {
         type: String,
-        required: false
+        required: true
     },
 
 }, {timestamps: true})
