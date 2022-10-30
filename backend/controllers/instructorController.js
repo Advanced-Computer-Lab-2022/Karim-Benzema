@@ -7,14 +7,20 @@ const course = require('../models/coursesModel')
 //get a single admin 
  const getCourseTitle = async (req,res) => {
     //for future use
-    const {name} = req.params
+   // const {name} = req.params
    //fix name in the future 
-     const data= await courses.find({Instructor : name}).select('title')
+     const data= await courses.find({Instructor : "aly"}).select('title')
      if(!data){
          return res.status(404).json({error: "Course not found"})
      }
      res.status(200).json(data)
  }
+
+ //get all instructors
+const getinstructor = async (req,res) => {
+    const data = await instructor.find({})
+    res.status(200).json(data)
+}
 
 //filter by subject or price
 const filterSubjectOrPrice = async (req,res) => {
@@ -120,6 +126,7 @@ module.exports = {
     filterSubjectOrPrice,
     searchSubjectOrTitle,
 //yasm
+    getinstructor,
     updateCountry,
     getcourse,
     getcoursebyprice,

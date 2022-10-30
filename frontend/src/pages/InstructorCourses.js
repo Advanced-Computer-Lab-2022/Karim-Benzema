@@ -1,17 +1,16 @@
 import {useEffect,useState} from 'react';
 
 //components 
-import CourseDetails from '../components/courseDetails';
+import ViewInstructorCourses from '../components/viewInstructorCourses';
 
 
-
-const Home = () => {
+const InstructorCourses = () => {
 
     const [courses,setCourses] = useState(null);
 
 useEffect(() => {
     const fetchCourses = async () => {
-      const response = await fetch('/api/courses/getCourses')
+      const response = await fetch('/api/instructor/name')
       const json = await response.json()
  
     if(response.ok){
@@ -27,7 +26,7 @@ useEffect(() => {
         <div className="home">
         <div className="courses">
             {courses && courses.map( (course) => (
-            <CourseDetails key={course._id} course={course} />
+            <ViewInstructorCourses key={course._id} course={course} />
             ))}
         </div>
         </div>
@@ -35,4 +34,4 @@ useEffect(() => {
 
 }
 
-export default Home;
+export default InstructorCourses;

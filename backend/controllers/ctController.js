@@ -31,6 +31,11 @@ const getcourse = async (req,res) => {
     res.status(200).json(data)
 }
 
+const getAllct = async (req,res) => {
+    const data = await ct.find({})
+    res.status(200).json(data)
+}
+
 // //filter courses by subject 
 // const getcoursebysubject = async (req,res) => {
 //     const { subject } = req.params
@@ -98,6 +103,6 @@ module.exports = {
     // getcoursebyrating,
     getcoursebysubjectRating,
     getcoursebysubjectorRating,
-    searchawy
+    searchawy,
     
 }

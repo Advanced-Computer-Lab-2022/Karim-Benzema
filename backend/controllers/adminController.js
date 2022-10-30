@@ -39,12 +39,12 @@ const createct = async (req,res) => {
     }
 }
 
-// //get all admins 
-//const getAdmins = async (req,res) => {
-//    const admins = await admin.find({}).sort({createdAt: -1}) //desc order
-//
-//    res.status(200).json(admins)
-//}
+//get all admins 
+const getAdmins = async (req,res) => {
+   const admins = await admin.find({}).sort({createdAt: -1}) //desc order
+
+   res.status(200).json(admins)
+}
 
 // //get a single admin 
 // const getAdmin = async (req,res) => {
@@ -108,7 +108,7 @@ module.exports = {
     createAdmin,
     createinstructor,
     createct,
-   // getAdmins
+    getAdmins
 }
 
 
