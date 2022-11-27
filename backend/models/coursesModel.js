@@ -30,7 +30,7 @@ const coursesSchema = new Schema ({
     instructor: {
         type: String,
        // type: mongoose.Types.ObjectId,
-        ref:'instructorModel',
+        //ref:'instructorModel',
         required: true
     },
     exercises: {

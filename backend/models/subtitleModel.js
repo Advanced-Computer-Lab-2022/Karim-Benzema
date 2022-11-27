@@ -1,35 +1,39 @@
 const mongoose = require('mongoose') //import mongoose
 
 const Schema = mongoose.Schema 
-const {ObjectId}= mongoose.Schema
-const instructorSchema = new Schema ({
-    name: {
-        type: String,
-        required: false 
+
+const subtitleSchema = new Schema ({
+    number: {
+        type: Number,
+        required: true 
     },
-    username: {
+    title: {
         type: String,
         required: true 
     },
-    email: {
+    totalHours: {
+        type: String,
+        required: true 
+    },
+    video: {
         type: String,
         required: false
     },
-    miniBio: {
+    description: {
         type: String,
-        required: false
+        required: false  
     },
-    password: {
+    exercise: {
         type: String,
-        required: true
+        required: false  
     },
-    country: {
+    solution: {
         type: String,
         required: false  
     }
 }, {timestamps: true})
 
 
-const instructor = mongoose.model('instructorModel',instructorSchema); //to use it in another file 
-module.exports = instructor;
+const subtitle = mongoose.model('subtitleModel',subtitleSchema); //to use it in another file 
+module.exports = subtitle;
 //guestSchema.find() //finds different documents int the collection

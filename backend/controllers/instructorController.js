@@ -4,6 +4,18 @@ const courses = require('../models/coursesModel')
 const mongoose = require('mongoose')
 const course = require('../models/coursesModel')
 
+//create inst
+const createinst = async (req,res) => {
+    //add course to DB 
+    const{name,username,email,miniBio,password,country} = req.body
+    try{
+        const data= await instructor.create({name,username,email,miniBio,password,country}) //change
+        res.status(200).json(data)
+    }catch(error) {
+        res.status(400).json({error: error.message})
+    }
+}
+
 //get a single admin 
  const getCourseTitle = async (req,res) => {
     //for future use
@@ -71,6 +83,36 @@ const updateCountry = async (req,res) => {
     res.status(200).json(data)
     
 }
+//edit mini biography 
+const editBio = async (req,res) => {
+    const { id } = req.params
+    if(!mongoose.Types.ObjectId.isValid(id)){
+        return res.status(404).json({ error: "No such instructor" })
+    }
+    const data = await instructor.findOneAndUpdate({_id : id},{
+        miniBio : "I am a software engineer",
+        ...req.body
+    }, {new: true})
+    if(!data){
+        return res.status(404).json({error: "Not found"})//redundant prob
+    }
+    res.status(200).json(data)
+}
+//edit mini biography 
+const editEmail = async (req,res) => {
+    const { id } = req.params
+    if(!mongoose.Types.ObjectId.isValid(id)){
+        return res.status(404).json({ error: "No such instructor" })
+    }
+    const data = await instructor.findOneAndUpdate({_id : id},{
+        email : "null",
+        ...req.body
+    }, {new: true})
+    if(!data){
+        return res.status(404).json({error: "Not found"})//redundant prob
+    }
+    res.status(200).json(data)
+}
 //get all course with title, total hrs ,rating
 const getcourse = async (req,res) => {
     //const data = await courses.find({},{projection : {title:1,totalHours:1,rating:1}});
@@ -99,6 +141,9 @@ const getcoursebysubjectRating = async (req,res) => {
 
     res.status(200).json(data1)
 }
+
+//edit email 
+
 //filter courses by subject or rating 
 const getcoursebysubjectorRating = async (req,res) => {
     const { subject } = req.params
@@ -133,5 +178,8 @@ module.exports = {
     getcoursebysubjectRating,
     getcoursebysubjectorRating,
     getpriceof1course,
-    searchawy
+    searchawy,
+    editBio,
+    createinst,
+    editEmail
 }
