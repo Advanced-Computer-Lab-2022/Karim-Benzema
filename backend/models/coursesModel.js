@@ -20,17 +20,21 @@ const coursesSchema = new Schema ({
         required: true
     },
     rating: {
-        type: String,
+        type: Number,
         required: true
+    },
+    ratings:{
+    type : [Number],
+    required:true
     },
     subject: {
         type: String,
         required: true
     },
     instructor: {
-      //  type: mongoose.Types.ObjectId,
-      type:String,
-        
+        type: String,
+       // type: mongoose.Types.ObjectId,
+        //ref:'instructorModel',
         required: true
     },
     exercises: {

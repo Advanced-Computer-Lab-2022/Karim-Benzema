@@ -11,7 +11,7 @@ const {
 const router = express.Router()
 router.patch('/:id', updateCountry)
 router.get('/viewcourses', getcourse)
-router.get('/getpriceof1course', getpriceof1course)
+router.get('/prices/:price', getpriceof1course)
 router.get('/subjectRating/:subject/:rating', getcoursebysubjectRating)
 router.get('/subjectorRating/:subject/:rating', getcoursebysubjectorRating)
 router.get('/search/:input', search)

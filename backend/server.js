@@ -10,6 +10,10 @@ const itRoutes = require('./routes/it')
 const ctRoutes = require('./routes/ct')
 const coursesRoutes = require('./routes/courses')
 const guestRoutes = require('./routes/guest')
+<<<<<<< HEAD
+=======
+const subtitleRoutes = require('./routes/subtitle')
+>>>>>>> 7ad672e1bc7b892b54f07d76181cde99cd3cff9b
 const mongoose = require('mongoose')
 
 // express app
@@ -30,6 +34,11 @@ app.use('/api/it',itRoutes)
 app.use('/api/ct',ctRoutes)
 app.use('/api/courses',coursesRoutes)
 app.use('/api/guest',guestRoutes)
+<<<<<<< HEAD
+=======
+app.use('/api/subtitle',subtitleRoutes)
+
+>>>>>>> 7ad672e1bc7b892b54f07d76181cde99cd3cff9b
 //connect to DB
 mongoose.connect(process.env.MONGO_URI)
   .then(()=>{

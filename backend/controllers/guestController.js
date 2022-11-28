@@ -56,8 +56,8 @@ const search = async (req,res) => {
 }
 //get price of each course
 const getpriceof1course = async (req,res) => {
-    //const { title } = req.params
-    const data = await courses.find({}).select('title price')
+    const { title } = req.params
+    const data = await courses.find({title:title}).select('title price')
     res.status(200).json(data)
 }
 

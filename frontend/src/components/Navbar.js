@@ -1,6 +1,9 @@
 import { Link } from 'react-router-dom'
+<<<<<<< HEAD
 import React from 'react';
 
+=======
+>>>>>>> 7ad672e1bc7b892b54f07d76181cde99cd3cff9b
 const NavBar = () => {
     return (
         <header>
@@ -15,4 +18,8 @@ const NavBar = () => {
     );
 
 }
+<<<<<<< HEAD
 export default NavBar;
+=======
+export default NavBar;
+>>>>>>> 7ad672e1bc7b892b54f07d76181cde99cd3cff9b

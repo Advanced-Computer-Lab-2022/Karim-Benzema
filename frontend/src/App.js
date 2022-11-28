@@ -1,9 +1,13 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7ad672e1bc7b892b54f07d76181cde99cd3cff9b
 import {BrowserRouter , Routes, Route} from 'react-router-dom';
 //pages & components
 import Home from './pages/Home';
 import NavBar from './components/Navbar';
 import AddAdmin from './pages/AddAdmin';
+<<<<<<< HEAD
 import AddInstructor from './pages/addInstructor';
 import AddCT from './pages/addCT';
 import AddCourse from './pages/AddCourse'
@@ -30,6 +34,17 @@ import ViewSubjectRatingGuest from './pages/viewSubjectRatingGuest';
 import InstHome from './pages/InstHome';
 import ItHome from './pages/ItHome';
 import FilterInstCourses from './pages/FilterInstCourses';
+=======
+import AddInstructor from './pages/AddInstructor';
+import AddCT from './pages/AddCT';
+import AddCourse from './pages/AddCourse';
+import InstructorCourses from './pages/InstructorCourses';
+import AllAdmins from './pages/AllAdmins';
+import AllInstructors from './pages/AllInstructors';
+
+
+
+>>>>>>> 7ad672e1bc7b892b54f07d76181cde99cd3cff9b
 
 function App() {
   return (
@@ -40,6 +55,7 @@ function App() {
         <Routes>
           <Route 
           path="/"
+<<<<<<< HEAD
           element={<Home/>}
           />
             <Route 
@@ -73,6 +89,9 @@ function App() {
            <Route 
           path="/ItPrice"
           element={<ItPrices />}
+=======
+          element={<Home />}
+>>>>>>> 7ad672e1bc7b892b54f07d76181cde99cd3cff9b
           />
           <Route 
           path="/AddAdmin"
@@ -102,6 +121,7 @@ function App() {
           path="/AddCourse"
           element={<AddCourse />}
           />
+<<<<<<< HEAD
           <Route 
           path="/AllAdmins"
           element={<AllAdmins />}
@@ -164,6 +184,10 @@ function App() {
        
       </div>
 
+=======
+        </Routes> 
+      </div>
+>>>>>>> 7ad672e1bc7b892b54f07d76181cde99cd3cff9b
       </BrowserRouter>
     </div>
   );

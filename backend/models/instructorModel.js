@@ -11,6 +11,14 @@ const instructorSchema = new Schema ({
         type: String,
         required: true 
     },
+    email: {
+        type: String,
+        required: false
+    },
+    miniBio: {
+        type: String,
+        required: false
+    },
     password: {
         type: String,
         required: true
@@ -18,6 +26,14 @@ const instructorSchema = new Schema ({
     country: {
         type: String,
         required: false  
+    },
+    rating: {
+        type: Number,
+        required: true
+    },
+    ratings:{
+    type : [Number],
+    required:true
     }
 }, {timestamps: true})
 

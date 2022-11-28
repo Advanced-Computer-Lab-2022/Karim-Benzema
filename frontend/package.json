@@ -7,6 +7,7 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+<<<<<<< HEAD
     "axios": "^1.1.3",
     "path-browserify": "^1.0.1",
     "react": "^18.2.0",
@@ -16,6 +17,13 @@
     "react-scripts": "^5.0.1",
     "react-select": "^5.5.7",
     "react-select-country-list": "^2.2.3",
+=======
+    "path-browserify": "^1.0.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.4.2",
+    "react-scripts": "5.0.1",
+>>>>>>> 7ad672e1bc7b892b54f07d76181cde99cd3cff9b
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -41,11 +49,14 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+<<<<<<< HEAD
   },
   "devDependencies": {
     "@babel/core": "^7.19.6",
     "@babel/preset-env": "^7.19.4",
     "babel-loader": "^9.0.0",
     "webpack": "^5.74.0"
+=======
+>>>>>>> 7ad672e1bc7b892b54f07d76181cde99cd3cff9b
   }
 }

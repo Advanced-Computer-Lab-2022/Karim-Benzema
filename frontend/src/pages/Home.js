@@ -1,4 +1,5 @@
 import {useEffect,useState} from 'react';
+<<<<<<< HEAD
 import React from 'react';
 //components 
 import CourseDetails from '../components/courseDetails';
@@ -10,11 +11,23 @@ const Home = () => {
     const [error,setError] = useState(null)
     const [subject, setSubject] = useState('')
     const [rating, setRating] = useState('')
+=======
+
+//components 
+import CourseDetails from '../components/courseDetails';
+
+
+
+const Home = () => {
+
+    const [courses,setCourses] = useState(null);
+>>>>>>> 7ad672e1bc7b892b54f07d76181cde99cd3cff9b
 
 useEffect(() => {
     const fetchCourses = async () => {
       const response = await fetch('/api/courses/getCourses')
       const json = await response.json()
+<<<<<<< HEAD
  //console.log(json)
     if(response.ok){
         setCourses(json)
@@ -76,10 +89,22 @@ const handleSubmit2 = async(e) => {
     }
 }
 
+=======
+ 
+    if(response.ok){
+        setCourses(json)
+    }
+
+    }
+
+    fetchCourses();
+}, []);
+>>>>>>> 7ad672e1bc7b892b54f07d76181cde99cd3cff9b
 
     return (
         <div className="home">
         <div className="courses">
+<<<<<<< HEAD
             {courses && courses.map((course) => (
             <CourseDetails key={course._id} course={course} />
             ))}
@@ -109,9 +134,19 @@ const handleSubmit2 = async(e) => {
         <button onChange={(e) => setCourses(courses)}>Filter</button>
         {/* {error && <div className="error">{error}</div>} */}
 </form>
+=======
+            {courses && courses.map( (course) => (
+            <CourseDetails key={course._id} course={course} />
+            ))}
+        </div>
+>>>>>>> 7ad672e1bc7b892b54f07d76181cde99cd3cff9b
         </div>
     );
 
 }
 
+<<<<<<< HEAD
 export default Home;
+=======
+export default Home;
+>>>>>>> 7ad672e1bc7b892b54f07d76181cde99cd3cff9b
