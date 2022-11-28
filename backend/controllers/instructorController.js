@@ -73,8 +73,6 @@ const searchSubjectOrTitle = async (req,res) => {
 const updateCountry = async (req,res) => {
     const { username,country} = req.body
 
-    
-
     const data = await instructor.findOneAndUpdate({username : username},{
         country : country
     },{new:true})
@@ -138,7 +136,20 @@ const searchawy = async (req,res) => {
     }
     res.status(200).json(data)
 }
-
+//define a discount 
+const definediscount = async (req,res) => {
+    //add instructor to DB 
+    const{discount,period,id} = req.body 
+    //change id to req.paramas for front end
+    const data = await course.findOneAndUpdate({_id:id},
+        {period : period,
+        discount : discount}
+    ,{new:true})
+    if(!data){
+        return res.status(404).json({error: "Not found"})//redundant prob
+    }
+    res.status(200).json(data)
+}
 
  //add route f instructors 
  //new 
@@ -156,6 +167,9 @@ module.exports = {
     getcoursebysubjectorRating,
     getpriceof1course,
     searchawy,
-    instCourses
+    instCourses,
+    //yasm2
+    definediscount
+
 
 }

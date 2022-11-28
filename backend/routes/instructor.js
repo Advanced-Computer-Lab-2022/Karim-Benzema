@@ -13,7 +13,9 @@ const {
     getcoursebysubjectorRating,
     getpriceof1course,
     searchawy,
-    instCourses
+    instCourses,
+    //yasm2
+    definediscount
 } = require('../controllers/instructorController') //new
 const router = express.Router()
 
@@ -34,6 +36,8 @@ router.get('/subjectorRating', getcoursebysubjectorRating)
 router.get('/getpriceof1course', getpriceof1course)
 router.get('/search2', searchawy)
 router.get('/courses',instCourses)
+router.patch('/discount',definediscount)
 module.exports = router 
+
 
 

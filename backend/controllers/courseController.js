@@ -4,9 +4,9 @@ const mongoose = require('mongoose')
 //create new course 
 const createcourse = async (req,res) => {
     //add course to DB 
-    const{title,subtitle,totalHours,price,rating,subject,instructor,exercises,discount,shortSummary} = req.body
+    const{title,subtitle,totalHours,price,rating,subject,instructor,exercises,discount,shortSummary,period} = req.body
     try{
-        const data= await course.create({title,subtitle,totalHours,price,rating,subject,instructor,exercises,discount,shortSummary}) //change
+        const data= await course.create({title,subtitle,totalHours,price,rating,subject,instructor,exercises,discount,shortSummary,period}) //change
         res.status(200).json(data)
     }catch(error) {
         res.status(400).json({error: error.message})

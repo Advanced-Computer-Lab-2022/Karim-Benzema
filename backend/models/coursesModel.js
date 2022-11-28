@@ -45,6 +45,10 @@ const coursesSchema = new Schema ({
         type: String,
         required: true
     },
+    period: {
+        type: Date,
+        required: true
+    },
 
 }, {timestamps: true})
 
