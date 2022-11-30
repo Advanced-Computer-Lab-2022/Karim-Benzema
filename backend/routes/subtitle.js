@@ -7,7 +7,7 @@ const {
 
 const router = express.Router()
 
-router.post('/create', createSubtitle)
+//router.post('/create', createSubtitle)
 
 //router.get('/getCourses', getCourses)
 

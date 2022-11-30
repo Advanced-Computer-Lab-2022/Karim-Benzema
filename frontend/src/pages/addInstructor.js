@@ -1,6 +1,7 @@
 
 //components 
 import CreateInstructor from '../components/createInstructor';
+import React from 'react';
 
 const AddInstructor = () => {
     return (

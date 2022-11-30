@@ -1,3 +1,5 @@
+import React from 'react';
+
 const CourseDetails = ({course}) => {
     return (
         <div className="course-details">
@@ -8,8 +10,8 @@ const CourseDetails = ({course}) => {
             <p><strong>Price: </strong>{course.price}</p>
             <p><strong>Rating: </strong>{course.rating}</p>
             <p><strong>Subject: </strong>{course.subject}</p>
-            <p><strong>Instructor: </strong>{course.Instructor}</p>
-            <p><strong>Exercises: </strong>{course.Exercises}</p>
+            <p><strong>Instructor: </strong>{course.instructor}</p>
+            <p><strong>Exercises: </strong>{course.exercises}</p>
             <p><strong>Discount: </strong>{course.discount}</p>
             <p><strong>Short Summary: </strong>{course.shortSummary}</p>
         </div>

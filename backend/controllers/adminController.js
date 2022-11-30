@@ -46,63 +46,6 @@ const getAdmins = async (req,res) => {
    res.status(200).json(admins)
 }
 
-// //get a single admin 
-// const getAdmin = async (req,res) => {
-//     const {id} = req.params
-   
-    
-//     if(!mongoose.Types.ObjectId.isValid(id)){
-//         return res.status(404).json({ error: "No such Admin" })
-//     }
-
-//     const data= await admin.findById(id)
-
-//     if(!data){
-//         return res.status(404).json({error: "Not found"})
-//     }
-
-//     res.status(200).json(data)
-// }
-
-
-// //delete an admin 
-// const deleteAdmin = async (req,res) => {
-//     const { id } = req.params
-
-//     if(!mongoose.Types.ObjectId.isValid(id)){
-//         return res.status(404).json({ error: "No such Admin" })
-//     }
-
-//     const data = await admin.findOneAndDelete({_id : id})
-
-//     if(!data){
-//         return res.status(404).json({error: "Not found"})
-//     }
-
-//     res.status(200).json(data)
-
-// }
-
-// //update an admin
-//  const updateAdmin = async (req,res) => {
-//     const { id } = req.params
-
-//     if(!mongoose.Types.ObjectId.isValid(id)){
-//         return res.status(404).json({ error: "No such Admin" })
-//     }
-
-//     const data = await admin.findOneAndUpdate({_id : id},{
-//         //name : "yasmine"
-//         ...req.body
-//     })
-//     if(!data){
-//         return res.status(404).json({error: "Not found"})
-//     }
-//     res.status(200).json(data)
-    
-
-// }
-
 //new 
 module.exports = {
     createAdmin,

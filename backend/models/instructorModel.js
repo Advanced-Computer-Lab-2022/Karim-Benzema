@@ -26,6 +26,14 @@ const instructorSchema = new Schema ({
     country: {
         type: String,
         required: false  
+    },
+    rating: {
+        type: Number,
+        required: true
+    },
+    ratings:{
+    type : [Number],
+    required:true
     }
 }, {timestamps: true})
 

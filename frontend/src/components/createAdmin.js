@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import React from 'react';
+
 const CreateAdmin = () => {
     const [username,setUsername] = useState('')
     const [password,setPassword] = useState('')

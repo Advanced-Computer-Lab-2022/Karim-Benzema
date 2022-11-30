@@ -7,10 +7,6 @@ const coursesSchema = new Schema ({
         type: String,
         required: true 
     },
-    subtitle: {
-        type: String,
-        required: true 
-    },
     totalHours: {
         type: String,
         required: true
@@ -20,8 +16,12 @@ const coursesSchema = new Schema ({
         required: true
     },
     rating: {
-        type: String,
-        required: true
+        type: Number,
+        required: false
+    },
+    ratings:{
+    type : [Number],
+    required:false
     },
     subject: {
         type: String,
@@ -33,10 +33,6 @@ const coursesSchema = new Schema ({
         //ref:'instructorModel',
         required: true
     },
-    exercises: {
-        type: String,
-        required: true
-    },
     discount: {
         type: Number,
         required: true
@@ -45,7 +41,14 @@ const coursesSchema = new Schema ({
         type: String,
         required: true
     },
-
+    period: {
+        type: Date,
+        required: false
+    },
+    preview: {
+        type: String,
+        required: false
+    },
 }, {timestamps: true})
 
 

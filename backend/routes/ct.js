@@ -7,12 +7,18 @@ const {
     // getcoursebyrating,
     getcoursebysubjectRating,
     getcoursebysubjectorRating,
-    searchawy
+    searchawy,
+    rateCourse,
+    rateInstructor,
+    changePassword
 } = require('../controllers/ctController') //new
 
 const router = express.Router()
 // /ct1/
-router.patch('/:id', updateCountry)
+router.patch('/updateCountry/:id', updateCountry)
+router.patch('/changePassword/:id', changePassword)
+router.patch('/rateCourse', rateCourse)
+router.patch('/rateInstructor', rateInstructor)
 router.get('/viewcourses', getcourse)
 router.get('/:id', getct)
 // router.get('/subjects/:subject', getcoursebysubject)

@@ -1,6 +1,7 @@
 
 //components 
 import CreateAdmin from '../components/createAdmin';
+import React from 'react';
 
 const AddAdmin = () => {
     return (

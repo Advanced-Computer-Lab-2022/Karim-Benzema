@@ -2,6 +2,7 @@ const { json } = require('express')
 const it = require('../models/itModel')
 const courses = require('../models/coursesModel')
 const mongoose = require('mongoose')
+const instructor = require('../models/instructorModel')
 
 //add country 
  const updateCountry = async (req,res) => {
@@ -22,7 +23,73 @@ const mongoose = require('mongoose')
     
 }
 
-//get all course with title, total hrs ,rating
+const changePassword = async (req,res) => {
+    const { id } = req.params
+    const{password}=req.body
+    if(!mongoose.Types.ObjectId.isValid(id)){
+        return res.status(404).json({ error: "No such individual trainee" })
+    }
+
+    const data = await it.findOneAndUpdate({_id : id},{
+        password : password
+    },{new:true})
+    if(!data){
+        return res.status(404).json({error: "Not found"})//redundant prob
+    }
+    res.status(200).json(data)
+    
+}
+const rateCourse = async (req,res) =>{
+    const { id,rating} = req.body
+    const course = await courses.findOne({_id:id})
+    const list = await course.ratings
+    console.log(list)
+    let newratings=[Number]
+    newratings=list 
+    console.log(newratings) 
+    newratings.push(rating) 
+    console.log(newratings)
+    var sum = 0
+    for(var i = 0;i < newratings.length;i++){
+ sum =sum + newratings[i]
+    }
+    const avg = sum/newratings.length
+    const data = await courses.findOneAndUpdate({_id : id},{
+        ratings:newratings,
+        rating : avg
+    },{new:true})
+        if(!data){
+            return res.status(404).json({error:"not found"})
+        }
+        res.status(200).json(data)}
+
+
+        const rateInstructor = async (req,res) =>{
+            const { id,rating} = req.body
+            const inst = await instructor.findOne({_id:id})
+            const list = await inst.ratings
+            console.log(list)
+            let newratings=[Number]
+            newratings=list 
+            console.log(newratings) 
+            newratings.push(rating) 
+            console.log(newratings)
+            var sum = 0
+            for(var i = 0;i < newratings.length;i++){
+         sum =sum + newratings[i]
+            }
+            const avg = sum/newratings.length
+            const data = await instructor.findOneAndUpdate({_id : id},{
+                ratings:newratings,
+                rating : avg
+            },{new:true})
+                if(!data){
+                    return res.status(404).json({error:"not found"})
+                }
+                res.status(200).json(data)}
+        
+
+        //get all course with title, total hrs ,rating
 const getcourse = async (req,res) => {
     //const data = await courses.find({},{projection : {title:1,totalHours:1,rating:1}});
     const data = await courses.find({}).select('title totalHours rating')
@@ -111,6 +178,9 @@ module.exports = {
     getcoursebysubjectRating,
     getcoursebysubjectorRating,
     getpriceof1course,
-    searchawy
+    searchawy,
+    rateCourse,
+    rateInstructor,
+    changePassword
     
 }

@@ -3,6 +3,11 @@ const mongoose = require('mongoose') //import mongoose
 const Schema = mongoose.Schema 
 
 const subtitleSchema = new Schema ({
+    course: {
+        type: mongoose.Types.ObjectId,
+        ref:'coursesModel',
+        required: true 
+    },
     number: {
         type: Number,
         required: true 
@@ -34,6 +39,5 @@ const subtitleSchema = new Schema ({
 }, {timestamps: true})
 
 
-const subtitle = mongoose.model('subtitleModel',subtitleSchema); //to use it in another file 
+const subtitle = mongoose.model('subtitleModel',subtitleSchema); 
 module.exports = subtitle;
-//guestSchema.find() //finds different documents int the collection

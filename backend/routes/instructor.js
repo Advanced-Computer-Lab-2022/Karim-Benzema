@@ -2,9 +2,8 @@ const express = require('express')
 const {
     getCourseTitle,
     createcourse,
-    filterSubjectOrPrice,
-    searchSubjectOrTitle,
-    //yasm
+    filterSubjectOrPrice,     //yasm
+    searchSubjectOrTitle,    
     updateCountry,
     getcourse,
     getinstructor,
@@ -13,40 +12,47 @@ const {
     getcoursebysubjectorRating,
     getpriceof1course,
     searchawy,
+    instCourses,
+    definediscount,     //yasm2
     editBio,
     createinst,
-    editEmail
+    editEmail,
+    upload,
+    changePassword,
+    getMyRating,
+    getCourseRating,
+    createSubtitle,
+    preview,
+    createExam,
+    createQuestion
 } = require('../controllers/instructorController') //new
 const router = express.Router()
-
 router.get('/name', getCourseTitle)
 router.get('/get',getinstructor)
-
-router.get('/filter/:subject', filterSubjectOrPrice) //change /:price to filter by price until we connect to frontend
-
+router.get('/filter', filterSubjectOrPrice) //change /:price to filter by price until we connect to frontend
+router.get('/getMyCourseRating/:id',getCourseRating)
+router.get('/getMyRating/:id',getMyRating)
 router.get('/search', searchSubjectOrTitle) //change /:title to search by title until we connect to frontend
-
 router.post('/createcourse',createcourse )
-//yasm
-router.patch('/:id', updateCountry)
-
 router.get('/viewcourses', getcourse)
-
+router.get('/subjectRating', getcoursebysubjectRating)
+router.get('/subjectorRating', getcoursebysubjectorRating)
+router.get('/getpriceof1course', getpriceof1course)
+router.get('/search2', searchawy)
+router.get('/courses',instCourses)
+router.patch('/discount',definediscount)
+router.patch('/updateCountry/:id', updateCountry)
+router.patch('/changePassword/:id', changePassword)
 router.get('/prices', getcoursebyprice)
-
-router.get('/subjectRating/:subject/:rating', getcoursebysubjectRating)
-
-router.get('/subjectorRating/:subject/:rating', getcoursebysubjectorRating)
-
-router.get('/getpriceof1course/:title', getpriceof1course)
-
-router.get('/search2/:input', searchawy)
-
 router.post('/createinst',createinst )
-
+//router.post('/createQuestion',createQuestion )
 router.patch('/editBio/:id', editBio)
-editEmail
 router.patch('/editEmail/:id', editEmail)
+router.patch('/upload', upload)
+router.post('/create',createSubtitle)
+router.patch('/preview', preview)
+router.post('/createExam',createExam )
+router.post('/createQuestions',createQuestion )
 module.exports = router 
 
 
