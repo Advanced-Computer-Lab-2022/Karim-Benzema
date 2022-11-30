@@ -159,7 +159,7 @@ function App() {
           path="/filterinstructorcourses"
           element={<FilterInstCourses/>}
           />
-        </Routes> 
+       
         <Route 
           path="/instExam"
           element={<InstExam/>}
@@ -168,7 +168,7 @@ function App() {
           path="/instQuestion"
           element={<InstQuestion/>}
           />
-      
+       </Routes> 
        
       </div>
 

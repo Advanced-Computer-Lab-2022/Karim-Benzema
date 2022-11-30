@@ -5,6 +5,9 @@ const x = 5
 const mongoose = require('mongoose')
 const course = require('../models/coursesModel')
 const subtitle = require('../models/subtitleModel')
+const subtitles = require('../models/subtitleModel')
+const question = require('../models/questionModel')
+const exam = require('../models/examModel')
 var courseId = mongoose.Types.ObjectId();
 //create inst
 const getMyRating = async(req,res)=>{
