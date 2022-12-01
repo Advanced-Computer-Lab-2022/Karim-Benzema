@@ -18,6 +18,10 @@ const ctSchema = new Schema ({
     country: {
         type: String,
         required: false  
+    },
+    courses: {
+        type: [ObjectId],
+        required: false  
     }
 }, {timestamps: true})
 

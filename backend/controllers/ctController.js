@@ -163,7 +163,43 @@ const rateInstructor = async (req,res) =>{
             return res.status(404).json({error:"not found"})
         }
         res.status(200).json(data)}
+    const reviewInstructor = async (req,res) => {
+            const {id,review} = req.body
+            const inst = await instructor.findOne({_id:id})
+            const list = await inst.reviews
+            console.log(list)
+            let newReviews=[String]
+            newReviews=list 
+            console.log(newReviews) 
+            newReviews.push(review) 
+            console.log(newReviews)
+            const data = await instructor.findOneAndUpdate({_id : id},{
+                reviews:newReviews
+                    },{new:true})
+            if(!data){
+                return res.status(404).json({error:"not found"})
+                    }
+            res.status(200).json(data)
+        }
 
+        const reviewCourse = async (req,res) => {
+            const {id,review} = req.body
+            const c = await courses.findOne({_id:id})
+            const list = await c.reviews
+            console.log(list)
+            let newReviews=[String]
+            newReviews=list 
+            console.log(newReviews) 
+            newReviews.push(review) 
+            console.log(newReviews)
+            const data = await courses.findOneAndUpdate({_id : id},{
+                reviews:newReviews
+                    },{new:true})
+            if(!data){
+                return res.status(404).json({error:"not found"})
+                    }
+            res.status(200).json(data)
+        }
 module.exports = {
     updateCountry,
     getct,
@@ -176,5 +212,7 @@ module.exports = {
     rateCourse,
     rateInstructor,
     changePassword,
-    getAllct
+    getAllct,
+    reviewInstructor,
+    reviewCourse
 }

@@ -64,7 +64,7 @@ const rateCourse = async (req,res) =>{
         res.status(200).json(data)}
 
 
-        const rateInstructor = async (req,res) =>{
+    const rateInstructor = async (req,res) =>{
             const { id,rating} = req.body
             const inst = await instructor.findOne({_id:id})
             const list = await inst.ratings
@@ -167,7 +167,49 @@ const getit = async (req,res) => {
 
     res.status(200).json(data)
 }
+const createIT = async (req,res) => {
+    const {name,username,password,country,courses}=req.body
+    const newCT = await it.create({name,username,password,country,courses})
+    res.status(200).json(newCT)
+}
 
+const reviewInstructor = async (req,res) => {
+    const {id,review} = req.body
+    const inst = await instructor.findOne({_id:id})
+    const list = await inst.reviews
+    console.log(list)
+    let newReviews=[String]
+    newReviews=list 
+    console.log(newReviews) 
+    newReviews.push(review) 
+    console.log(newReviews)
+    const data = await instructor.findOneAndUpdate({_id : id},{
+        reviews:newReviews
+            },{new:true})
+    if(!data){
+        return res.status(404).json({error:"not found"})
+            }
+    res.status(200).json(data)
+}
+
+const reviewCourse = async (req,res) => {
+    const {id,review} = req.body
+    const c = await courses.findOne({_id:id})
+    const list = await c.reviews
+    console.log(list)
+    let newReviews=[String]
+    newReviews=list 
+    console.log(newReviews) 
+    newReviews.push(review) 
+    console.log(newReviews)
+    const data = await courses.findOneAndUpdate({_id : id},{
+        reviews:newReviews
+            },{new:true})
+    if(!data){
+        return res.status(404).json({error:"not found"})
+            }
+    res.status(200).json(data)
+}
 module.exports = {
     updateCountry,
     getit,
@@ -181,6 +223,8 @@ module.exports = {
     searchawy,
     rateCourse,
     rateInstructor,
-    changePassword
-    
+    changePassword,
+    createIT,
+    reviewInstructor,
+    reviewCourse
 }

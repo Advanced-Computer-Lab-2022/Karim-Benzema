@@ -49,6 +49,10 @@ const coursesSchema = new Schema ({
         type: String,
         required: false
     },
+    reviews: {
+        type: [String],
+        required: false
+    }
 }, {timestamps: true})
 
 

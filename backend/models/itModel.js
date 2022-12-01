@@ -18,6 +18,10 @@ const itSchema = new Schema ({
     country: {
         type: String,
         required: true  
+    },
+    courses: {
+        type: [mongoose.Types.ObjectId],
+        required: false  
     }
 }, {timestamps: true})
 

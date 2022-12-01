@@ -10,7 +10,9 @@ const {
     searchawy,
     rateCourse,
     rateInstructor,
-    changePassword
+    changePassword,
+    reviewInstructor,
+    reviewCourse
 } = require('../controllers/ctController') //new
 
 const router = express.Router()
@@ -26,4 +28,6 @@ router.get('/:id', getct)
 router.get('/subjectRating/:subject/:rating', getcoursebysubjectRating)
 router.get('/subjectorRating/:subject/:rating', getcoursebysubjectorRating)
 router.get('/search/:input', searchawy)
+router.patch('/reviewInst', reviewInstructor)
+router.patch('/reviewCourse', reviewCourse)
 module.exports = router 

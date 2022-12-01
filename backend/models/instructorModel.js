@@ -34,6 +34,10 @@ const instructorSchema = new Schema ({
     ratings:{
     type : [Number],
     required:true
+    },
+    reviews: {
+        type: [String],
+        required: false
     }
 }, {timestamps: true})
 
