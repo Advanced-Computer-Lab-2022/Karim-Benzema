@@ -29,7 +29,8 @@ const subtitleSchema = new Schema ({
         required: false  
     },
     exercise: {
-        type: String,
+        type: mongoose.Types.ObjectId,
+        ref:'examModel',
         required: false  
     },
     solution: {

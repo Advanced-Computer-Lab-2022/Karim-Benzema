@@ -96,10 +96,10 @@ const searchSubjectOrTitle = async (req,res) => {
     }
     res.status(200).json(data)
 }
- const createcourse = async (req,res) => {
-    const{title,totalHours,price,subject,instructor,discount,shortSummary,preview} = req.body
+const createcourse = async (req,res) => {
+    const{title,totalHours,price,subject,instructor,discount,shortSummary,period} = req.body
     try{
-        const data= await courses.create({title,totalHours,price,subject,instructor,discount,shortSummary,preview}) //change
+        const data= await courses.create({title,totalHours,price,subject,instructor,discount,shortSummary,period}) 
         courseId = data._id
         console.log(courseId)
         res.status(200).json(data)
@@ -110,11 +110,11 @@ const searchSubjectOrTitle = async (req,res) => {
 const createSubtitle= async (req,res) => {
     const{totalHours} = req.body
     try{
-        const count =4
+        const count =1
        // while(number>0){
         const title = "Lecture "+count
         console.log(courseId)
-        const data= await subtitle.create({course:courseId,number:count,title,totalHours}) //change
+        const data= await subtitle.create({course:'6387ed923274ee6692de3155',number:count,title,totalHours}) //change
         res.status(200).json(data)
         //count++
       //  number--
@@ -251,10 +251,13 @@ const definediscount = async (req,res) => {
 
 const upload = async (req,res) => {
     const {title,number,link,description} = req.body
+    const videoId = getId(link)
+    console.log('Video ID:', videoId)
+    const embed = `https://www.youtube.com/embed/${videoId}`
     var data = mongoose.Types.ObjectId();
     data = await courses.findOne({title:title}).select('_id')
     const test = await subtitle.findOneAndUpdate({$and: [{course:data,number:number}]},
-        {video:link,
+        {video:embed,
         description:description},
         {new:true})
     if(!test){
@@ -265,25 +268,40 @@ const upload = async (req,res) => {
 const preview = async (req,res) => {
     const {id,preview} = req.body
     console.log(preview)
+    const videoId = getId(preview)
+    console.log('Video ID:', videoId)
+    const embed = `https://www.youtube.com/embed/${videoId}`
     const test = await courses.findOneAndUpdate({_id:id},
-        {preview:preview},
+        {preview:embed},
         {new:true})
     if(!test){
             return res.status(404).json({error: "Not found"})//redundant prob
         }
-        console.log(id)
-        console.log(preview)
-
     res.status(200).json(test)
+}
+function getId(url) {
+    const regExp = /^.(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]).*/;
+    const match = url.match(regExp);
+
+    return (match && match[2].length === 11)
+      ? match[2]
+      : null;
 }
 const createExam = async (req,res) => {
     //add course to DB 
     const {title,number,examName}=req.body
    const course = await courses.findOne({title:title}).select('title')
    const subtitle = await subtitles.findOne({number:number}).select('number')
+
    console.log(subtitle);
+
    try{
-        const data= await exam.create({course,subtitle,examName}) //change
+        const data= await exam.create({course,subtitle,examName})
+         exercise=data._id
+         console.log(exercise)
+        //change
+        const sub =await subtitles.findOneAndUpdate({number:number},
+           { exercise:exercise})
         res.status(200).json(data)
     }catch(error) {
         res.status(400).json({error: error.message})
@@ -291,16 +309,18 @@ const createExam = async (req,res) => {
 }
 const createQuestion = async (req,res) => {
     //add course to DB 
-    const {eName,name,mcq1,mcq2,mcq3,mcq4,questionAnswer}=req.body
-    const examm = await exam.findOne({examName:eName}).select('questionSet')
+    const {name,mcq1,mcq2,mcq3,mcq4,questionAnswer}=req.body
+    
+    //const examm = await exam.findOne({examName:eName}).select('questionSet')
     const questionSet=[mcq1,mcq2,mcq3,mcq4]
 
-    try{
-        const examName = await exam.findOneAndUpdate({examName:eName},
-           {$push:{ questions:[({name,questionSet,questionAnswer})]}}
+    try{ console.log(exercise)
+        const examName = await exam.findOneAndUpdate({_id:exercise},
+          {$push:{ questions:[({name,questionSet,questionAnswer})]}}
            )
-        const data= await question.create({name,questionSet,questionAnswer}) //change
-        res.status(200).json(data)
+           const examid= await exam.findOne({_id:exercise}).select('_id')
+        const data= await question.create({examid,name,questionSet,questionAnswer}) //change
+        res.status(200).json(examName)
     }catch(error) {
         res.status(400).json({error: error.message})
     }
@@ -332,3 +352,4 @@ module.exports = {
     createExam,
     createQuestion
 }
+

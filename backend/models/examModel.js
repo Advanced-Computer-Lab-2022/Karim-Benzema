@@ -18,11 +18,15 @@ const examSchema = new Schema ({
         type: String,
         required: true 
     },
-questions: {
-            type: [question.questionSchema]
-        
-          
-          }
+    questions: {
+        type: [question.questionSchema]  
+          },
+          answers:{
+            type:Array,
+            required: false 
+    
+            
+        }
     
 }, {timestamps: true})
 

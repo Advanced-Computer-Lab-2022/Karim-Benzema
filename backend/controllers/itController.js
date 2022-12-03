@@ -3,6 +3,162 @@ const it = require('../models/itModel')
 const courses = require('../models/coursesModel')
 const mongoose = require('mongoose')
 const instructor = require('../models/instructorModel')
+const exam = require('../models/examModel')
+const question =require('../models/questionModel')
+const que =require('../models/questionModel')
+
+const ItAnswers = require('../models/itAnswerModel')
+//add country
+const solve = async (req,res) => {
+    const {set,question}=req.body
+  const name= question.name
+  let dataa=[];
+   const ques= await que.findOne({name:name}).select('_id')
+   let dataaa= await ItAnswers.findOne({ques:ques})
+    console.log(dataaa)
+    if(dataaa==null ){
+    dataa= await ItAnswers.create({ques,set})
+   }
+   else{
+    dataa= await ItAnswers.findOneAndUpdate({ques:ques },
+        {set:set})
+   }
+   // console.log(req.params)
+   //const dataa =  await instructor.find({ username:username }).select('_id')
+   //console.log(dataa)
+    //const data = await courses.find({},{projection : {title:1,totalHours:1,rating:1}});
+    const data = await exam.findOneAndUpdate({examName:"exam1" },
+    {$push:{ answers:[(set)]}})
+
+
+ if(!data){
+    return res.status(404).json({error: "Not found"})//redundant prob
+}
+  res.status(200).json(dataa)
+}
+const correcting = async (req,res) => {
+    //const {set}=req.body
+   // console.log(req.params)
+   //const dataa =  await instructor.find({ username:username }).select('_id')
+   //console.log(dataa)
+    //const data = await courses.find({},{projection : {title:1,totalHours:1,rating:1}});
+    const array =[];
+
+const corrects=[]
+let wrongAnswers=0;
+let grade=0;
+let gradeComment=""
+const wrong=[]
+    const data = await exam.findOne({examName:"exam1" }).select('answers')
+ const allanswers= await ItAnswers.find({})
+ console.log(allanswers)
+    const examid = await exam.findOne({examName:"exam1" }).select('_id')
+    const questions = array.push(await exam.findOne({examName:"exam1" }).select('questions'))
+   //console.log(questions.length)
+    const dataa = await question.find({examid:examid }).select('questionAnswer')
+    
+console.log(data)
+   for(i=0;i<dataa.length;i++){
+    if(dataa[i].questionAnswer!=data.answers[i]){
+    console.log(dataa[i])
+    console.log(data.answers[i])
+    console.log("wrong")
+    let questionnumber =i+1
+    wrongAnswers++;
+    let string = "question"+questionnumber +"wrong"+'.     '+"correct Answer:"+dataa[i].questionAnswer;
+    wrong.push(string)
+
+    }
+   }
+   grade=(((dataa.length)-wrongAnswers)/(dataa.length))*100
+   gradeComment ="Your Grade is" +".       "+grade
+   wrong.push(gradeComment)
+
+   console.log(wrong)
+
+ if(!data){
+    return res.status(404).json({error: "Not found"})//redundant prob
+}
+  res.status(200).json(wrong)
+}
+
+
+const correctingg = async (req,res) => {
+    //const {set}=req.body
+   // console.log(req.params)
+   //const dataa =  await instructor.find({ username:username }).select('_id')
+   //console.log(dataa)
+    //const data = await courses.find({},{projection : {title:1,totalHours:1,rating:1}});
+    const array =[];
+
+const corrects=[]
+let wrongAnswers=0;
+let grade=0;
+let gradeComment=""
+const wrong=[]
+    const data = await exam.findOne({examName:"exam1" }).select('answers')
+ const allanswers= await ItAnswers.find({})
+
+    const examid = await exam.findOne({examName:"exam1" }).select('_id')
+    const questions = array.push(await exam.findOne({examName:"exam1" }).select('questions'))
+   //console.log(questions.length)
+    const dataa = await question.find({examid:examid }).select('questionAnswer')
+   
+   for(i=0;i<dataa.length;i++){
+ let is=allanswers[i].ques
+ if(is!=null){
+ console.log(is)
+let id=allanswers[i].ques._id
+    let findquestion= await question.findOne({_id:id}).select('questionAnswer')
+    let questionName= await question.findOne({_id:id}).select('name')
+    console.log(findquestion)
+    if(findquestion.questionAnswer!=allanswers[i].set){
+   
+
+    console.log("wrong")
+    let questionnumber =i+1
+    wrongAnswers++;
+    let string = "question"+".            "+questionName.name +"wrong"+'.     '+"correct Answer:"+findquestion.questionAnswer;
+    wrong.push(string)
+    }
+    }
+   }
+   grade=(((dataa.length)-wrongAnswers)/(dataa.length))*100
+   gradeComment ="Your Grade is" +".       "+grade
+   wrong.push(gradeComment)
+
+   //console.log(wrong)
+
+ if(!data){
+    return res.status(404).json({error: "Not found"})//redundant prob
+}
+  res.status(200).json(wrong)
+}
+
+
+const viewExam = async (req,res) => {
+    //const {username}=req.params
+   // console.log(req.params)
+   //const dataa =  await instructor.find({ username:username }).select('_id')
+   //console.log(dataa)
+    //const data = await courses.find({},{projection : {title:1,totalHours:1,rating:1}});
+    const data = await exam.find({examName:"exam1" })
+    const dataaaa = await exam.find({examName:"exam1" }).select('questions')
+
+ console.log(dataaaa)
+ if(!data){
+    return res.status(404).json({error: "Not found"})//redundant prob
+}
+  res.status(200).json(data)
+}
+const itAnswer = async (req,res) => {
+    const {examName}  = req.params
+    // const search = req.params.price
+    console.log(examName)
+    const data = await exam.find({examName: examName})
+
+    res.status(200).json(data)
+} 
 
 //add country 
  const updateCountry = async (req,res) => {
@@ -22,6 +178,8 @@ const instructor = require('../models/instructorModel')
     res.status(200).json(data)
     
 }
+
+
 
 const changePassword = async (req,res) => {
    // const { id } = req.params
@@ -250,6 +408,12 @@ module.exports = {
     rateCourse,
     rateInstructor,
     changePassword,
+    itAnswer,
+    viewExam,
+    solve,
+    correcting,
+    correctingg,
+
     createIT,
     reviewInstructor,
     reviewCourse,

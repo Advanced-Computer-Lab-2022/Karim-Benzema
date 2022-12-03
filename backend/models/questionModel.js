@@ -3,6 +3,10 @@ const mongoose = require('mongoose') //import mongoose
 const Schema = mongoose.Schema 
 
 const questionSchema = new Schema ({
+    examid:{
+        type:mongoose.Types.ObjectId,
+        ref:'examModel'
+    },
     name:{
         type: String,
         required: true 
@@ -15,7 +19,7 @@ const questionSchema = new Schema ({
     questionAnswer: {
         type: String,
         required: false 
-    },
+    }
    
 }, {timestamps: true})
 

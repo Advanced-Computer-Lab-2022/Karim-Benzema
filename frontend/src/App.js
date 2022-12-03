@@ -32,6 +32,8 @@ import ItHome from './pages/ItHome';
 import FilterInstCourses from './pages/FilterInstCourses';
 import InstExam from './pages/instExam';
 import InstQuestion from './pages/instQuestion';
+import ItAnswer from './pages/itAnswer';
+import AnswerExam from './pages/answerExam';
 import CourseDeets from './pages/courseDeets';
 import ChangePassword from './components/changePassword';
 import ChangePasswordCT from './components/changePasswordCT';
@@ -183,6 +185,11 @@ function App() {
          <Route 
           path="/instQuestion"
           element={<InstQuestion/>}
+          />
+        
+            <Route 
+          path="/answerExam"
+          element={<AnswerExam/>}
           />
           <Route 
           path="/Course"

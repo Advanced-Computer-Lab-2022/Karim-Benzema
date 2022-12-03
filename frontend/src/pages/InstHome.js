@@ -1,6 +1,8 @@
 import {useEffect,useState} from 'react';
 import React from 'react';
 //components 
+import CourseDetails from '../components/courseDetails';
+
 import InstCoursesOnly from '../components/instCoursesOnly';
 import RatingReviewInst from '../components/ratingReviewInst';
 const InstHome = () => {

@@ -15,7 +15,7 @@ const InstQuestions = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const user = {eName,name,mcq1,mcq2,mcq3,mcq4,questionAnswer}
+        const user = {name,mcq1,mcq2,mcq3,mcq4,questionAnswer}
         const response = await fetch('/api/instructor/createQuestions', {
             method: 'POST',
             body: JSON.stringify(user),
@@ -45,12 +45,7 @@ const InstQuestions = () => {
        <form className="create" onSubmit={handleSubmit}>
         <h3>Create</h3>
 
-        <label>ExamName:</label>
-        <input
-        type="text"
-        onChange={(e) => setExam(e.target.value)}
-        value={eName}
-        />
+        
         <label>questionName:</label>
         <input
         type="text"

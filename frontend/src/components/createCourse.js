@@ -1,22 +1,24 @@
 import { useState } from 'react';
 const CreateCourse = () => {
     const [title,setTitle] = useState('')
-    const [subtitle,setSubtitle] = useState('')
     const [totalHours,setTotalHours] = useState('')
     const [price,setPrice] = useState('')
-    const [rating,setRating] = useState('')
+    // const [rating,setRating] = useState('')
+    // const [ratings,setRatings] = useState('')
     const [subject,setSubject] = useState('')
     const [instructor,setInstructor] = useState('')
-    const [exercises,setExercises] = useState('')
     const [discount,setDiscount] = useState('')
     const [shortSummary,setSummary] = useState('')
+    const [period,setPeriod] = useState('')
+    // const [preview,setPreview] = useState('')
+    // const [reviews,setReviews] = useState('')
 
     const [error,setError] = useState(null)
     
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const course = {title,subtitle,totalHours,price,rating,subject,instructor,exercises,discount,shortSummary}
+        const course = {title,totalHours,price,subject,instructor,discount,shortSummary,period}
         const response = await fetch('/api/instructor/createcourse', {
             method: 'POST',
             body: JSON.stringify(course),
@@ -31,15 +33,19 @@ const CreateCourse = () => {
     }
     if(response.ok){
         setTitle('')
-        setSubtitle('')
+       // setSubtitle('')
         setTotalHours('')
         setPrice('')
-        setRating('')
+        // setRating('')
+        // setRatings('')
         setSubject('')
         setInstructor('')
-        setExercises('')
+       // setExercises('')
         setDiscount('')
         setSummary('')
+        setPeriod('')
+        // setPreview('')
+        // setReviews('')
         setError(null)
         console.log("Added!",json)
         }
@@ -47,24 +53,19 @@ const CreateCourse = () => {
     return (
        <form className="create" onSubmit={handleSubmit}>
         <h3>Create Course</h3>
-
+     
         <label>Title:</label>
         <input
         type="text"
+        placeholder="Title"
         onChange={(e) => setTitle(e.target.value)}
         value={title}
-        />
-
-        <label>Subtitle:</label>
-        <input
-        type="text"
-        onChange={(e) => setSubtitle(e.target.value)}
-        value={subtitle}
         />
 
         <label>Total Hours:</label>
         <input
         type="text"
+        placeholder="Total Hours"
         onChange={(e) => setTotalHours(e.target.value)}
         value={totalHours}
         />
@@ -72,20 +73,15 @@ const CreateCourse = () => {
         <label>Price:</label>
         <input
         type="text"
+        placeholder="Price"
         onChange={(e) => setPrice(e.target.value)}
         value={price}
-        />
-
-        <label>Rating:</label>
-        <input
-        type="text"
-        onChange={(e) => setRating(e.target.value)}
-        value={rating}
         />
 
         <label>Subject:</label>
         <input
         type="text"
+        placeholder="Subject"
         onChange={(e) => setSubject(e.target.value)}
         value={subject}
         /> 
@@ -93,20 +89,15 @@ const CreateCourse = () => {
         <label>Instructor:</label>
         <input
         type="text"
+        placeholder="Instructor"
         onChange={(e) => setInstructor(e.target.value)}
         value={instructor}
-        /> 
-
-        <label>Exercises:</label>
-        <input
-        type="text"
-        onChange={(e) => setExercises(e.target.value)}
-        value={exercises}
         /> 
         
         <label>Discount:</label>
         <input
         type="text"
+        placeholder="Discount"
         onChange={(e) => setDiscount(e.target.value)}
         value={discount}
         /> 
@@ -114,13 +105,23 @@ const CreateCourse = () => {
         <label>Short Summary:</label>
         <input
         type="text"
+        placeholder="Short Summary"
         onChange={(e) => setSummary(e.target.value)}
         value={shortSummary}
         /> 
 
+         <label>Valid until date :</label>
+        <input
+        type="text"
+        placeholder="DD/MM/YY"
+        onChange={(e) => setPeriod(e.target.value)}
+        value={period}
+        /> 
 
         <button>Add</button>
         {error && <div className="error">{error}</div>}
+ 
+
         </form>
 
        
