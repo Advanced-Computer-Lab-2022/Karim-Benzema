@@ -11,6 +11,7 @@ const ctRoutes = require('./routes/ct')
 const coursesRoutes = require('./routes/courses')
 const guestRoutes = require('./routes/guest')
 const subtitleRoutes = require('./routes/subtitle')
+const passwordResetRoutes = require('./routes/passwordReset')
 const mongoose = require('mongoose')
 
 // express app
@@ -32,6 +33,7 @@ app.use('/api/ct',ctRoutes)
 app.use('/api/courses',coursesRoutes)
 app.use('/api/guest',guestRoutes)
 app.use('/api/subtitle',subtitleRoutes)
+app.use('/api/passwordReset',passwordResetRoutes)
 
 //connect to DB
 mongoose.connect(process.env.MONGO_URI)

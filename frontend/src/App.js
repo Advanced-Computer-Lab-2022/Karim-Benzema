@@ -40,6 +40,10 @@ import InstCourseDeets from './pages/instCourseDeets';
 import InsteditBio from './pages/InstEditBio';
 import InsteditEmail from './pages/InstEditEmail';
 import SubtitleContent from './pages/subtitleContent';
+import ForgotPassword from './components/ForgotPassword';
+import PasswordReset from './components/PasswordReset';
+import Contract from './components/Contract';
+
 function App() {
   return (
     <div className="App">
@@ -211,6 +215,18 @@ function App() {
           <Route 
           path="/subtitlecontent"
           element={<SubtitleContent/>}
+          />
+          <Route
+          path="/forgotpassword"
+          element={<ForgotPassword/>}
+          />
+          <Route 
+          path="/passwordReset/:id/:token"
+          element={<PasswordReset/>}
+          />
+          <Route 
+          path="/contract"
+          element={<Contract/>}
           />
        
        </Routes> 

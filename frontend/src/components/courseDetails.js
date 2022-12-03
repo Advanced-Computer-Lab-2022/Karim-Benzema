@@ -15,6 +15,7 @@ const CourseDetails = ({course}) => {
             <p><strong>Instructor: </strong>{course.instructor}</p>
             {/* <p><strong>Exercises: </strong>{course.exercises}</p> */}
             <p><strong>Discount: </strong>{course.discount}</p>
+            <p><strong>Course Preview:</strong><iframe width="560" height="315" src="https://www.youtube.com/embed/98BzS5Oz5E4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p>
             <p><strong>Short Summary: </strong>{course.shortSummary}</p>
         </div>
     );
