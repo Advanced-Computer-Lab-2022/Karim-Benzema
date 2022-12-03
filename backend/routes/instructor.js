@@ -33,7 +33,7 @@ router.get('/name', getCourseTitle)
 router.get('/get',getinstructor)
 router.get('/filter', filterSubjectOrPrice) //change /:price to filter by price until we connect to frontend
 router.get('/getMyCourseRating/:id',getCourseRating)
-router.get('/getMyRating/:id',getMyRating)
+router.get('/getMyRating',getMyRating) //:id 
 router.get('/search', searchSubjectOrTitle) //change /:title to search by title until we connect to frontend
 router.post('/createcourse',createcourse )
 router.get('/viewcourses', getcourse)

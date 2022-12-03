@@ -5,14 +5,15 @@ const CourseDetails = ({course}) => {
         <div className="course-details">
             <h4>{course.title}</h4>
             <p><strong>Title : </strong>{course.title}</p>
-            <p><strong>SubTitle: </strong>{course.subtitle}</p>
+            {/* <p><strong>SubTitle: </strong>{course.subtitle}</p> */}
             <p><strong>Total Hours: </strong>{course.totalHours}</p>
             <p><strong>Price: </strong>{course.price}</p>
             <p><strong>Rating: </strong>{course.rating}</p>
-            <p><strong>Ratings: </strong>{course.ratings}</p>
+            {/* <p><strong>Ratings: </strong>{course.ratings}</p> */}
+            <p><strong>Reviews: </strong>{course.reviews + " "}</p>
             <p><strong>Subject: </strong>{course.subject}</p>
             <p><strong>Instructor: </strong>{course.instructor}</p>
-            <p><strong>Exercises: </strong>{course.exercises}</p>
+            {/* <p><strong>Exercises: </strong>{course.exercises}</p> */}
             <p><strong>Discount: </strong>{course.discount}</p>
             <p><strong>Short Summary: </strong>{course.shortSummary}</p>
         </div>

@@ -6,7 +6,6 @@ import React from 'react';
 
 const ChangePassword =()=> {
   const [password, setPassword] = useState('')
-  const [id, setId] = useState('')
   const [error,setError] = useState(null)
  // const [username,setUsername] = useState('')
 
@@ -15,7 +14,7 @@ const ChangePassword =()=> {
  
   
   const handleSubmit = async (e) => {
-    const user = {password,id}
+    const user = {password}
    // const x ={password}
     const response = await fetch('/api/it/changePassword', {
         method: 'PATCH',
@@ -39,14 +38,10 @@ if(response.ok){
 return(
   <div>
            <form className="create" onSubmit={handleSubmit}>
-           <input  className="new password" 
+         <input
         type={"text"}
         placeholder="enter new password"
         onChange={(e)=>  setPassword(e.target.value) }/>
-         <input  className="id" 
-        type={"text"}
-        placeholder="enter id"
-        onChange={(e)=>  setId(e.target.value) }/>
 
           
  <button>Change</button>

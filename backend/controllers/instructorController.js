@@ -10,8 +10,8 @@ const exam = require('../models/examModel')
 var courseId = mongoose.Types.ObjectId();
 //create inst
 const getMyRating = async(req,res)=>{
-    const{id} = req.params
-    const data= await instructor.find({_id:id}).select('rating ratings')
+   // const{id} = req.params
+    const data= await instructor.find({_id:'638351d52618087cf2322787'}).select('rating ratings reviews')
     if(!data){
         return res.status(404).json({error: "instructor not found"})
     }

@@ -25,12 +25,12 @@ const instructor = require('../models/instructorModel')
 
 const changePassword = async (req,res) => {
    // const { id } = req.params
-    const{password,id}=req.body
-    if(!mongoose.Types.ObjectId.isValid(id)){
+    const{password}=req.body
+    if(!mongoose.Types.ObjectId.isValid('63551aefcd009a2612b7c749')){
         return res.status(404).json({ error: "No such individual trainee" })
     }
-
-    const data = await it.findOneAndUpdate({_id : id},{
+ 
+    const data = await it.findOneAndUpdate({_id : '63551aefcd009a2612b7c749'},{
         password : password
     },{new:true})
     if(!data){
@@ -66,7 +66,9 @@ const rateCourse = async (req,res) =>{
 
     const rateInstructor = async (req,res) =>{
             const { id,rating} = req.body
-            const inst = await instructor.findOne({_id:id})
+            const course = await courses.findOne({_id:id})
+            const name = course.instructor
+            const inst = await instructor.findOne({name:name})
             const list = await inst.ratings
             console.log(list)
             let newratings=[Number]
@@ -79,7 +81,7 @@ const rateCourse = async (req,res) =>{
          sum =sum + newratings[i]
             }
             const avg = sum/newratings.length
-            const data = await instructor.findOneAndUpdate({_id : id},{
+            const data = await instructor.findOneAndUpdate({name : name},{
                 ratings:newratings,
                 rating : avg
             },{new:true})
@@ -95,20 +97,21 @@ const getcourse = async (req,res) => {
     const data = await courses.find({}).select('title totalHours rating')
     res.status(200).json(data)
 }
-// const getCoursebyid = async (req,res) => {
-//     try{
-//         const { id } = "63551aefcd009a2612b7c749"
-//         const ITperson = await it.find({_id:id}) 
-//         const regCourses = ITperson.courses
-//         for(var i =0;i<regCourses.length;i++){
-//             const jessy = await courses.find
-//         }
-//         const jessy = await courses.find
-//         res.status(200).json(jessy)
-//     }catch(error) {
-//         res.status(400).json({error: error.message})
-//     }
-// } 
+//yasm
+const getCoursebyitid = async (req,res) => {
+    try{
+        const array = (await it.findById({_id:'63551aefcd009a2612b7c749'}).select('courses')).courses
+        //console.log(ITperson)
+        let result = []
+        for(var i =0;i<array.length;i++){
+           result.push(await courses.find({_id:array[i]}))
+        }
+        res.status(200).json(result)
+        console.log(result)
+    }catch(error) {
+        res.status(400).json({error: error.message})
+    }
+}
 //get price of each course
 const getpriceof1course = async (req,res) => {
     const { title } = req.params
@@ -250,5 +253,6 @@ module.exports = {
     createIT,
     reviewInstructor,
     reviewCourse,
-    register  
+    register,
+    getCoursebyitid
 }

@@ -84,7 +84,7 @@ const InstCourseDeets = () => {
       
         <input className="promotion1" 
         type={"text"}
-        placeholder="period"
+        placeholder="valid until date"
         onChange={(e)=>setperiod(e.target.value)}
         />
         <button onChange={(e) => handleSubmit()}>Add discount</button>

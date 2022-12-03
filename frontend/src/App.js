@@ -39,6 +39,7 @@ import ChangePasswordINST from './components/changePasswordInstructor';
 import InstCourseDeets from './pages/instCourseDeets';
 import InsteditBio from './pages/InstEditBio';
 import InsteditEmail from './pages/InstEditEmail';
+import SubtitleContent from './pages/subtitleContent';
 function App() {
   return (
     <div className="App">
@@ -206,6 +207,10 @@ function App() {
           <Route 
           path="/insteditemail"
           element={<InsteditEmail/>}
+          />
+          <Route 
+          path="/subtitlecontent"
+          element={<SubtitleContent/>}
           />
        
        </Routes> 

@@ -39,14 +39,10 @@ if(response.ok){
 return(
   <div>
            <form className="create" onSubmit={handleSubmit}>
-           <input  className="new password" 
+         <input
         type={"text"}
         placeholder="enter new password"
         onChange={(e)=>  setPassword(e.target.value) }/>
-         <input  className="id" 
-        type={"text"}
-        placeholder="enter id"
-        onChange={(e)=>  setId(e.target.value) }/>
 
           
  <button>Change</button>

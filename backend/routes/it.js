@@ -12,7 +12,10 @@ const {
     searchawy,
     rateCourse,
     rateInstructor,
-    changePassword
+    changePassword,
+    reviewCourse,
+    reviewInstructor,
+    getCoursebyitid
 } = require('../controllers/itController') //new
 
 const router = express.Router()
@@ -20,7 +23,9 @@ const router = express.Router()
 router.patch('/updateCountry/:id', updateCountry)
 router.patch('/changePassword', changePassword)
 router.patch('/rateCourse', rateCourse)
+router.patch('/reviewCourse', reviewCourse)
 router.patch('/rateInstructor', rateInstructor)
+router.patch('/reviewInstructor', reviewInstructor)
 router.get('/viewcourses', getcourse)
 router.get('/getIt/:id', getit)
 router.get('/prices/:price', getcoursebyprice)
@@ -30,5 +35,6 @@ router.get('/subjectRating/:subject/:rating', getcoursebysubjectRating)
 router.get('/subjectorRating/:subject/:rating', getcoursebysubjectorRating)
 router.get('/getpriceof1course/:title', getpriceof1course)
 router.get('/search/:input', searchawy)
+router.get('/getcoursebyitid', getCoursebyitid)
 
 module.exports = router 
