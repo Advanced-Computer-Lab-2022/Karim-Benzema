@@ -21,7 +21,7 @@ const itSchema = new Schema ({
     },
     courses: {
         type: [mongoose.Types.ObjectId],
-        required: false  
+        required: false
     }
 }, {timestamps: true})
 

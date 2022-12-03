@@ -2,19 +2,20 @@ import {useEffect,useState} from 'react';
 import React from 'react';
 //components 
 import CourseDetails from '../components/courseDetails';
-
+import InstructorsOnly from '../components/instructorsOnly';
+import InstCoursesOnly from '../components/instCoursesOnly';
 const InstHome = () => {
     const [courses,setCourses] = useState(null);
     const [minprice, setMinPrice] = useState('')
     const [maxprice, setMaxPrice] = useState('')
     const [error,setError] = useState(null)
     const [subject, setSubject] = useState('')
+    const [instructors,setInstructors] = useState(null);
     const [rating, setRating] = useState('')
-
 
 useEffect(() => {
     const fetchCourses = async () => {
-      const response = await fetch('/api/courses/getCourses')
+      const response = await fetch('/api/instructor/viewCourses')
       const json = await response.json()
  
     if(response.ok){
@@ -22,12 +23,12 @@ useEffect(() => {
     }
     }
     fetchCourses();
-}, []);
+}
+, []);
 const handleSubmit = async(e) => {  
     //const priceVal = {price:price}
     e.preventDefault();
-    // const inputVal= {subject:subject,rating:rating}
-
+    // const seacrhVal = {title:title,subject:subject,Instructor:Instructor}
     if (minprice!=='' && maxprice!=='' ){ 
         const response = await fetch(`/api/courses/filterbyprice/`+ minprice +'/'+ maxprice)
     const json = await response.json()
@@ -47,43 +48,48 @@ else {
 const handleSubmit2 = async(e) => {  
     e.preventDefault();
     const inputVal= {subject:subject,rating:rating}
-if(subject==='' || rating===''){ //or
-    const response= await fetch(`/api/courses/getcoursebysubjectorRating?${new URLSearchParams(inputVal).toString()}`)
-    const json = await response.json()
-    if(!response.ok){
-        setError(json.error)
+    if(subject==='' || rating===''){ //or
+        const response= await fetch(`/api/courses/subjectorRating?${new URLSearchParams(inputVal).toString()}`)
+        const json = await response.json()
+        if(!response.ok){
+            setError(json.error)
+        }
+        if(response.ok){
+          setCourses(json);
+          console.log(json)
+          setError(null) 
+          setSubject('')
+          setRating('')
+        }
     }
-    if(response.ok){
-      setCourses(json);
-      console.log(json)
-      setError(null) 
-      setSubject('')
-      setRating('')
+    else{ //and 
+        const response= await fetch(`/api/courses/subjectRating?${new URLSearchParams(inputVal).toString()}`)
+        const json = await response.json()
+        if(!response.ok){
+            setError(json.error)
+        }
+        if(response.ok){
+          setCourses(json);
+          console.log(json)
+          setError(null)
+          setSubject('')
+          setRating('')
+        }
     }
-}
-// if(subject!=='' && rating!==''){ //and 
-else{
-    const response= await fetch(`/api/courses/getcoursebysubjectRating?${new URLSearchParams(inputVal).toString()}`)
-    const json = await response.json()
-    if(!response.ok){
-        setError(json.error)
-    }
-    if(response.ok){
-      setCourses(json);
-      console.log(json)
-      setError(null)
-      setSubject('')
-      setRating('')
-    }
-}
 }
     return (
         <div className="InstHome">
-        <div className="courses">
+        <div className="Instcourses">
             {courses && courses.map((course) => (
-            <CourseDetails key={course._id} course={course} />
+            <InstCoursesOnly key={course._id} course={course} />
             ))}
         </div>
+        {/* <div>
+        <button onChange={(e) =>  
+        <InstructorsOnly key={instructor._id} instructor={instructor} /> 
+    }>
+            View instructors </button>
+        </div> */}
         <form className="pricefilter" onSubmit={handleSubmit}>
         <input 
         type={"text"}
@@ -111,5 +117,6 @@ else{
 </form>
         </div>
     );
-            }
+
+}
 export default InstHome;

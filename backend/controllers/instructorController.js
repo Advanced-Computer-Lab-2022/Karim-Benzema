@@ -1,4 +1,3 @@
-
 const instructor = require('../models/instructorModel')
 const courses = require('../models/coursesModel')
 const x = 5
@@ -30,9 +29,9 @@ const createinst = async (req,res) => {
 }
 
 const changePassword = async (req,res) => {
-    const { id } = req.params
-    const{password}=req.body
-    if(!mongoose.Types.ObjectId.isValid(id)){
+    //const { id } = req.params
+    const{password,id}=req.body  
+      if(!mongoose.Types.ObjectId.isValid(id)){
         return res.status(404).json({ error: "No such individual trainee" })
     }
     const data = await instructor.findOneAndUpdate({_id : id},{
@@ -146,13 +145,14 @@ const updateCountry = async (req,res) => {
     res.status(200).json(data)
     
 }
+//metbasmaga name mona bas
 const getcourse = async (req,res) => {
     //const {username}=req.params
    // console.log(req.params)
    //const dataa =  await instructor.find({ username:username }).select('_id')
    //console.log(dataa)
     //const data = await courses.find({},{projection : {title:1,totalHours:1,rating:1}});
-    const data = await courses.find({instructor:"aly" })
+    const data = await courses.find({instructor:"mona" })
  //console.log(data)
  if(!data){
     return res.status(404).json({error: "Not found"})//redundant prob
@@ -168,13 +168,13 @@ const getcourse = async (req,res) => {
 
 //edit mini biography 
 const editBio = async (req,res) => {
-    const { id } = req.params
-    if(!mongoose.Types.ObjectId.isValid(id)){
-        return res.status(404).json({ error: "No such instructor" })
-    }
-    const data = await instructor.findOneAndUpdate({_id : id},{
-        miniBio : "I am a software engineer",
-        ...req.body
+    //const { id } = req.params
+    // if(!mongoose.Types.ObjectId.isValid(id)){
+    //     return res.status(404).json({ error: "No such instructor" })
+    // }
+    const{miniBio} = req.body
+    const data = await instructor.findOneAndUpdate({_id : "638351d52618087cf2322787"},{
+        miniBio : miniBio
     }, {new: true})
     if(!data){
         return res.status(404).json({error: "Not found"})//redundant prob
@@ -183,19 +183,20 @@ const editBio = async (req,res) => {
 }
 //edit mini biography 
 const editEmail = async (req,res) => {
-    const { id } = req.params
-    if(!mongoose.Types.ObjectId.isValid(id)){
-        return res.status(404).json({ error: "No such instructor" })
+  
+        //const { id } = req.params
+        // if(!mongoose.Types.ObjectId.isValid(id)){
+        //     return res.status(404).json({ error: "No such instructor" })
+        // }
+        const{email} = req.body
+        const data = await instructor.findOneAndUpdate({_id : "638351d52618087cf2322787"},{
+            email : email
+        }, {new: true})
+        if(!data){
+            return res.status(404).json({error: "Not found"})//redundant prob
+        }
+        res.status(200).json(data)
     }
-    const data = await instructor.findOneAndUpdate({_id : id},{
-        email : "null",
-        ...req.body
-    }, {new: true})
-    if(!data){
-        return res.status(404).json({error: "Not found"})//redundant prob
-    }
-    res.status(200).json(data)
-}
 //get price of each course
 const getpriceof1course = async (req,res) => {
     const { title } = req.params
@@ -262,13 +263,17 @@ const upload = async (req,res) => {
     res.status(200).json(test)    
 }
 const preview = async (req,res) => {
-    const {title,preview} = req.body
-    const test = await courses.findOneAndUpdate({title:title},
+    const {id,preview} = req.body
+    console.log(preview)
+    const test = await courses.findOneAndUpdate({_id:id},
         {preview:preview},
         {new:true})
     if(!test){
             return res.status(404).json({error: "Not found"})//redundant prob
         }
+        console.log(id)
+        console.log(preview)
+
     res.status(200).json(test)
 }
 const createExam = async (req,res) => {
@@ -277,7 +282,6 @@ const createExam = async (req,res) => {
    const course = await courses.findOne({title:title}).select('title')
    const subtitle = await subtitles.findOne({number:number}).select('number')
    console.log(subtitle);
-
    try{
         const data= await exam.create({course,subtitle,examName}) //change
         res.status(200).json(data)

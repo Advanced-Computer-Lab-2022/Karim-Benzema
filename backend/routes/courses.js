@@ -8,7 +8,9 @@ const {
     getcoursebyprice,
     searchawy,
     getcoursebysubjectRating,
-    getcoursebysubjectorRating
+    getcoursebysubjectorRating,
+    //yasm
+    getCoursebyid
 } = require('../controllers/courseController') //new
 
 const router = express.Router()
@@ -23,5 +25,8 @@ router.get('/filterbyprice/:min/:max', getcoursebyprice)
 router.get('/search2', searchawy)
 router.get('/subjectRating', getcoursebysubjectRating)
 router.get('/subjectorRating', getcoursebysubjectorRating)
+//yasm
+router.get('/getcoursebyid/:id', getCoursebyid)
+
 
 module.exports = router 

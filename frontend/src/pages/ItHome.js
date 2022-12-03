@@ -2,6 +2,8 @@ import {useEffect,useState} from 'react';
 import React from 'react';
 //components 
 import CourseDetails from '../components/courseDetails';
+import CoursesOnly from '../components/coursesOnly';
+import InstructorsOnly from '../components/instructorsOnly';
 
 const ItHome = () => {
     const [courses,setCourses] = useState(null);
@@ -9,6 +11,7 @@ const ItHome = () => {
     const [maxprice, setMaxPrice] = useState('')
     const [error,setError] = useState(null)
     const [subject, setSubject] = useState('')
+    const [instructors,setInstructors] = useState(null);
     const [rating, setRating] = useState('')
 
 useEffect(() => {
@@ -21,7 +24,8 @@ useEffect(() => {
     }
     }
     fetchCourses();
-}, []);
+}
+, []);
 const handleSubmit = async(e) => {  
     //const priceVal = {price:price}
     e.preventDefault();
@@ -74,15 +78,19 @@ const handleSubmit2 = async(e) => {
         }
     }
 }
-
-
     return (
         <div className="ITHome">
         <div className="courses">
             {courses && courses.map((course) => (
-            <CourseDetails key={course._id} course={course} />
+            <CoursesOnly key={course._id} course={course} />
             ))}
         </div>
+        {/* <div>
+        <button onChange={(e) =>  
+        <InstructorsOnly key={instructor._id} instructor={instructor} /> 
+    }>
+            View instructors </button>
+        </div> */}
         <form className="pricefilter" onSubmit={handleSubmit}>
         <input 
         type={"text"}

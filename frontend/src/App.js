@@ -32,6 +32,13 @@ import ItHome from './pages/ItHome';
 import FilterInstCourses from './pages/FilterInstCourses';
 import InstExam from './pages/instExam';
 import InstQuestion from './pages/instQuestion';
+import CourseDeets from './pages/courseDeets';
+import ChangePassword from './components/changePassword';
+import ChangePasswordCT from './components/changePasswordCT';
+import ChangePasswordINST from './components/changePasswordInstructor';
+import InstCourseDeets from './pages/instCourseDeets';
+import InsteditBio from './pages/InstEditBio';
+import InsteditEmail from './pages/InstEditEmail';
 function App() {
   return (
     <div className="App">
@@ -160,14 +167,47 @@ function App() {
           element={<FilterInstCourses/>}
           />
        
-        <Route 
+          <Route 
           path="/instExam"
           element={<InstExam/>}
+          />
+           <Route 
+          path="/insthome"
+          element={<InstHome/>}
           />
          <Route 
           path="/instQuestion"
           element={<InstQuestion/>}
           />
+          <Route 
+          path="/Course"
+          element={<CourseDeets/>}
+          />
+          <Route 
+          path="/InstCourse"
+          element={<InstCourseDeets/>}
+          />
+           <Route 
+          path="/changePasswordIt"
+          element={<ChangePassword/>}
+          />
+           <Route 
+          path="/changePasswordCt"
+          element={<ChangePasswordCT/>}
+          />
+           <Route 
+          path="/changePasswordInst"
+          element={<ChangePasswordINST/>}
+          />
+           <Route 
+          path="/insteditbio"
+          element={<InsteditBio/>}
+          />
+          <Route 
+          path="/insteditemail"
+          element={<InsteditEmail/>}
+          />
+       
        </Routes> 
        
       </div>

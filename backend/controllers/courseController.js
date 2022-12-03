@@ -40,6 +40,16 @@ const getCourses = async (req,res) => {
         res.status(400).json({error: error.message})
     }
 }
+//yasm
+const getCoursebyid = async (req,res) => {
+    try{
+        const { id } = req.params
+        const courses = await course.find({_id:id}) 
+        res.status(200).json(courses)
+    }catch(error) {
+        res.status(400).json({error: error.message})
+    }
+} 
 
 //filter courses by price
 const getcoursebyprice = async (req,res) => {
@@ -90,5 +100,7 @@ module.exports = {
     getcoursebyprice,
     searchawy,
     getcoursebysubjectRating,
-    getcoursebysubjectorRating
+    getcoursebysubjectorRating,
+    //yasm
+    getCoursebyid
 }

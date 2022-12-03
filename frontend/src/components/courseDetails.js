@@ -9,6 +9,7 @@ const CourseDetails = ({course}) => {
             <p><strong>Total Hours: </strong>{course.totalHours}</p>
             <p><strong>Price: </strong>{course.price}</p>
             <p><strong>Rating: </strong>{course.rating}</p>
+            <p><strong>Ratings: </strong>{course.ratings}</p>
             <p><strong>Subject: </strong>{course.subject}</p>
             <p><strong>Instructor: </strong>{course.instructor}</p>
             <p><strong>Exercises: </strong>{course.exercises}</p>

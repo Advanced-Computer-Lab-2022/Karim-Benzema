@@ -12,13 +12,14 @@ const {
     rateInstructor,
     changePassword,
     reviewInstructor,
-    reviewCourse
+    reviewCourse,
+    register
 } = require('../controllers/ctController') //new
 
 const router = express.Router()
 // /ct1/
 router.patch('/updateCountry/:id', updateCountry)
-router.patch('/changePassword/:id', changePassword)
+router.patch('/changePassword', changePassword)
 router.patch('/rateCourse', rateCourse)
 router.patch('/rateInstructor', rateInstructor)
 router.get('/viewcourses', getcourse)
@@ -30,4 +31,5 @@ router.get('/subjectorRating/:subject/:rating', getcoursebysubjectorRating)
 router.get('/search/:input', searchawy)
 router.patch('/reviewInst', reviewInstructor)
 router.patch('/reviewCourse', reviewCourse)
+router.patch('/register',register)
 module.exports = router 

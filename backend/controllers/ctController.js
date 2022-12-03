@@ -123,8 +123,8 @@ const rateCourse = async (req,res) =>{
 
 
         const changePassword = async (req,res) => {
-            const { id } = req.params
-            const{password}=req.body
+           // const { id } = req.params
+            const{password,id}=req.body
             if(!mongoose.Types.ObjectId.isValid(id)){
                 return res.status(404).json({ error: "No such individual trainee" })
             }
@@ -200,6 +200,17 @@ const rateInstructor = async (req,res) =>{
                     }
             res.status(200).json(data)
         }
+
+     const register = async (req,res) =>{
+        const {username,id} = req.body
+        const test = await courses.find({_id:id}).select('_id')
+        const data = await ct.findOneAndUpdate({username:username},
+            {$push:{courses:test}},
+            {new:true}
+            )
+        res.status(200).json(data)
+     }
+
 module.exports = {
     updateCountry,
     getct,
@@ -214,5 +225,6 @@ module.exports = {
     changePassword,
     getAllct,
     reviewInstructor,
-    reviewCourse
+    reviewCourse,
+    register
 }

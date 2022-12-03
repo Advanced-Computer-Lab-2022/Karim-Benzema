@@ -24,8 +24,8 @@ const instructor = require('../models/instructorModel')
 }
 
 const changePassword = async (req,res) => {
-    const { id } = req.params
-    const{password}=req.body
+   // const { id } = req.params
+    const{password,id}=req.body
     if(!mongoose.Types.ObjectId.isValid(id)){
         return res.status(404).json({ error: "No such individual trainee" })
     }
@@ -95,6 +95,20 @@ const getcourse = async (req,res) => {
     const data = await courses.find({}).select('title totalHours rating')
     res.status(200).json(data)
 }
+// const getCoursebyid = async (req,res) => {
+//     try{
+//         const { id } = "63551aefcd009a2612b7c749"
+//         const ITperson = await it.find({_id:id}) 
+//         const regCourses = ITperson.courses
+//         for(var i =0;i<regCourses.length;i++){
+//             const jessy = await courses.find
+//         }
+//         const jessy = await courses.find
+//         res.status(200).json(jessy)
+//     }catch(error) {
+//         res.status(400).json({error: error.message})
+//     }
+// } 
 //get price of each course
 const getpriceof1course = async (req,res) => {
     const { title } = req.params
@@ -172,6 +186,15 @@ const createIT = async (req,res) => {
     const newCT = await it.create({name,username,password,country,courses})
     res.status(200).json(newCT)
 }
+const register = async (req,res) =>{
+    const {username,id} = req.body
+    const test = await courses.find({_id:id}).select('_id')
+    const data = await it.findOneAndUpdate({username:username},
+        {$push:{courses:test}},
+        {new:true}
+        )
+    res.status(200).json(data)
+ }
 
 const reviewInstructor = async (req,res) => {
     const {id,review} = req.body
@@ -226,5 +249,6 @@ module.exports = {
     changePassword,
     createIT,
     reviewInstructor,
-    reviewCourse
+    reviewCourse,
+    register  
 }

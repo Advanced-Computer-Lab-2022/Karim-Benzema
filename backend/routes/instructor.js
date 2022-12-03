@@ -25,6 +25,8 @@ const {
     preview,
     createExam,
     createQuestion
+    //yasm
+    // ,getInstbyid
 } = require('../controllers/instructorController') //new
 const router = express.Router()
 router.get('/name', getCourseTitle)
@@ -42,17 +44,19 @@ router.get('/search2', searchawy)
 router.get('/courses',instCourses)
 router.patch('/discount',definediscount)
 router.patch('/updateCountry/:id', updateCountry)
-router.patch('/changePassword/:id', changePassword)
+router.patch('/changePassword', changePassword)
 router.get('/prices', getcoursebyprice)
 router.post('/createinst',createinst )
 //router.post('/createQuestion',createQuestion )
-router.patch('/editBio/:id', editBio)
-router.patch('/editEmail/:id', editEmail)
+router.patch('/editBio', editBio)
+router.patch('/editEmail', editEmail)
 router.patch('/upload', upload)
 router.post('/create',createSubtitle)
 router.patch('/preview', preview)
 router.post('/createExam',createExam )
 router.post('/createQuestions',createQuestion )
+//yasm
+// router.get('/getinstbyid/:id', getInstbyid)
 module.exports = router 
 
 

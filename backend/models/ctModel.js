@@ -20,8 +20,8 @@ const ctSchema = new Schema ({
         required: false  
     },
     courses: {
-        type: [ObjectId],
-        required: false  
+        type: [mongoose.Types.ObjectId],
+        required: false
     }
 }, {timestamps: true})
 
