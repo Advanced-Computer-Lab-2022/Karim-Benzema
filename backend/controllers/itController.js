@@ -252,7 +252,7 @@ const rateCourse = async (req,res) =>{
         //get all course with title, total hrs ,rating
 const getcourse = async (req,res) => {
     //const data = await courses.find({},{projection : {title:1,totalHours:1,rating:1}});
-    const data = await courses.find({}).select('title totalHours rating')
+    const data = await courses.find({}).select('title totalHours price rating')
     res.status(200).json(data)
 }
 //yasm

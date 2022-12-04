@@ -48,13 +48,13 @@ return(
         type="text"
         id="search"
         name="search"
-        placeholder="Search"
+        placeholder="Search by subject or title"
        
         onChange={(e) => setSearch(e.target.value)}
         value={search}
         />
         
- <button>Add</button>
+ <button>Search</button>
         {error && <div className="error">{error}</div>}
 
  

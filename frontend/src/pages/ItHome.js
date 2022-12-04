@@ -77,6 +77,17 @@ const ItHome = () => {
             }
         }
     }
+    const handleSubmit3 = async(e) => {  
+        e.preventDefault();
+        window.location=`/ItCourses`
+    
+    }
+
+    const handleSubmit4 = async(e) => {  
+        e.preventDefault();
+        window.location=`/selectCountryIt`
+    
+    }
     return (
         <div className="ITHome">
             <div className="courses">
@@ -120,6 +131,15 @@ const ItHome = () => {
                     onClick={() => window.location.href = "/changePasswordIt"}>
                     Change password</button>
             </form>
+            <form className="All Courses" onSubmit={handleSubmit3} >
+                <button>
+                    View All Courses</button>
+            </form>
+            <form className="Select Country" onSubmit={handleSubmit4} >
+                <button>
+                   Select Country</button>
+            </form>
+            
         </div>
     );
 
