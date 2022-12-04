@@ -280,7 +280,7 @@ const preview = async (req,res) => {
     res.status(200).json(test)
 }
 function getId(url) {
-    const regExp = /^.(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]).*/;
+    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
     const match = url.match(regExp);
 
     return (match && match[2].length === 11)

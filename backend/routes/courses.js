@@ -10,7 +10,8 @@ const {
     getcoursebysubjectRating,
     getcoursebysubjectorRating,
     //yasm
-    getCoursebyid
+    getCoursebyid,
+    getSubtitlebyid
 } = require('../controllers/courseController') //new
 
 const router = express.Router()
@@ -27,6 +28,6 @@ router.get('/subjectRating', getcoursebysubjectRating)
 router.get('/subjectorRating', getcoursebysubjectorRating)
 //yasm
 router.get('/getcoursebyid/:id', getCoursebyid)
-
+router.get('/getSubtitleById/:id',getSubtitlebyid)
 
 module.exports = router 

@@ -45,6 +45,31 @@ const InstCourseDeets = () => {
         }
     }
     }
+    const handleSubmit2 = async(e) => {  
+        e.preventDefault();
+        window.location=`/Subtitle?id=`+id
+    
+    }
+    //     const inputVal= {discount:discount,period:period,id:id}
+    //     if ((discount!=='' )&&(period!=='')){ 
+    //     //     const response = await fetch('/api/instructor/discount', {
+    //     //         method: 'PATCH',
+    //     //         body: JSON.stringify(inputVal),
+    //     //         headers: {
+    //     //             'Content-Type': 'application/json'
+    //     //         }
+    //     // })
+    //    // const json = await response.json()
+    // // if(!response.ok){
+    // //     setError(json.error)
+    // // }
+    // // if(response.ok){
+    // //   setError(null)
+    // //   setDiscount('')
+    // //   setperiod('')
+    // //     }
+    // // }
+    // }
 
 
     const handleSubmit1 = async(e) => {  
@@ -75,6 +100,7 @@ const InstCourseDeets = () => {
             < CourseDetails key={course.id} course={course} />
             ))}
         </div>
+       
         <form className="promotion" onSubmit={handleSubmit}>
         <input className="promotion" 
         type={"text"}
@@ -99,6 +125,10 @@ const InstCourseDeets = () => {
         onChange={(e)=>setPreview(e.target.value)}
         />
         <button onChange={(e) => handleSubmit1()}>Upload Link</button>
+        {error && <div className="error">{error}</div>}
+        </form>
+        <form className="Subtitles" onSubmit={handleSubmit2} >
+        <button  >View Subtitles</button>
         {error && <div className="error">{error}</div>}
         </form>
         </div>

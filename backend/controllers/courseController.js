@@ -1,6 +1,7 @@
 const { json, response } = require('express')
 const course = require('../models/coursesModel')
 const mongoose = require('mongoose')
+const subtitle = require('../models/subtitleModel')
 //create new course 
 const createcourse = async (req,res) => {
     //add course to DB 
@@ -93,6 +94,17 @@ const getcoursebysubjectorRating = async (req,res) => {
     res.status(200).json(data1)
     
 }
+const getSubtitlebyid = async (req,res) => {
+    try{
+        const { id } = req.params
+        const sub = await subtitle.find({course:id})
+        console.log(sub)
+        res.status(200).json(sub)
+    }catch(error) {
+        res.status(400).json({error: error.message})
+    }
+    
+}
 module.exports = {
     createcourse,
     getCourses,
@@ -102,5 +114,6 @@ module.exports = {
     getcoursebysubjectRating,
     getcoursebysubjectorRating,
     //yasm
-    getCoursebyid
+    getCoursebyid,
+    getSubtitlebyid
 }

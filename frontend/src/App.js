@@ -235,6 +235,10 @@ function App() {
           path="/contract"
           element={<Contract/>}
           />
+         <Route 
+          path="/Subtitle"
+          element={<SubtitleContent/>}
+          />
        
        </Routes> 
        
