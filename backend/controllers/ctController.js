@@ -29,7 +29,7 @@ const it = require('../models/itModel')
 //get all course 
 const getcourse = async (req,res) => {
     //const data = await courses.find({},{projection : {title:1,totalHours:1,rating:1}});
-    const data = await courses.find({}).select('title totalHours rating')
+    const data = await courses.find({}).select('title totalHours rating reviews preview')
     res.status(200).json(data)
 }
 
@@ -210,6 +210,20 @@ const rateInstructor = async (req,res) =>{
             )
         res.status(200).json(data)
      }
+     const getCoursebyCtid = async (req,res) => {
+        try{
+            const array = (await ct.findById({_id:'6363be23fe2c4aa1e6a64af0'}).select('courses')).courses
+            console.log(array)
+            let result = []
+            for(var i =0;i<array.length;i++){
+               result.push(await courses.find({_id:array[i]}))
+            }
+            res.status(200).json(result)
+            console.log(result)
+        }catch(error) {
+            res.status(400).json({error: error.message})
+        }
+    }
 
 module.exports = {
     updateCountry,
@@ -226,5 +240,6 @@ module.exports = {
     getAllct,
     reviewInstructor,
     reviewCourse,
-    register
+    register,
+    getCoursebyCtid
 }

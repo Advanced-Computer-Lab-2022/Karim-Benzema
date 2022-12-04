@@ -49,7 +49,6 @@ router.get('/itAnswer', itAnswer)
 router.get('/viewExam', viewExam)
 router.post('/answer', solve)
 router.get('/getAnswers', correctingg)
-
 router.get('/getcoursebyitid', getCoursebyitid)
 
 module.exports = router 

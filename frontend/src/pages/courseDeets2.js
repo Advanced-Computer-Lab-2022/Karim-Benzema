@@ -1,10 +1,11 @@
 import {useEffect,useState} from 'react';
 import React from 'react';
 //components 
-import CourseDetails from '../components/courseDetails';
+
+import CourseDetails2 from '../components/courseDetails2';
 //import { set } from 'mongoose';
 
-const CourseDeets = () => {
+const CourseDeets2 = () => {
     const [courses,setCourses] = useState(null);
     const [rating,setRating] = useState(null);
     const [rating2,setRating2] = useState(null);
@@ -29,7 +30,7 @@ const CourseDeets = () => {
         e.preventDefault();
         const inputVal= {id:id,rating:rating}
         if (rating!==''){ 
-            const response = await fetch('/api/it/rateCourse', {
+            const response = await fetch('/api/ct/rateCourse', {
                 method: 'PATCH',
                 body: JSON.stringify(inputVal),
                 headers: {
@@ -50,7 +51,7 @@ const CourseDeets = () => {
         e.preventDefault();
         const inputVal= {id:id,review:review}
         if (review!==''){ 
-            const response = await fetch('/api/it/reviewCourse', {
+            const response = await fetch('/api/ct/reviewCourse', {
                 method: 'PATCH',
                 body: JSON.stringify(inputVal),
                 headers: {
@@ -71,7 +72,7 @@ const CourseDeets = () => {
         e.preventDefault();
         const inputVal= {id:id,rating:rating2}
         if (rating2!==''){ 
-            const response = await fetch('/api/it/rateInstructor', {
+            const response = await fetch('/api/ct/rateInstructor', {
                 method: 'PATCH',
                 body: JSON.stringify(inputVal),
                 headers: {
@@ -92,7 +93,7 @@ const handleSubmit4 = async(e) => {
     e.preventDefault();
     const inputVal= {id:id,review:review2}
     if (review2!==''){ 
-        const response = await fetch('/api/it/reviewInstructor', {
+        const response = await fetch('/api/ct/reviewInstructor', {
             method: 'PATCH',
             body: JSON.stringify(inputVal),
             headers: {
@@ -119,10 +120,10 @@ if(response.ok){
      
     
     return (
-        <div className="ITHome">
+        <div className="CTHome">
         <div className="courses">
             {courses && courses.map((course) => (
-            < CourseDetails key={course._id} course={course} />
+            < CourseDetails2 key={course._id} course={course} />
             ))}
         </div>
         <form className="view content" onClick={handleSubmit3}>
@@ -174,4 +175,4 @@ if(response.ok){
     );
 }
 
-export default CourseDeets;
+export default CourseDeets2;

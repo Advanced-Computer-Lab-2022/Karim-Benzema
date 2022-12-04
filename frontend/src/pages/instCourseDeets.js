@@ -2,10 +2,12 @@ import {useEffect,useState} from 'react';
 import React from 'react';
 //components 
 import CourseDetails from '../components/courseDetails';
+import SubtitleDetails from '../components/subtitleDetails';
 //import { set } from 'mongoose';
 
 const InstCourseDeets = () => {
     const [courses,setCourses] = useState(null);
+   //const [subtitles,setSubtitles] = useState(null);
     const [discount,setDiscount] = useState(null);
     const [period,setperiod] = useState(null);
     const [preview,setPreview] = useState(null);
@@ -16,13 +18,14 @@ const InstCourseDeets = () => {
         const fetchCourses = async () => {
         const response = await fetch('/api/courses/getcoursebyid/'+id)
         const json = await response.json()
-     
+        console.log(json)
         if(response.ok){
             setCourses(json)
         }
         }
         fetchCourses();
     }, []);
+    
     const handleSubmit = async(e) => {  
         e.preventDefault();
         const inputVal= {discount:discount,period:period,id:id}
@@ -75,6 +78,7 @@ const InstCourseDeets = () => {
     const handleSubmit1 = async(e) => {  
         e.preventDefault();
         const inputVal= {id:id,preview:preview}
+        console.log(preview)
         if (preview!=='' ){ 
             const response = await fetch('/api/instructor/preview', {
                 method: 'PATCH',
@@ -97,7 +101,7 @@ const InstCourseDeets = () => {
         <div className="ITHome">
         <div className="courses">
             {courses && courses.map((course) => (
-            < CourseDetails key={course.id} course={course} />
+            < CourseDetails key={course._id} course={course} />
             ))}
         </div>
        

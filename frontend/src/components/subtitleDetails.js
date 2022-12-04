@@ -10,8 +10,7 @@ const SubtitleDetails = ({subtitle}) => {
             <p><strong>total hours: </strong>{subtitle.totalHours}</p> 
             <p><strong>video: </strong><iframe width="560" height="315" src={subtitle.video} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p> 
             <p><strong>description: </strong>{subtitle.description}</p> 
-            <p><strong>exercise: </strong>{subtitle.exercise}</p> 
-            <p><strong>solution: </strong>{subtitle.solution}</p> 
+            
         </div>
     );
 }

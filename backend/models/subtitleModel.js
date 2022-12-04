@@ -32,10 +32,6 @@ const subtitleSchema = new Schema ({
         type: mongoose.Types.ObjectId,
         ref:'examModel',
         required: false  
-    },
-    solution: {
-        type: String,
-        required: false  
     }
 }, {timestamps: true})
 

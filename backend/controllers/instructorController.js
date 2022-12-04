@@ -7,6 +7,7 @@ const subtitle = require('../models/subtitleModel')
 const subtitles = require('../models/subtitleModel')
 const question = require('../models/questionModel')
 const exam = require('../models/examModel')
+
 var courseId = mongoose.Types.ObjectId();
 //create inst
 const getMyRating = async(req,res)=>{
@@ -250,12 +251,12 @@ const definediscount = async (req,res) => {
 }
 
 const upload = async (req,res) => {
-    const {title,number,link,description} = req.body
+    const {id,number,link,description} = req.body
     const videoId = getId(link)
     console.log('Video ID:', videoId)
     const embed = `https://www.youtube.com/embed/${videoId}`
     var data = mongoose.Types.ObjectId();
-    data = await courses.findOne({title:title}).select('_id')
+    data = await courses.findOne({_id:id}).select('_id')
     const test = await subtitle.findOneAndUpdate({$and: [{course:data,number:number}]},
         {video:embed,
         description:description},

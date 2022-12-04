@@ -359,9 +359,11 @@ const register = async (req,res) =>{
 
 const reviewInstructor = async (req,res) => {
     const {id,review} = req.body
-    const inst = await instructor.findOne({_id:id})
+    const course = await courses.findOne({_id:id})
+    const name = course.instructor
+    const inst = await instructor.findOne({name:name})
     const list = await inst.reviews
-    console.log(list)
+    console.log(review)
     let newReviews=[String]
     newReviews=list 
     console.log(newReviews) 
@@ -371,9 +373,9 @@ const reviewInstructor = async (req,res) => {
         reviews:newReviews
             },{new:true})
     if(!data){
-        return res.status(404).json({error:"not found"})
+       return res.status(404).json({error:"not found"})
             }
-    res.status(200).json(data)
+            res.status(200).json(data)
 }
 
 const reviewCourse = async (req,res) => {
@@ -413,7 +415,6 @@ module.exports = {
     solve,
     correcting,
     correctingg,
-
     createIT,
     reviewInstructor,
     reviewCourse,

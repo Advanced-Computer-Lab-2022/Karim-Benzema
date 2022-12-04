@@ -1,7 +1,7 @@
 const { json, response } = require('express')
 const course = require('../models/coursesModel')
-const mongoose = require('mongoose')
 const subtitle = require('../models/subtitleModel')
+const mongoose = require('mongoose')
 //create new course 
 const createcourse = async (req,res) => {
     //add course to DB 
@@ -51,6 +51,17 @@ const getCoursebyid = async (req,res) => {
         res.status(400).json({error: error.message})
     }
 } 
+const getSubtitlebyid = async (req,res) => {
+    try{
+        const { id } = req.params
+        const sub = await subtitle.find({course:id})
+       // console.log(sub)
+        res.status(200).json(sub)
+    }catch(error) {
+        res.status(400).json({error: error.message})
+    }
+    
+}
 
 //filter courses by price
 const getcoursebyprice = async (req,res) => {
@@ -90,19 +101,7 @@ const getcoursebysubjectRating = async (req,res) => {
 const getcoursebysubjectorRating = async (req,res) => {
     // const { subject , rating } = req.query
     const data1 = await course.find({$or: [{subject:req.query.subject},{rating: req.query.rating}]})
-
     res.status(200).json(data1)
-    
-}
-const getSubtitlebyid = async (req,res) => {
-    try{
-        const { id } = req.params
-        const sub = await subtitle.find({course:id})
-        console.log(sub)
-        res.status(200).json(sub)
-    }catch(error) {
-        res.status(400).json({error: error.message})
-    }
     
 }
 module.exports = {

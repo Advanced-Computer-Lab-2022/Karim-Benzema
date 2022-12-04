@@ -45,6 +45,9 @@ import SubtitleContent from './pages/subtitleContent';
 import ForgotPassword from './components/ForgotPassword';
 import PasswordReset from './components/PasswordReset';
 import Contract from './components/Contract';
+import ItSubtitles from './pages/itCourseSubtitles'
+import CThome from './pages/CT';
+import CourseDeets2 from './pages/courseDeets2';
 
 function App() {
   return (
@@ -239,6 +242,19 @@ function App() {
           path="/Subtitle"
           element={<SubtitleContent/>}
           />
+          <Route 
+          path="/itSubtitles"
+          element={<ItSubtitles/>}
+          />
+           <Route 
+          path="/cthome"
+          element={<CThome/>}
+          />
+            <Route 
+          path="/Coursesct"
+          element={<CourseDeets2/>}
+          />
+          
        
        </Routes> 
        

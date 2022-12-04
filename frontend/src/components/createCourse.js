@@ -118,7 +118,7 @@ const CreateCourse = () => {
         value={period}
         /> 
 
-        <button>Add</button>
+        <button>Create</button>
         {error && <div className="error">{error}</div>}
  
 

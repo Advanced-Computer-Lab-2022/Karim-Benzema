@@ -13,7 +13,8 @@ const {
     changePassword,
     reviewInstructor,
     reviewCourse,
-    register
+    register,
+    getCoursebyCtid
 } = require('../controllers/ctController') //new
 
 const router = express.Router()
@@ -23,7 +24,8 @@ router.patch('/changePassword', changePassword)
 router.patch('/rateCourse', rateCourse)
 router.patch('/rateInstructor', rateInstructor)
 router.get('/viewcourses', getcourse)
-router.get('/:id', getct)
+router.get('/araf/:id', getct)
+router.get('/getcoursebyctid', getCoursebyCtid)
 // router.get('/subjects/:subject', getcoursebysubject)
 // router.get('/rating/:rating', getcoursebyrating)
 router.get('/subjectRating/:subject/:rating', getcoursebysubjectRating)
