@@ -180,7 +180,9 @@ else {
         &nbsp; &nbsp;  &nbsp;
         <button className="green_btn" > Submit Problem</button>
         &nbsp; &nbsp;  &nbsp;
-        {error && <div className="error">{error}</div>}
+        <div className="bottom_container">
+        {error && <div className="error_msg2">{error}</div>}
+        </div> 
 </form>
 
         <form className="bottom_container" onSubmit={handleSubmit}>
@@ -190,9 +192,11 @@ else {
         onChange={(e)=>setRating(e.target.value)}
         /> 
              &nbsp; &nbsp;  &nbsp;
-        <button className='green_btn' onChange={(e) => setRating(e.target.value)}>Add Rating</button>
+        <button className='green_btn' onChange={(e) => setRating(e.target.value)}>Rate Course</button>
         &nbsp; &nbsp;  &nbsp;
-        {error1 && <div className="error">{error1}</div>}
+        <div className="bottom_container">
+        {error1 && <div className="error_msg2">{error1}</div>}
+        </div> 
 </form>
 <form className="bottom_container" onSubmit={handleSubmit1}>
         <input className="input" 
@@ -201,9 +205,11 @@ else {
         onChange={(e)=>setReview(e.target.value)}
         />
              &nbsp; &nbsp;  &nbsp;
-        <button className='green_btn' onChange={(e) => setReview(e.target.value)}>Add review</button>
+        <button className='green_btn' onChange={(e) => setReview(e.target.value)}>Review Course</button>
         &nbsp; &nbsp;  &nbsp;
-        {error2 && <div className="error">{error2}</div>}
+        <div className="bottom_container">
+        {error2 && <div className="error_msg2">{error2}</div>}
+        </div> 
 </form>
 <form className="bottom_container" onSubmit={handleSubmit2}>
         <input className="input" 
@@ -214,7 +220,9 @@ else {
              &nbsp; &nbsp;  &nbsp;
         <button className='green_btn' onChange={(e) => setRating2(e.target.value)}>Rate Instructor</button>
         &nbsp; &nbsp;  &nbsp;
-        {error3 && <div className="error">{error3}</div>}
+        <div className="bottom_container">
+        {error3 && <div className="error_msg2">{error3}</div>}
+        </div> 
 </form>
 <form className="bottom_container" onSubmit={handleSubmit4}>
         <input className="input" 
@@ -224,7 +232,9 @@ else {
           &nbsp; &nbsp;  &nbsp;
         <button  className='green_btn' onChange={(e) => setReview2(e.target.value)}>Review Instructor</button>
         &nbsp; &nbsp;  &nbsp;
-        {error4 && <div className="error">{error4}</div>}
+        <div className="bottom_container">
+        {error4 && <div className="error_msg2">{error4}</div>}
+        </div> 
 </form>
 <a  className="bottom_container" href={pdf} download="cert.pdf">Download the Cerificate</a>
         </div>

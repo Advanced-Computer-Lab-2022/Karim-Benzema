@@ -106,7 +106,7 @@ const handleSubmit4 = async(e) => {
     e.preventDefault();
     const inputVal= {id:id,review:review2}
     if (review2!==''){ 
-        const response = await fetch('/api/ct/reviewInstructor', {
+        const response = await fetch('/api/ct/reviewInst', {
             method: 'PATCH',
             body: JSON.stringify(inputVal),
             headers: {
@@ -190,7 +190,7 @@ else {
         onChange={(e)=>setRating(e.target.value)}
         /> 
           &nbsp; &nbsp;  &nbsp;
-        <button  className='green_btn' onChange={(e) => setRating(e.target.value)}>Add Rating</button>
+        <button  className='green_btn' onChange={(e) => setRating(e.target.value)}>Rate Course</button>
         &nbsp; &nbsp;  &nbsp;
         <div className="bottom_container">
         {error1 && <div className="error_msg2">{error1}</div>}
@@ -203,7 +203,7 @@ else {
         onChange={(e)=>setReview(e.target.value)}
         />
           &nbsp; &nbsp;  &nbsp;
-        <button className='green_btn' onChange={(e) => setReview(e.target.value)}>Add review</button>
+        <button className='green_btn' onChange={(e) => setReview(e.target.value)}>Review Course</button>
         &nbsp; &nbsp;  &nbsp;
         <div className="bottom_container">
         {error2 && <div className="error_msg2">{error2}</div>}

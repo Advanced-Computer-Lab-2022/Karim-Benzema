@@ -8,8 +8,8 @@ const CourseDetails2 = ({course}) => {
             <p><strong>Rating: </strong>{course.rating}</p>
             {/* <p><strong>Ratings: </strong>{course.ratings}</p> */}
             <p><strong>Reviews: </strong>{course.reviews + " "}</p>
-            {/* <p><strong>Subject: </strong>{course.subject}</p>
-            <p><strong>Instructor: </strong>{course.instructor}</p> */}
+            {/* <p><strong>Subject: </strong>{course.subject}</p> */}
+            <p><strong>Instructor: </strong>{course.instructorName}</p>
             {/* <p><strong>Exercises: </strong>{course.exercises}</p> */}
             {/* <p><strong>Discount: </strong>{course.discount}</p> */}
             <p><strong>Course Preview:</strong><iframe width="560" height="315" src={course.preview} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p>

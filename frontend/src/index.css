@@ -133,3 +133,13 @@ header a {
 	border-radius: 5px;
 	text-align:center;
 }
+.error_msg {
+	width: 160px;
+	padding: 15px;
+	margin: 5px 0;
+	font-size: 14px;
+	background-color: #f34646;
+	color: white;
+	border-radius: 5px;
+	text-align:center;
+}

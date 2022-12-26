@@ -26,6 +26,7 @@ const SubtitleDetails = ({subtitle,itid}) => {
             &nbsp; &nbsp;  &nbsp;
             <button className='green_btn' onClick={handleSubmit2}>Download as Pdf</button>
     </form>
+    
      <form className='bottom_container'>
             <button className='green_btn' onClick={()=> window.location.href =`/viewExam?id=${subtitle._id}&itid=${itid}`}>Solve Exercise</button>
             </form>

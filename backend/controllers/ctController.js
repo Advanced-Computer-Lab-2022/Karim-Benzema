@@ -210,51 +210,53 @@ const rateCourse = async (req,res) =>{
     }
 
 
-const rateInstructor = async (req,res) =>{
-    const { id,rating} = req.body
-    const inst = await instructor.findOne({_id:id})
-    const list = await inst.ratings
-    console.log(list)
-    let newratings=[Number]
-    newratings=list 
-    console.log(newratings) 
-    newratings.push(rating) 
-    console.log(newratings)
-    var sum = 0
-    for(var i = 0;i < newratings.length;i++){
- sum =sum + newratings[i]
-    }
-    const avg = sum/newratings.length
-    const data = await instructor.findOneAndUpdate({_id : id},{
-        ratings:newratings,
-        rating : avg
-    },{new:true})
-        if(!data){
-            return res.status(404).json({error:"not found"})
+    const rateInstructor = async (req,res) =>{
+        const { id,rating} = req.body
+        const course = await courses.findOne({_id:id})
+        const name = course.instructorName
+        const inst = await instructor.findOne({name:name})
+        const list = await inst.ratings
+        console.log(list)
+        let newratings=[Number]
+        newratings=list 
+        console.log(newratings) 
+        newratings.push(rating) 
+        console.log(newratings)
+        var sum = 0
+        for(var i = 0;i < newratings.length;i++){
+     sum =sum + newratings[i]
         }
-        res.status(200).json(data)}
-
-  const reviewInstructor = async (req,res) => {
-    const {id,review} = req.body
-    const course = await courses.findOne({_id:id})
-    const name = course.instructorName
-    const inst = await instructor.findOne({name:name})
-    const instid=inst._id
-    const list = await inst.reviews
-    console.log(review)
-    let newReviews=[String]
-    newReviews=list 
-    console.log(newReviews) 
-    newReviews.push(review) 
-    console.log(newReviews)
-    const data = await instructor.findOneAndUpdate({_id : instid},{ //instid
-        reviews:newReviews
-            },{new:true})
-    if(!data){
-       return res.status(404).json({error:"not found"})
+        const avg = sum/newratings.length
+        const data = await instructor.findOneAndUpdate({name : name},{
+            ratings:newratings,
+            rating : avg
+        },{new:true})
+            if(!data){
+                return res.status(404).json({error:"not found"})
             }
-            res.status(200).json(data)
-}
+            res.status(200).json(data)}
+
+            const reviewInstructor = async (req,res) => {
+                const {id,review} = req.body
+                const course = await courses.findOne({_id:id})
+                const name = course.instructorName
+                const inst = await instructor.findOne({name:name})
+                const instid=inst._id
+                const list = await inst.reviews
+                console.log(review) 
+                let newReviews=[String]
+                newReviews=list 
+                console.log(newReviews) 
+                newReviews.push(review) 
+                console.log(newReviews)
+                const data = await instructor.findOneAndUpdate({_id : instid},{ //instid
+                    reviews:newReviews
+                        },{new:true})
+                if(!data){
+                   return res.status(404).json({error:"not found"})
+                        }
+                        res.status(200).json(data)
+            }
 
         const reviewCourse = async (req,res) => {
             const {id,review} = req.body

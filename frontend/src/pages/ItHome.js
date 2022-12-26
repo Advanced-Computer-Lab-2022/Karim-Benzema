@@ -180,7 +180,7 @@ setCourses2(json)
         />
         &nbsp; &nbsp;  &nbsp;
         <button className="green_btn" onChange={(e) => setCourses2(courses2)}
-        >Filter by Price  </button>
+        >Filter By Price  </button>
         {error && <div className="error">{error}</div>}
 </form>
 <form className="bottom_container" onSubmit={handleSubmit2}>
