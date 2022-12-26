@@ -36,5 +36,5 @@ const subtitleSchema = new Schema ({
 }, {timestamps: true})
 
 
-const subtitle = mongoose.model('subtitleModel',subtitleSchema); 
-module.exports = subtitle;
+const subtitles = mongoose.model('subtitleModel',subtitleSchema); 
+module.exports = subtitles;

@@ -23,6 +23,7 @@
     "react-select": "^5.5.7",
     "react-select-country-list": "^2.2.3",
     "reactjs-popup": "^2.0.5",
+    "sweetalert2": "^11.6.16",
     "universal-cookie": "^4.0.4",
     "web-vitals": "^2.1.4",
     "yarn": "^1.22.19"

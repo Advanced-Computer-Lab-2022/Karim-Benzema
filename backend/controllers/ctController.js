@@ -11,6 +11,12 @@ const count=require('iso-country-currency');
 const CTproblem = require('../models/ctProbModel')
 const ITproblem = require('../models/itProbModel')
 const INSTproblem = require('../models/instProbModel,')
+const subtitle =require('../models/subtitleModel')
+const exam = require('../models/examModel')
+const CtAnswers = require('../models/ctAnswerModel')
+const que =require('../models/questionModel')
+const question =require('../models/questionModel')
+
 //add country 
 const updateCountry = async (req,res) => {
     const { id } = req.params
@@ -37,6 +43,19 @@ const updateCountry = async (req,res) => {
     }
     res.status(200).json(data)
     
+}
+const viewExam = async (req,res) => {
+
+    const id = req.params.id
+  
+    const data = await subtitle.findOne({_id:id })
+    console.log(data)
+    const dataaaa = await exam.findOne({subtitle:data._id }).select('questions')
+console.log(dataaaa)
+ if(!data){
+    return res.status(404).json({error: "Not found"})//redundant prob
+}
+  res.status(200).json(dataaaa)
 }
 const createproblem = async (req,res) => {
     const{id}=req.params
@@ -294,6 +313,348 @@ const rateInstructor = async (req,res) =>{
         }
     }
 
+    const coloringWrongs = async (req,res) => {
+
+        const array =[];
+    //const {id} = req.params
+    const corrects=[]
+    const correctAnswer=[]
+    let wrongAnswers=0;
+    let grade=0;
+    let gradeComment=""
+    const wrong=[]
+        const data = await exam.findOne({examName:"exam1" }).select('answers')
+     const allanswers= await CtAnswers.find({})
+    
+        const examid = await exam.findOne({examName:"exam1" }).select('_id')
+        const questions = array.push(await exam.findOne({examName:"exam1" }).select('questions'))
+       //console.log(questions.length)
+        const dataa = await question.find({examid:examid }).select('questionAnswer')
+       
+       for(i=0;i<dataa.length;i++){
+     let is=allanswers[i].ques
+     if(is!=null){
+    
+    let id=allanswers[i].ques._id
+        let findquestion= await question.findOne({_id:id}).select('questionAnswer')
+        let questionName= await question.findOne({_id:id}).select('name')
+        
+        if(allanswers[i]!=null){
+        if(findquestion.questionAnswer!=allanswers[i].set){
+       
+    
+    
+        let questionnumber =i+1
+        wrongAnswers++;
+    
+       // wrong.push(allanswers[i].set)
+        console.log(allanswers[i].set)
+        correctAnswer.push(allanswers[i].set);
+        }
+        }
+    }
+       }
+      grade=(((dataa.length)-wrongAnswers)/(dataa.length))*100
+       gradeComment ="Your Grade is" +".       "+grade
+       wrong.push(correctAnswer)
+    console.log(correctAnswer)
+       //console.log(wrong)
+    
+     if(!data){
+        return res.status(404).json({error: "Not found"})//redundant prob
+    }
+      res.status(200).json(correctAnswer)
+    }
+
+
+    const coloringAnswers = async (req,res) => {
+
+        const array =[];
+    //const {id} = req.params
+    const corrects=[]
+    const correctAnswer=[]
+    let wrongAnswers=0;
+    let grade=0;
+    let gradeComment=""
+    const wrong=[]
+        const data = await exam.findOne({examName:"exam1" }).select('answers')
+     const allanswers= await CtAnswers.find({})
+    
+        const examid = await exam.findOne({examName:"exam1" }).select('_id')
+        const questions = array.push(await exam.findOne({examName:"exam1" }).select('questions'))
+       //console.log(questions.length)
+        const dataa = await question.find({examid:examid }).select('questionAnswer')
+       
+       for(i=0;i<dataa.length;i++){
+        if(allanswers[i]!=null ||allanswers[i]!=undefined ){
+     let is=allanswers[i].ques
+     if(is!=null){
+    
+    let id=allanswers[i].ques._id
+        let findquestion= await question.findOne({_id:id}).select('questionAnswer')
+        let questionName= await question.findOne({_id:id}).select('name')
+        
+        if(allanswers[i]!=null){
+        if(findquestion.questionAnswer!=allanswers[i].set){
+       
+    
+    
+        let questionnumber =i+1
+        wrongAnswers++;
+    
+       // wrong.push(allanswers[i].set)
+        console.log(allanswers[i].set)
+        correctAnswer.push(findquestion.questionAnswer);
+        }
+        }
+    }
+       }
+      grade=(((dataa.length)-wrongAnswers)/(dataa.length))*100
+       gradeComment ="Your Grade is" +".       "+grade
+       wrong.push(correctAnswer)
+    console.log(correctAnswer)
+       //console.log(wrong)
+    
+     if(!data){
+        return res.status(404).json({error: "Not found"})//redundant prob
+    }
+}
+      res.status(200).json(correctAnswer)
+
+    }
+    const getAnswerss = async (req,res) => {
+
+        const array =[];
+    //const {id} = req.params
+    const corrects=[]
+    const correctAnswer=[]
+    let wrongAnswers=0;
+    let grade=0;
+    let gradeComment=""
+    const wrong=[]
+        const data = await exam.findOne({examName:"exam1" }).select('answers')
+     const allanswers= await CtAnswers.find({})
+    
+        const examid = await exam.findOne({examName:"exam1" }).select('_id')
+        const questions = array.push(await exam.findOne({examName:"exam1" }).select('questions'))
+       //console.log(questions.length)
+        const dataa = await question.find({examid:examid }).select('questionAnswer')
+       
+       for(i=0;i<dataa.length;i++){
+     let is=allanswers[i].ques
+     if(is!=null){
+    
+    let id=allanswers[i].ques._id
+        let findquestion= await question.findOne({_id:id}).select('questionAnswer')
+        let questionName= await question.findOne({_id:id}).select('name')
+        
+        if(allanswers[i]!=null){
+        if(findquestion.questionAnswer!=allanswers[i].set){
+       
+    
+    
+        let questionnumber =i+1
+        wrongAnswers++;
+    
+       // wrong.push(allanswers[i].set)
+        console.log(allanswers[i].set)
+        correctAnswer.push(findquestion.questionAnswer);
+        }
+        }
+    }
+       }
+      grade=(((dataa.length)-wrongAnswers)/(dataa.length))*100
+       gradeComment ="Your Grade is" +".       "+grade
+       wrong.push(gradeComment)
+    
+       //console.log(wrong)
+    
+     if(!data){
+        return res.status(404).json({error: "Not found"})//redundant prob
+    }
+      res.status(200).json(wrong)
+    }
+    const correctingg = async (req,res) => {
+        //const {set}=req.body
+       // console.log(req.params)
+       //const dataa =  await instructor.find({ username:username }).select('_id')
+       //console.log(dataa)
+        //const data = await courses.find({},{projection : {title:1,totalHours:1,rating:1}});
+        const array =[];
+    
+    const corrects=[]
+    let wrongAnswers=0;
+    let grade=0;
+    let gradeComment=""
+    const wrong=[]
+        const data = await exam.findOne({examName:"exam1" }).select('answers')
+     const allanswers= await CtAnswers.find({})
+    
+        const examid = await exam.findOne({examName:"exam1" }).select('_id')
+        const questions = array.push(await exam.findOne({examName:"exam1" }).select('questions'))
+       //console.log(questions.length)
+        const dataa = await question.find({examid:examid }).select('questionAnswer')
+       
+       for(i=0;i<dataa.length;i++){
+     let is=allanswers[i].ques
+     if(is!=null){
+     console.log(is)
+    let id=allanswers[i].ques._id
+        let findquestion= await question.findOne({_id:id}).select('questionAnswer')
+        let questionName= await question.findOne({_id:id}).select('name')
+        console.log(findquestion)
+        if(allanswers[i] != null){
+        if(findquestion.questionAnswer!=allanswers[i].set){
+       
+    
+        console.log("wrong")
+        let questionnumber =i+1
+        wrongAnswers++;
+        let string = "question"+".            "+questionName.name +"wrong"+'.     '+"correct Answer:"+findquestion.questionAnswer;
+        wrong.push(string)
+        }
+        }
+        }
+       }
+       grade=(((dataa.length)-wrongAnswers)/(dataa.length))*100
+       gradeComment ="Your Grade is" +".       "+grade
+       wrong.push(gradeComment)
+    
+       //console.log(wrong)
+    
+     if(!data){
+        return res.status(404).json({error: "Not found"})//redundant prob
+    }
+      res.status(200).json(wrong)
+    }
+    const correcting = async (req,res) => {
+        //const {set}=req.body
+       // console.log(req.params)
+       //const dataa =  await instructor.find({ username:username }).select('_id')
+       //console.log(dataa)
+        //const data = await courses.find({},{projection : {title:1,totalHours:1,rating:1}});
+        const array =[];
+    
+    const corrects=[]
+    let wrongAnswers=0;
+    let grade=0;
+    let gradeComment=""
+    const wrong=[]
+        const data = await exam.findOne({examName:"exam1" }).select('answers')
+     const allanswers= await CtAnswers.find({})
+     console.log(allanswers)
+        const examid = await exam.findOne({examName:"exam1" }).select('_id')
+        const questions = array.push(await exam.findOne({examName:"exam1" }).select('questions'))
+       //console.log(questions.length)
+        const dataa = await question.find({examid:examid }).select('questionAnswer')
+        
+    console.log(data)
+       for(i=0;i<dataa.length;i++){
+        if(dataa[i].questionAnswer!=data.answers[i]){
+        console.log(dataa[i])
+        console.log(data.answers[i])
+        console.log("wrong")
+        let questionnumber =i+1
+        wrongAnswers++;
+        let string = "question"+questionnumber +"wrong"+'.     '+"correct Answer:"+dataa[i].questionAnswer;
+        wrong.push(string)
+    
+        }
+       }
+       grade=(((dataa.length)-wrongAnswers)/(dataa.length))*100
+       gradeComment ="Your Grade is" +".       "+grade
+       wrong.push(gradeComment)
+    
+       console.log(wrong)
+    
+     if(!data){
+        return res.status(404).json({error: "Not found"})//redundant prob
+    }
+      res.status(200).json(wrong)
+    }
+    
+    const solve = async (req,res) => {
+        const {id,ctid} = req.params
+        const {set,question}=req.body
+      const name= question.name
+      let dataa=[];
+       const ques= await que.findOne({name:name}).select('_id')
+       let dataaa= await CtAnswers.findOne({ques:ques})
+        //console.log(dataaa)
+        const sub = await subtitle.findOne({_id:id})
+        const subID = sub._id
+        const array  = await ct.findOne({_id:ctid})
+        console.log(array.solved)
+    array.solved.push(subID)
+    console.log(array.solved)
+    
+    console.log(subID)
+     const done = await ct.findOneAndUpdate({_id:ctid},{solved:array.solved},{new:true})
+    //    const data3= await it.findOneAndUpdate({_id:itid },
+    //     {$push:{ solved:[(id)]}},{new:true})
+    console.log(done)
+        if(dataaa==null ){
+        dataa= await CtAnswers.create({ques,set})
+       }
+       else{
+        dataa= await CtAnswers.findOneAndUpdate({ques:ques },
+            {set:set})
+       }
+       // console.log(req.params)
+       //const dataa =  await instructor.find({ username:username }).select('_id')
+       //console.log(dataa)
+        //const data = await courses.find({},{projection : {title:1,totalHours:1,rating:1}});
+        const data = await exam.findOneAndUpdate({examName:"exam1" },
+        {$push:{ answers:[(set)]}})
+    
+    
+     if(!data){
+        return res.status(404).json({error: "Not found"})//redundant prob
+    }
+      res.status(200).json(dataa)
+    }   
+    const ctAnswer = async (req,res) => {
+        const {examName}  = req.params
+        // const search = req.params.price
+        console.log(examName)
+        const data = await exam.find({examName: examName})
+    
+        res.status(200).json(data)
+    } 
+    const getProgress= async(req,res)=>{
+        const{id,ctid}=req.params
+        let cSubtitles = []
+        const sub = await subtitle.findOne({_id:id})
+        console.log(sub)
+        const courseID = sub.course
+        const data = await subtitle.find({course:courseID})
+        console.log(data[0])
+    
+        for(var i = 0;i<data.length;i++){
+            cSubtitles.push(data[i]._id)
+        }
+        console.log(cSubtitles)
+        var count = 0
+        const user = await ct.findOne({_id:ctid})
+        console.log(user)
+    
+        const solvedSub = user.solved
+        for(var x = 0;x<cSubtitles.length;x++){
+            if(solvedSub.includes(cSubtitles[x]))
+            {
+                count= count+1;
+            }
+            
+        }
+       const progress = (count/cSubtitles.length)*100
+       //if((!data == null) && (!courseID==null)&&(!user==null))
+       console.log(progress)
+       res.status(200).json(progress)
+    // else{
+    //     res.status(400).send("not found")
+    // }
+        
+    }
 module.exports = {
     updateCountry,
     getct,
@@ -315,5 +676,14 @@ module.exports = {
     getproblems, //for it
     getproblems1,//for inst
     getproblems2,//for ct
-    getrequests
+    getrequests,
+    getrequests,
+    viewExam,
+    coloringWrongs
+    ,coloringAnswers,
+    getAnswerss,
+    correctingg, 
+    correcting,
+    solve, ctAnswer, 
+    getProgress
 }

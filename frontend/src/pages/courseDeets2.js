@@ -15,6 +15,7 @@ const CourseDeets2 = () => {
     const [error,setError] = useState(null)
     const params = new URLSearchParams(window.location.search);
     const id = params.get('id');
+    const ctid = params.get('ctid');
     useEffect(() => {
         const fetchCourses = async () => {
         const response = await fetch('/api/courses/getcoursebyid/'+id)
@@ -113,12 +114,9 @@ if(response.ok){
 
     const handleSubmit3 = async(e) => {  
         e.preventDefault();
-        window.location = `/itSubtitles?id=`+id
+        window.location = `/ctSubtitles?id=`+id+`&ctid=`+ctid
         
     }
-     
-     
-    
     return (
         <div className="CTHome">
         <div className="course_container div">

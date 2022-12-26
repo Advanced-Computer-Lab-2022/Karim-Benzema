@@ -53,6 +53,9 @@ import Cookies from 'js-cookie';
 import ViewProblems from './pages/ViewProblems';
 import GuestCourses2 from './pages/itregister';
 import Itregister from './pages/itregister';
+import CtSubtitles from './pages/ctSubtitles'
+import AnswerExamCt from './pages/answerExamsCt'
+
 
 function App() {
   let role = Cookies.get('role')
@@ -105,6 +108,7 @@ function App() {
           <Route path="/AddCourse" element={<AddCourse />}/>
           <Route path="/viewSubjectRating"element={<ViewSubjectRating />}/>
           <Route path="/subtitlecontent"element={<SubtitleContent/>}/>
+          <Route path="/Subtitle"element={<SubtitleContent/>}/>
           <Route path="/GuestCourse"element={<GuestCourses/>}/>
           <Route path="/guestSubtitles"element={<GuestSubtitles/>}/>
           </Route>
@@ -129,6 +133,9 @@ function App() {
           <Route path="/guestSubtitles"element={<GuestSubtitles/>}/>
           <Route path="/viewExam"element={<AnswerExam/>}/>
           <Route path="/viewproblems"element={<ViewProblems/>}/>
+          <Route path="/GuestCourse"element={<GuestCourses/>}/>
+          <Route path="/guestSubtitles"element={<GuestSubtitles/>}/>
+          <Route path="/viewExam"element={<AnswerExam/>}/>
           </Route>
            
           )
@@ -150,6 +157,12 @@ function App() {
           <Route path="/GuestCourse"element={<GuestCourses/>}/>
           <Route path="/guestSubtitles"element={<GuestSubtitles/>}/>
           <Route path="/viewExam"element={<AnswerExam/>}/>
+          <Route path="/ctSubtitles"element={<CtSubtitles/>}/>
+          <Route path="/GuestCourse"element={<GuestCourses/>}/>
+          <Route path="/viewExamCt"element={<AnswerExamCt/>}/>
+
+          <Route path="/guestSubtitles"element={<GuestSubtitles/>}/>
+         
           </Route>
           
           )
@@ -180,6 +193,7 @@ function App() {
       </BrowserRouter>
     </div>
   );
+  // <Route path="/viewExam"element={<AnswerExamCt/>}/>
 }
 
 export default App;

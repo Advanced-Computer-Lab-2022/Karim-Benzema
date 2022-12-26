@@ -8,7 +8,7 @@ const handleSubmit2 = async (e) =>{
     .from(element)
     .save();
 }
-const SubtitleDetails = ({subtitle,itid}) => {
+const SubtitleDetails2 = ({subtitle,ctid}) => {
     return (
         <div className="course-details3">
             <h4>{subtitle.title}</h4>
@@ -17,9 +17,11 @@ const SubtitleDetails = ({subtitle,itid}) => {
             <script src="html2pdf.bundle.min.js"></script>
             <input className='input'
             type="text" id="notes"/><button className='green_btn' onClick={handleSubmit2}>Download as Pdf</button>
+          
+          
             <p><strong>description: </strong>{subtitle.description}</p> 
-            <button className='green_btn' onClick={()=> window.location.href =`/viewExam?id=${subtitle._id}&itid=${itid}`}>Solve Exercise</button>
+            <button className='green_btn' onClick={()=> window.location.href =`/viewExamCt?id=${subtitle._id}&ctid=${ctid}`}>Solve Exercise</button>
         </div>
     );
 }
-export default SubtitleDetails;
+export default SubtitleDetails2;

@@ -235,8 +235,6 @@ else {
         {error4 && <div className="error">{error4}</div>}
 </form>
 <a  className="bottom_container" href={pdf} download="cert.pdf">Download the Cerificate</a>
-
-
         </div>
         
     );

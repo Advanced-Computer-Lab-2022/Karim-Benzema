@@ -13,6 +13,8 @@ const ctSchema = new Schema ({
     password: {type: String,required: true }, 
     country: { type: String, required: false },
     courses: {type: [mongoose.Types.ObjectId],required: false,ref: 'courseModel'},
+	solved: {type: [mongoose.Types.ObjectId],required: false,ref: 'subtitleModel'},
+
 	flag : {type: Boolean, default: false}
 }, {timestamps: true})
 

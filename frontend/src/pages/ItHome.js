@@ -129,6 +129,24 @@ setCourses2(json)
     }
     return (
         <div className="ITHome">
+             <header>
+            &nbsp; &nbsp;  &nbsp;&nbsp; &nbsp;  &nbsp;&nbsp; &nbsp;  &nbsp;
+               <form className="bottom_container2" onSubmit={handleSubmit4} >
+                <button className="green_btn" >
+                   Select Country</button>
+            </form>
+            &nbsp; &nbsp;  &nbsp;&nbsp; &nbsp;  &nbsp;&nbsp; &nbsp;  &nbsp;
+            <form className="bottom_container2" onSubmit={handleSubmit5} >
+                <button className="green_btn"  >
+                    Change password</button>
+            </form>
+            &nbsp; &nbsp;  &nbsp;&nbsp; &nbsp;  &nbsp;&nbsp; &nbsp;  &nbsp;
+            <form className="bottom_container2" onSubmit={logout}>
+            <button  className="green_btn" > Log Out</button>
+            </form>
+            &nbsp; &nbsp;  &nbsp;&nbsp; &nbsp;  &nbsp;&nbsp; &nbsp;  &nbsp;
+            </header>
+            <br></br>
              <center> <h4>Registered Courses</h4></center> 
             <form className="course_container">
                 {courses && courses.map((course) => (
@@ -193,18 +211,6 @@ setCourses2(json)
        <button  className="green_btn" onChange={(e) => setCourses2(courses2)} >Search
         </button>
         </form>
-            <form className="bottom_container2" onSubmit={handleSubmit4} >
-                <button className="green_btn" >
-                   Select Country</button>
-            </form>
-            <form className="bottom_container2" onSubmit={handleSubmit5} >
-                <button className="green_btn"  >
-                    Change password</button>
-            </form>
-            <form className="bottom_container2" onSubmit={logout}>
-            <button  className="green_btn" > Log Out</button>
-            </form>
-            
         </div>
     );
 

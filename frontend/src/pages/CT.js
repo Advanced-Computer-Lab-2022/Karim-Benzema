@@ -128,7 +128,8 @@ window.location=`/`
             <center> <h4>Registered Courses</h4></center> 
             <form className="course_container">
                 {courses && courses.map((course) => (
-                <CoursesOnly2 key={course._id} course={course} />
+                <CoursesOnly2 key={course._id} course={course}  ctid={id} />
+
                 ))}
             </form> 
             <br></br>
@@ -171,12 +172,8 @@ window.location=`/`
        <button  className="green_btn" onChange={(e) => setCourses2(courses2)} >Search
         </button>
         </form>
-
         </div>
     );
 
 }
 export default CThome;
-
-
-
