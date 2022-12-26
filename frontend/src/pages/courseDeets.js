@@ -125,10 +125,6 @@ if(response.ok){
     }
 }
 }
-const handleSubmit5 = async(e) => {  
-    e.preventDefault();
-    window.location=`/viewproblems`
-}
 const handleSubmit6 = async(e) => {  
     e.preventDefault();
     const user = {type:type,report:report}
@@ -165,14 +161,10 @@ else {
             ))}
         </div>
         <br></br>
-        <form className="bottom_container2" onClick={handleSubmit3}>
+        <form className="bottom_container" onClick={handleSubmit3}>
                 <button className='green_btn'>
                     View Subtitle Content</button>
             </form>
-            <form className='bottom_container2' onSubmit={handleSubmit5}>
-            <button className='green_btn' onSubmit={handleSubmit5}>View Problems</button>
-            </form>
-
         <form className="bottom_container" onSubmit={handleSubmit6}>
         <input 
         type={"text"}

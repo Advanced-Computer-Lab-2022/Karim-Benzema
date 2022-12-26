@@ -14,8 +14,7 @@ const ctSchema = new Schema ({
     country: { type: String, required: false },
     courses: {type: [mongoose.Types.ObjectId],required: false,ref: 'courseModel'},
 	solved: {type: [mongoose.Types.ObjectId],required: false,ref: 'subtitleModel'},
-
-	flag : {type: Boolean, default: false}
+	requests:{type: [mongoose.Types.ObjectId],required: false,ref: 'courseModel'}
 }, {timestamps: true})
 
 ctSchema.methods.generateAuthToken = function () {

@@ -55,6 +55,7 @@ import GuestCourses2 from './pages/itregister';
 import Itregister from './pages/itregister';
 import CtSubtitles from './pages/ctSubtitles'
 import AnswerExamCt from './pages/answerExamsCt'
+import Ctrequest from './pages/ctrequest';
 
 
 function App() {
@@ -133,7 +134,6 @@ function App() {
           <Route path="/guestSubtitles"element={<GuestSubtitles/>}/>
           <Route path="/viewExam"element={<AnswerExam/>}/>
           <Route path="/viewproblems"element={<ViewProblems/>}/>
-          <Route path="/GuestCourse"element={<GuestCourses/>}/>
           <Route path="/guestSubtitles"element={<GuestSubtitles/>}/>
           <Route path="/viewExam"element={<AnswerExam/>}/>
           </Route>
@@ -153,15 +153,12 @@ function App() {
           <Route path="/viewSubjectRatingCt"element={<ViewSubjectRatingCt />}/>
           <Route path="/Subtitle"element={<SubtitleContent/>}/>
           <Route path="/Coursesct"element={<CourseDeets2/>}/>
-          <Route path="/itSubtitles"element={<ItSubtitles/>}/>
-          <Route path="/GuestCourse"element={<GuestCourses/>}/>
           <Route path="/guestSubtitles"element={<GuestSubtitles/>}/>
           <Route path="/viewExam"element={<AnswerExam/>}/>
           <Route path="/ctSubtitles"element={<CtSubtitles/>}/>
-          <Route path="/GuestCourse"element={<GuestCourses/>}/>
+          <Route path="/ctrequest"element={<Ctrequest/>}/>
           <Route path="/viewExamCt"element={<AnswerExamCt/>}/>
-
-          <Route path="/guestSubtitles"element={<GuestSubtitles/>}/>
+          <Route path="/viewproblems"element={<ViewProblems/>}/>
          
           </Route>
           

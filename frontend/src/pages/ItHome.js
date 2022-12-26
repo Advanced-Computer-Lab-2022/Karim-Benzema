@@ -127,26 +127,30 @@ setCourses2(json)
         e.preventDefault();
         window.location=`/changePasswordIt`
     }
+    const handleSubmit6 = async(e) => {  
+        e.preventDefault();
+        window.location=`/viewproblems`
+    }
     return (
         <div className="ITHome">
-             <header>
-            &nbsp; &nbsp;  &nbsp;&nbsp; &nbsp;  &nbsp;&nbsp; &nbsp;  &nbsp;
+             &nbsp; &nbsp;  &nbsp;&nbsp; &nbsp; 
                <form className="bottom_container2" onSubmit={handleSubmit4} >
                 <button className="green_btn" >
                    Select Country</button>
             </form>
-            &nbsp; &nbsp;  &nbsp;&nbsp; &nbsp;  &nbsp;&nbsp; &nbsp;  &nbsp;
+            &nbsp; &nbsp;  &nbsp;&nbsp; &nbsp; 
             <form className="bottom_container2" onSubmit={handleSubmit5} >
-                <button className="green_btn"  >
-                    Change password</button>
+                <button className="green_btn"  > Change password</button>
             </form>
-            &nbsp; &nbsp;  &nbsp;&nbsp; &nbsp;  &nbsp;&nbsp; &nbsp;  &nbsp;
+            &nbsp; &nbsp;  &nbsp;&nbsp; &nbsp; 
+            <form className='bottom_container2' onSubmit={handleSubmit6}>
+            <button className='green_btn'  onSubmit={handleSubmit5}>View All Problems</button>
+            </form>
+            &nbsp; &nbsp;  &nbsp;&nbsp; &nbsp; 
             <form className="bottom_container2" onSubmit={logout}>
             <button  className="green_btn" > Log Out</button>
             </form>
-            &nbsp; &nbsp;  &nbsp;&nbsp; &nbsp;  &nbsp;&nbsp; &nbsp;  &nbsp;
-            </header>
-            <br></br>
+            &nbsp; &nbsp;  &nbsp;&nbsp; &nbsp; 
              <center> <h4>Registered Courses</h4></center> 
             <form className="course_container">
                 {courses && courses.map((course) => (

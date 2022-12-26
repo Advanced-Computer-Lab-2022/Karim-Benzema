@@ -2,7 +2,7 @@ const { json } = require('express')
 const {ct} = require('../models/ctModel')
 const courses = require('../models/coursesModel')
 const mongoose = require('mongoose')
-const instructor = require('../models/instructorModel')
+const {instructor} = require('../models/instructorModel')
 const it = require('../models/itModel')
 const Joi = require("joi");
 const passwordComplexity = require("joi-password-complexity");
@@ -275,15 +275,23 @@ const rateInstructor = async (req,res) =>{
             res.status(200).json(data)
         }
 
-     const register = async (req,res) =>{
-        const {username,id} = req.body
-        const test = await courses.find({_id:id}).select('_id')
-        const data = await ct.findOneAndUpdate({username:username},
-            {$push:{courses:test}},
-            {new:true}
-            )
-        res.status(200).json(data)
-     }
+        const register = async (req,res) =>{
+            const{id}=req.params
+            const  ctid  = req.params.ctid;
+            const Corp = await ct.findOne({_id:ctid}) 
+            const RegCourses = Corp.courses
+            if(!RegCourses.includes(id)){
+                const data = await ct.findOneAndUpdate({_id:ctid},
+                    {$push:{requests:id}},
+                    {new:true})
+                    if(!data){
+                        return res.status(404).json({error:"not found"})
+                            }
+                res.status(200).json(data)}
+                else{
+                    return res.status(404).json({error:"Course Already Registered"})
+                }
+        }
      const getrequests = async (req,res) => {
         const{id}=req.params
         const Corp = await ct.findOne({_id:id})
@@ -652,9 +660,22 @@ const rateInstructor = async (req,res) =>{
        res.status(200).json(progress)
     // else{
     //     res.status(400).send("not found")
-    // }
-        
+    // }  
     }
+  
+//edit email 
+const editEmail = async (req,res) => {
+    const { id } = req.params
+    const{email} = req.body
+    const data = await ct.findOneAndUpdate({_id : id},{
+        email : email
+    }, {new: true})
+    if(!data){
+        return res.status(404).json({error: "Not found"})//redundant prob
+    }
+    res.status(200).json(data)
+}    
+
 module.exports = {
     updateCountry,
     getct,
@@ -677,13 +698,14 @@ module.exports = {
     getproblems1,//for inst
     getproblems2,//for ct
     getrequests,
-    getrequests,
     viewExam,
-    coloringWrongs
-    ,coloringAnswers,
+    coloringWrongs,
+    coloringAnswers,
     getAnswerss,
     correctingg, 
     correcting,
-    solve, ctAnswer, 
-    getProgress
+    solve,
+    ctAnswer, 
+    getProgress,
+    editEmail
 }

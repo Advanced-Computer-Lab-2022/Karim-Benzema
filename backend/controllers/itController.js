@@ -431,7 +431,7 @@ const reviewInstructor = async (req,res) => {
     const inst = await instructor.findOne({name:name})
     const instid=inst._id
     const list = await inst.reviews
-    console.log(review)
+    console.log(review) 
     let newReviews=[String]
     newReviews=list 
     console.log(newReviews) 

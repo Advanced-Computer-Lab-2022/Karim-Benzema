@@ -123,4 +123,13 @@ header a {
 	cursor: pointer;
 	margin: 10px auto;
 }
-  
+.error_msg2 {
+	width: 160px;
+	padding: 15px;
+	margin: 5px 0;
+	font-size: 14px;
+	background-color:rgb(93, 191, 123);
+	color: white;
+	border-radius: 5px;
+	text-align:center;
+}

@@ -27,7 +27,7 @@ useEffect(() => {
 
     return (
         <div className="home">
-        <div className="courses">
+        <div className="course_container">
             {subtitles && subtitles.map( (subtitle) => (
             <SubtitleDetails key={subtitle._id} subtitle={subtitle} itid={itid}/>
             ))}

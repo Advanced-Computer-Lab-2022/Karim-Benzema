@@ -23,8 +23,11 @@ const {
     viewExam,
     solve,
     correctingg,
-    getAnswerss, coloringAnswers, coloringWrongs,
-    getProgress
+    getAnswerss, 
+    coloringAnswers,
+    coloringWrongs,
+    getProgress,
+    editEmail
 } = require('../controllers/ctController') //new
 
 const router = express.Router()
@@ -44,11 +47,11 @@ router.get('/subjectorRating/:subject/:rating', getcoursebysubjectorRating)
 router.get('/search/:input', searchawy)
 router.patch('/reviewInst', reviewInstructor)
 router.patch('/reviewCourse', reviewCourse)
-router.patch('/register',register)
 router.post('/createProblem/:id',createproblem)
 router.get('/getrequests/:id', getrequests)
 router.get('/getproblems1', getproblems1)//for inst
 router.get('/getproblems2', getproblems2)//for ct
+router.patch('/register/:id/:ctid',register)
 router.get('/viewExam/:id', viewExam)
 router.get('/getWrongAnswers',getAnswerss)
 router.get('/coloringAnswers',coloringAnswers)
@@ -56,5 +59,6 @@ router.get('/coloringWrongs',coloringWrongs)
 router.post('/answer/:id/:ctid', solve)
 router.get('/getAnswers', correctingg)
 router.get('/getprogress/:id/:ctid',getProgress)
+router.patch('/editEmail/:id', editEmail)
 
 module.exports = router 
