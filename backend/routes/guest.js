@@ -6,7 +6,7 @@ const {
     getcoursebysubjectorRating,
     search,
     getpriceof1course,
-    getcoursebyid
+    getcoursebyid, viewExam
 } = require('../controllers/guestController') //new
 
 const router = express.Router()
@@ -17,6 +17,6 @@ router.get('/subjectRating/:subject/:rating', getcoursebysubjectRating)
 router.get('/subjectorRating/:subject/:rating', getcoursebysubjectorRating)
 router.get('/search/:input', search)
 router.get('/getcoursebyid',getcoursebyid)
-
+router.get('/viewExamGuest/:id/:subtitle',viewExam)
 module.exports = router 
 

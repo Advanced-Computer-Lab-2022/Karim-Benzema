@@ -3,7 +3,8 @@
 const courses = require('../models/coursesModel')
 const mongoose = require('mongoose')
 const count=require('iso-country-currency');
-
+const subtitle = require('../models/subtitleModel')
+const exam = require('../models/examModel')
 //add country 
 const updateCountry = async (req,res) => {
     const { id } = req.params
@@ -78,7 +79,19 @@ const getpriceof1course = async (req,res) => {
     res.status(200).json(data)
 }
 
+const viewExam = async (req,res) => {
 
+    const id = req.params.id
+    const subtitl = req.params.subtitle
+    const data = await subtitle.findOne({title:subtitl })
+ 
+    const dataaaa = await exam.findOne({subtitle:data._id }).select('questions')
+console.log(dataaaa)
+ if(!data){
+    return res.status(404).json({error: "Not found"})//redundant prob
+}
+  res.status(200).json(dataaaa)
+}
 module.exports = {
     updateCountry,
     getcourse,
@@ -86,6 +99,7 @@ module.exports = {
     getcoursebysubjectorRating,
     search,
     getpriceof1course,
-    getcoursebyid
+    getcoursebyid,
+    viewExam
     
 }

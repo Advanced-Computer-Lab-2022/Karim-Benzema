@@ -3,6 +3,7 @@ import React from 'react';
 //components 
 import CoursesOnly from '../components/coursesOnly';
 import CourseDetailsGuest from '../components/courseDetailsGuest';
+import RegisterButtons from '../components/registerButtons';
 
 const ItHome = () => {
     const [courses, setCourses] = useState(null);
@@ -161,7 +162,7 @@ setCourses2(json)
             <center><h4>All Courses</h4></center> 
             <form className={"course_container"}>
             {courses2 && courses2.map((course) => (
-            <CourseDetailsGuest  key={course._id} course={course} itid={itid}/>
+            <RegisterButtons  key={course._id} course={course} id ={itid}/>
             ))}
         </form>
         <br></br>

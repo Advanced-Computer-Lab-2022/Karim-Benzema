@@ -632,12 +632,14 @@ const rateCourse = async (req,res) =>{
         res.status(200).json(data)
     } 
     const getProgress= async(req,res)=>{
-        const{id,ctid}=req.params
+        const id=req.params.id
+        const ctid=req.params.ctid
+    
         let cSubtitles = []
-        const sub = await subtitle.findOne({_id:id})
-        console.log(sub)
-        const courseID = sub.course
-        const data = await subtitle.find({course:courseID})
+       // const sub = await subtitle.findOne({_id:id})
+       // console.log(sub)
+        //const courseID = sub.course
+        const data = await subtitle.find({course:id})
         console.log(data[0])
     
         for(var i = 0;i<data.length;i++){
@@ -656,7 +658,13 @@ const rateCourse = async (req,res) =>{
             }
             
         }
-       const progress = (count/cSubtitles.length)*100
+        let progress=0;
+        if(cSubtitles.length==0){
+    progress=0;
+        }
+        else{
+        progress = (count/cSubtitles.length)*100
+        }
        //if((!data == null) && (!courseID==null)&&(!user==null))
        console.log(progress)
        res.status(200).json(progress)

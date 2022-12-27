@@ -415,13 +415,10 @@ const createIT = async (req,res) => {
     res.status(200).json(newCT)
 }
 const register = async (req,res) =>{
-    const {username,id} = req.body
-    const test = await courses.find({_id:id}).select('_id')
-    const data = await it.findOneAndUpdate({username:username},
-        {$push:{courses:test}},
-        {new:true}
-        )
-    res.status(200).json(data)
+    const  id  = req.params.id;
+    const  itid  = req.params.itid;
+    const add = await it.findByIdAndUpdate({_id:itid},{$push:{courses:id}})
+    res.status(200).send('Course Added!');
  }
 
 const reviewInstructor = async (req,res) => {
@@ -622,9 +619,11 @@ let id=allanswers[i].ques._id
   res.status(200).json(wrong)
 }
 const getProgress= async(req,res)=>{
-    const{id,itid}=req.params
+    const id =req.params.id;
+    const itid  = req.params.itid
+    console.log(id)
     let cSubtitles = []
-    const sub = await subtitle.findOne({_id:id})
+    const sub = await subtitle.findOne({course:id})
     console.log(sub)
     const courseID = sub.course
     const data = await subtitle.find({course:courseID})
@@ -655,6 +654,25 @@ const getProgress= async(req,res)=>{
 // }
     
 }
+const check = async (req,res) => {
+    const  id  = req.params.id;
+    const  itid  = req.params.itid;
+    const data = await it.findById({_id:itid})
+    const list = data.courses
+    if(list.includes(id)){
+        const data = true;
+        console.log(data)
+        return res.status(200).send({data : data})
+    }
+    else{
+        const data = false;
+        return res.status(200).send({data : data})
+    }
+}
+
+
+
+
 module.exports = {
     updateCountry,
     getit,
@@ -686,5 +704,6 @@ module.exports = {
     getAnswerss,
     coloringAnswers, 
     coloringWrongs,
-    getProgress
+    getProgress,
+    check
 }

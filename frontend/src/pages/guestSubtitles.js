@@ -28,7 +28,7 @@ const handleSubmit4 = async(e) => {
         <div className="home">
         <div className="course_container">
             {subtitles && subtitles.map( (subtitle) => (
-            <GuestSubtitleDetails key={subtitle._id} subtitle={subtitle} />
+            <GuestSubtitleDetails key={subtitle._id} id={id} subtitle={subtitle} />
             ))}
         </div>
         <div className='bottom_container'>

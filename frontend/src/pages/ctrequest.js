@@ -8,6 +8,7 @@ import CourseDetails from '../components/courseDetails';
 const Ctrequest = () => {
     const [courses,setCourses] = useState(null);
     const [error,setError] = useState(null)
+    const [error1,setError1] = useState(null)
     const [data,setData] = useState(null)
 
     const params = new URLSearchParams(window.location.search);
@@ -36,7 +37,7 @@ const Ctrequest = () => {
     })
     const json = await response.json()
     if(!response.ok){
-        setError('Course Already Registered')
+        setError1('Course Already Registered')
     }
     if(response.ok){
         setError('Requested')
@@ -61,12 +62,15 @@ const Ctrequest = () => {
                 <button className='green_btn'>
                     View Subtitle Content</button>
             </form>
-            <form className="bottom_container" onClick={handleSubmit}>
-                <button className='green_btn'>Request Course</button>
+                <div className="bottom_container">
+                <button className='green_btn'  onClick={handleSubmit}>Request Course</button>
+                </div>
                 <div className="bottom_container">
                 {error && <div className="error_msg2">{error}</div>}
                 </div>
-            </form>
+                <div className="bottom_container">
+                {error1 && <div className="error_msg">{error1}</div>}
+                </div>
             
         </div>
         

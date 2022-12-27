@@ -28,7 +28,7 @@ if(!response.ok){
 if(response.ok){
   setCountry('');
     setUsername('')
-    setError(null)
+    setError("Added")
     console.log("Added!",json)
     }
 }
@@ -36,12 +36,16 @@ return(
   <div>
            <form className="create" onSubmit={handleSubmit}>
            <Select options={options}     
-            onChange={(value) => setCountry(value.label)}
-            value={country}
-            onSubmit={handleSubmit}/>
-            <button>Add</button>
-           {error && <div className="error">{error}</div>}
-           </form>
+onChange={(value) => setCountry(value.label)}
+value={country} onSubmit={handleSubmit}/>
+<br></br>
+<div className="bottom_container">
+ <button className='green_btn' >Add</button>
+ </div>
+ <div className="bottom_container">
+        {error && <div className="error_msg2">{error}</div>}
+        </div>
+ </form>
 
   </div>
 )

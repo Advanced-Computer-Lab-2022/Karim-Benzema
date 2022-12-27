@@ -19,9 +19,12 @@ const CourseDeets = () => {
     const [error2,setError2] = useState(null)
     const [error3,setError3] = useState(null)
     const [error4,setError4] = useState(null)
+    const [progress,setProgress] = useState(null);
     const params = new URLSearchParams(window.location.search);
     const id = params.get('id');
     const itid = params.get('itid');
+
+    let prog="none";
 console.log(itid)
     useEffect(() => {
         const fetchCourses = async () => {
@@ -30,6 +33,12 @@ console.log(itid)
         console.log(json)
         if(response.ok){
             setCourses(json)
+        }
+        const responsee = await fetch('/api/it/getprogress/'+id+'/'+itid)
+        const jsonn = await responsee.json()
+        console.log(json)
+        if(response.ok){
+            setProgress(jsonn)
         }
         }
         fetchCourses();
@@ -153,8 +162,24 @@ else {
     setError("Please enter both fields!")
 }
 }
+
+
+
+if (progress == 100) {
+
+    prog="block"
+     
+ 
+ } else {
+     prog="none"
+
+ }
     return (
         <div className="ITHome">
+              <div className="container">
+           <h1> Progress:{progress} %</h1>
+        </div>
+
         <div className="course_container">
             {courses && courses.map((course) => (
             < CourseDetails key={course._id} course={course} />
@@ -236,8 +261,10 @@ else {
         {error4 && <div className="error_msg2">{error4}</div>}
         </div> 
 </form>
-<a  className="bottom_container" href={pdf} download="cert.pdf">Download the Cerificate</a>
-        </div>
+
+<a  className="bottom_container" href={pdf} style={{display:prog}} download="cert.pdf">Download the Cerificate</a>  
+
+      </div>
         
     );
 }

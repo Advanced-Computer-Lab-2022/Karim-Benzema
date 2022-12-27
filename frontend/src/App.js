@@ -54,9 +54,14 @@ import ViewProblems from './pages/ViewProblems';
 import GuestCourses2 from './pages/itregister';
 import Itregister from './pages/itregister';
 import CtSubtitles from './pages/ctSubtitles'
-import AnswerExamCt from './pages/answerExamsCt'
 import Ctrequest from './pages/ctrequest';
 
+import AnswerExamCt from './pages/answerExamsCt';
+import AdminHome from './pages/AdminHome';
+import AdminProblems from './pages/AdminProblems';
+import GuestExam from './pages/guestExam';
+import Payment from './components/payment';
+import Completion from './components/completion';
 
 function App() {
   let role = Cookies.get('role')
@@ -69,12 +74,14 @@ function App() {
         <Routes>
 
           {/* dont need authentication */}
+          <Route path="/completion" element={<Completion/>}/>
           <Route path="/"element={<Home/>}/>
           <Route path="/forgotpassword" element={<ForgotPassword/>}/>
           <Route path="/passwordReset/:id/:token"element={<PasswordReset/>}/>
           <Route path="/SignUp"element={<Signup/>}/>
           <Route path="/Login"element={<Login/>}/>
           <Route path="/Main"element={<Main/>}/>
+          <Route path="/viewExamGuest"element={<GuestExam/>}/>
           
           {/* if not logged in */}
           {role === undefined ? 
@@ -86,6 +93,8 @@ function App() {
             <Route path="/viewSubjectRatingGuest"element={<ViewSubjectRatingGuest />}/>
             <Route path="/GuestCourse"element={<GuestCourses/>}/>
             <Route path="/guestSubtitles"element={<GuestSubtitles/>}/>
+            <Route path="/viewExamGuest"element={<GuestExam/>}/>
+
             </Route>
           )
           :( 
@@ -122,6 +131,7 @@ function App() {
           {role === 'it' ? 
           (
           <Route>
+          <Route path="/payment" element={<Payment/>}/>
           <Route path="/ithome"element={<ItHome/>}/>     
           <Route path="/ItPrice" element={<ItPrices />}/>
           <Route path="/selectCountryIt" element={<SelectCountryIt />}/>
@@ -159,6 +169,7 @@ function App() {
           <Route path="/ctrequest"element={<Ctrequest/>}/>
           <Route path="/viewExamCt"element={<AnswerExamCt/>}/>
           <Route path="/viewproblems"element={<ViewProblems/>}/>
+
          
           </Route>
           
@@ -171,10 +182,11 @@ function App() {
           (
             
           <Route>
-          <Route 
-          path="/AddAdmin"element={<AddAdmin />}/>
+          <Route path="/adminhome"element={<AdminHome />}/> 
+          <Route path="/AddAdmin"element={<AddAdmin />}/>
           <Route path="/AddInstructor"element={<AddInstructor />}/>
           <Route path="/AddCT"element={<AddCT />}/>
+          <Route path="/ReportedProblems"element={<AdminProblems />}/>
           </Route>
            
           )

@@ -25,28 +25,28 @@ const CreateAdmin = () => {
     if(response.ok){
         setUsername('')
         setPassword('')
-        setError(null)
-        console.log("Added!",json)
+        setError("ADDED!")
+       
         }
 }
     return (
-       <form className="create" onSubmit={handleSubmit}>
-        <h3>Create</h3>
-
-        <label>Username:</label>
-        <input
+       <form className="form_container" onSubmit={handleSubmit}>
+        <h3>Create Admin</h3>
+        
+        <input className='input' placeholder='Username'
         type="text"
         onChange={(e) => setUsername(e.target.value)}
         value={username}
         />
-        <label>Password:</label>
-        <input
+        <input className='input' placeholder='Password'
         type="text"
         onChange={(e) => setPassword(e.target.value)}
         value={password}
         />
-        <button>Add</button>
-        {error && <div className="error">{error}</div>}
+        <button className='green_btn'>Add</button>
+        <div className='bottom_container'>
+                {error && <div className="error_msg2">{error}</div>}
+                </div>
         </form>
 
        

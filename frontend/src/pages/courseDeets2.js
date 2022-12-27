@@ -1,5 +1,6 @@
 import {useEffect,useState} from 'react';
 import React from 'react';
+
 //components 
 
 import CourseDetails2 from '../components/courseDetails2';
@@ -20,9 +21,11 @@ const CourseDeets2 = () => {
     const [error2,setError2] = useState(null)
     const [error3,setError3] = useState(null)
     const [error4,setError4] = useState(null)
+    const [progress,setProgress] = useState(null);
     const params = new URLSearchParams(window.location.search);
     const id = params.get('id');
     const ctid = params.get('ctid');
+    let prog="none"
     useEffect(() => {
         const fetchCourses = async () => {
         const response = await fetch('/api/courses/getcoursebyid/'+id)
@@ -30,6 +33,12 @@ const CourseDeets2 = () => {
         console.log(json)
         if(response.ok){
             setCourses(json)
+        }
+        const responsee = await fetch('/api/ct/getprogress/'+id+'/'+ctid)
+        const jsonn = await responsee.json()
+        console.log(json)
+        if(response.ok){
+            setProgress(jsonn)
         }
         }
         fetchCourses();
@@ -155,6 +164,9 @@ else {
  
     return (
         <div className="CTHome">
+              <div className="container">
+           <h1> Progress:{progress} %</h1>
+        </div>
         <div className="course_container div">
             {courses && courses.map((course) => (
             < CourseDetails2 key={course._id} course={course} />

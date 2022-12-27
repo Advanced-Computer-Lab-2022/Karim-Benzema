@@ -4,6 +4,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@stripe/react-stripe-js": "^1.16.1",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -24,6 +25,7 @@
     "react-select-country-list": "^2.2.3",
     "reactjs-popup": "^2.0.5",
     "sweetalert2": "^11.6.16",
+    "react-stripe-js": "^1.1.2",
     "universal-cookie": "^4.0.4",
     "web-vitals": "^2.1.4",
     "yarn": "^1.22.19"

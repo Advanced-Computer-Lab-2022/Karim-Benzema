@@ -26,7 +26,9 @@ const {
     getAnswerss, coloringAnswers, coloringWrongs,
     getProgress,
     getproblems1,
-    getproblems2
+    getproblems2,
+    check,
+    register
 } = require('../controllers/itController') //new
 
 const router = express.Router()
@@ -64,6 +66,8 @@ router.get('/coloringWrongs',coloringWrongs)
 router.get('/getprogress/:id/:itid',getProgress)
 router.get('/getproblems1', getproblems1)//for inst
 router.get('/getproblems2', getproblems2)//for ct
+router.get('/check/:id/:itid',check)
+router.patch('/register/:id/:itid',register)
 
 
-module.exports = router 
+module.exports = router
