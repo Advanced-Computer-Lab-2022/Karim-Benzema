@@ -29,7 +29,8 @@ const {
     getproblems2,
     check,
     register,
-    wallet
+    wallet,
+    curr
 } = require('../controllers/itController') //new
 
 const router = express.Router()
@@ -70,6 +71,6 @@ router.get('/getproblems2', getproblems2)//for ct
 router.get('/check/:id/:itid',check)
 router.patch('/register/:id/:itid',register)
 router.get('/wallet/:id/:itid',wallet)
-
+router.get('/currency/:id', curr)
 
 module.exports = router

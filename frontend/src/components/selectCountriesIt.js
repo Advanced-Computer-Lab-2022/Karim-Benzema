@@ -5,16 +5,18 @@ import Select from 'react-select'
 import countryList from 'react-select-country-list'
 
 const SelectCountriesIt =()=> {
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get('id');
+  console.log(id)
   const [country, setCountry] = useState('')
   const [error,setError] = useState(null)
-  const [username,setUsername] = useState('')
 
   const options = useMemo(() => countryList().getData(), [])
 
   
   const handleSubmit = async (e) => {
-    const user = {username,country}
-    const response = await fetch('/api/it/updateCountry', {
+    const user = {country}
+    const response = await fetch('/api/it/updateCountry/'+id, {
         method: 'PATCH',
         body: JSON.stringify(user),
         headers: {
@@ -27,25 +29,25 @@ if(!response.ok){
 }
 if(response.ok){
   setCountry('');
-    setUsername('')
-    setError('Added')
+    setError(null)
     console.log("Added!",json)
     }
 }
 return(
   <div>
-        <form className="create" onSubmit={handleSubmit}>
-        <Select options={options} 
-        onChange={(value) => setCountry(value.label)}
-        value={country}
-        onSubmit={handleSubmit}/>
-        <br></br>
-        <form className="bottom_container" onSubmit={handleSubmit} >
-        <button className="green_btn">Add</button>
-        </form>
-        {error && <div className="error_msg2">{error}</div>}
+           <form className="kd" onSubmit={handleSubmit}>
+ <Select options={options}     
+onChange={(value) => setCountry(value.label)}
+value={country}
+ onSubmit={handleSubmit}/>
+  &nbsp; &nbsp; &nbsp;
+  <div className="bottom_container" >
+  <button  className="green_btn" >Add</button>
+        {error && <div className="error">{error}</div>}
+  </div>
  </form>
   </div>
 )
 }
+
 export default SelectCountriesIt
