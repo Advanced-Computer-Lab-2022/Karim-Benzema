@@ -1,12 +1,15 @@
 import { PaymentElement } from "@stripe/react-stripe-js";
 import { useState } from "react";
 import { useStripe, useElements } from "@stripe/react-stripe-js"
+import axios from "axios";
 
 export default function CheckoutForm() {
   const stripe = useStripe();
   const elements = useElements();
 
   const [message, setMessage] = useState(null);
+  const [error,setError] = useState(null);
+    const [data, setData] = useState(null)
   const [isProcessing, setIsProcessing] = useState(false);
   
 
@@ -53,7 +56,25 @@ export default function CheckoutForm() {
     setIsProcessing(false);
   };
 
+  const handleSubmit2 = async (e) => {
+    e.preventDefault();
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get('id');
+    const itid = params.get('itid');
+    const url = "http://localhost:3000/api/it/wallet/"+id+'/'+itid;
+  const { data: res } = await axios.get(url, data);
+  setData( res.data);
+    console.log(res.data)
+    if(res.data === true){
+      window.location = `/completion?id=`+itid
+    }
+    else{
+    setError("Insufficient Balance!")
+    }
+  }
+
   return (
+    <div>
     <form className="form_container" id="payment-form" onSubmit={handleSubmit}>
       <PaymentElement id="payment-element" />
       <button className="green_btn" disabled={isProcessing || !stripe || !elements} id="submit">
@@ -64,5 +85,15 @@ export default function CheckoutForm() {
       {/* Show any error or success messages */}
       {message && <div id="payment-message">{message}</div>}
     </form>
+    <br/>
+    <form className="form_container" onClick={handleSubmit2}>
+    <button className="green_btn">
+    <span id="button-text">
+          {isProcessing ? "Processing ... " : "Pay with wallet"}
+        </span>
+    </button>
+    {error && <div className="error_msg">{error}</div>}
+    </form >
+    </div>
   );
 }

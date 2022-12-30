@@ -14,7 +14,8 @@ const itSchema = new Schema ({
     gender: {type: String,required: false},
     country: { type: String, required: false },
     courses: {type: [mongoose.Types.ObjectId],required: false,ref: 'courseModel'},
-    solved: {type: [mongoose.Types.ObjectId],required: false,ref: 'subtitleModel'}
+    solved: {type: [mongoose.Types.ObjectId],required: false,ref: 'subtitleModel'},
+    wallet: {type: Number,required: false},
 	
 }, {timestamps: true})
 

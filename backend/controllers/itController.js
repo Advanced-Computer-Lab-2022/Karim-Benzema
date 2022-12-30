@@ -670,6 +670,31 @@ const check = async (req,res) => {
     }
 }
 
+const wallet = async (req,res) => {
+    const id = req.params.id //course id
+    const  itid  = req.params.itid;
+    const ok = await courses.findById({_id:id})
+    const price = ok.price
+    console.log(price)
+    const m = await it.findById({_id:itid})
+    const wallet = m.wallet
+    console.log(wallet)
+    if(wallet>=price){
+        console.log("done")
+        const data = true;
+        const newWallet = wallet - price
+        const n = await it.findByIdAndUpdate({_id:itid},{wallet:newWallet})
+        const register = await it.findByIdAndUpdate({_id:itid},{$push:{courses:id}})
+        return res.status(200).send({data})
+       
+    }
+    else{
+        console.log("not done")
+        const data = false;
+        return res.status(200).send({data})
+
+    }
+}
 
 
 
@@ -705,5 +730,6 @@ module.exports = {
     coloringAnswers, 
     coloringWrongs,
     getProgress,
-    check
+    check,
+    wallet
 }
