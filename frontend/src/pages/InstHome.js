@@ -1,0 +1,259 @@
+import {useEffect,useState} from 'react';
+import React from 'react';
+//components 
+
+import InstCoursesOnly from '../components/instCoursesOnly';
+import AllCoursesInst from '../components/allCoursesInst';
+const InstHome = () => {
+    const [courses,setCourses] = useState(null);
+    const [courses2, setCourses2] = useState(null);
+    const [error,setError] = useState(null)
+    const [rating, setRating] = useState('')
+    const [search,setSearch]=useState('')
+    const [minprice, setMinPrice] = useState('')
+    const [maxprice, setMaxPrice] = useState('')
+    const [subject, setSubject] = useState('')
+    const [subject2, setSubject2] = useState('')
+    const [price, setPrice] = useState('')
+
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get('id');
+  
+
+useEffect(() => {
+    const fetchCourses = async () => {
+      const response = await fetch('/api/instructor/viewCourses/'+id)
+      const json = await response.json()
+ 
+    if(response.ok){
+        setCourses(json)
+    }
+    }
+    const fetchCourses2 = async () => {
+        const response = await fetch('/api/courses/getCourses')
+        const json = await response.json()
+   
+      if(response.ok){
+          setCourses2(json)
+      }
+      }
+    fetchCourses();
+    fetchCourses2();   
+}
+
+, []);
+const handleSubmit = async(e) => {  
+    e.preventDefault();
+    const inputVal= {subject:subject,rating:rating}
+    if(subject==='' || rating===''){ //or
+        const response= await fetch(`/api/courses/subjectorRating?${new URLSearchParams(inputVal).toString()}`)
+        const json = await response.json()
+        if(!response.ok){
+            setError(json.error)
+        }
+        if(response.ok){
+          setCourses2(json);
+          console.log(json)
+          setError(null) 
+          setSubject('')
+          setRating('')
+        }
+    }
+    else{ //and 
+        const response= await fetch(`/api/courses/subjectRating?${new URLSearchParams(inputVal).toString()}`)
+        const json = await response.json()
+        if(!response.ok){
+            setError(json.error)
+        }
+        if(response.ok){
+          setCourses2(json);
+          console.log(json)
+          setError(null)
+          setSubject('')
+          setRating('')
+        }
+    }
+}
+const handleSubmit4 = async(e) => {  
+    e.preventDefault();
+    const inputVal= {subject2:subject2,price:price}
+    if(subject2==='' || price===''){ //or
+        const response= await fetch(`/api/instructor/filter?${new URLSearchParams(inputVal).toString()}`)
+        const json = await response.json()
+        if(!response.ok){
+            setError(json.error)
+        }
+        if(response.ok){
+          setCourses(json);
+          setError(null) 
+          setSubject2('')
+          setPrice('')
+        }
+    }
+    else{ 
+        setError("please enter only one field!")
+    }
+}
+const handleSubmit6 = async(e) => {  
+        e.preventDefault();
+        window.location=`/AddCourse?id=`+id
+    
+    }
+    const handleSubmit7 = async(e) => {  
+        e.preventDefault();
+        // const seacrhVal = {title:title,subject:subject,Instructor:Instructor}
+        if (minprice!=='' && maxprice!=='' ){ 
+        const response = await fetch(`/api/courses/filterbyprice/`+ minprice +'/'+ maxprice)
+        const json = await response.json()
+    if(!response.ok){
+        setError(json.error)
+    }
+    if(response.ok){
+      setCourses2(json); 
+      setError(null)
+        }
+    }
+    else {
+        setError("please enter both fields!")
+    }
+    }
+    const handleSubmit8= async (e) => {
+        e.preventDefault();
+        const user = {search}
+        const fetchedData = await fetch(`/api/courses/search?${new URLSearchParams(user).toString()}`);
+    
+       const json = await fetchedData.json()
+    
+    setCourses2(json)
+    }
+    const handleSubmit9= async (e) => {
+        e.preventDefault();
+        const user = {search}
+        const fetchedData = await fetch(`/api/courses/search?${new URLSearchParams(user).toString()}`);
+    
+       const json = await fetchedData.json()
+    
+    setCourses(json)
+    }
+    const handleSubmit10 = async(e) => {  
+        e.preventDefault();
+        window.location=`/profileinst?id=${id}`
+    }
+    
+    return (
+        <div className="InstHome">
+            <form className="bottom_container3" onSubmit={handleSubmit10} >
+                <button className="green_btn" >
+                   Profile </button>
+            </form>
+
+         <center> <h4>My Courses</h4></center> 
+        <form className="course_container">
+            {courses && courses.map((course) => (
+            <InstCoursesOnly key={course._id} course={course} />
+            ))}
+            {error && <div className="error">{error}</div>}
+        </form>
+        <br></br>
+        <form className="bottom_container" onSubmit={handleSubmit4}>
+        <input  
+        type={"text"}
+        placeholder="filter by subject"
+        onChange={(e)=>setSubject2(e.target.value)}
+        className="input"
+        />
+         &nbsp; &nbsp;  &nbsp;
+         <input   
+        type={"text"}
+        placeholder="filter by price"
+        onChange={(e)=>setPrice(e.target.value)}
+        className="input"
+        />
+        &nbsp; &nbsp;  &nbsp;
+        <button  className="green_btn" onChange={(e) => setCourses(courses)} >Filter
+        </button>
+</form>
+        <form className="bottom_container " onSubmit={handleSubmit9}>
+        <input
+        type="text"
+        id="search"
+        name="search"
+        placeholder="Search by subject or title"
+        className="input"
+        onChange={(e) => setSearch(e.target.value)}
+        value={search}
+        />
+         &nbsp; &nbsp;  &nbsp;
+       <button  className="green_btn" onChange={(e) => setCourses(courses)} >Search
+        </button>
+        </form>
+        <form className="bottom_container" onSubmit={handleSubmit6} >
+                <button className="green_btn"> Create Course</button>
+                   {error && <div className="error">{error}</div>}
+            </form>
+
+        <center> <h4>All Courses </h4></center> 
+        <form className="course_container">
+            {courses2 && courses2.map((course) => (
+            <AllCoursesInst key={course._id} course={course} />
+            ))}
+            {error && <div className="error">{error}</div>}
+        </form>
+        <br></br>
+        <form className="bottom_container" onSubmit={handleSubmit}>
+        <input  
+        type={"text"}
+        placeholder="filter by subject"
+        onChange={(e)=>setSubject(e.target.value)}
+        className="input"
+        />
+         &nbsp; &nbsp;  &nbsp;
+         <input   
+        type={"text"}
+        placeholder="filter by rating"
+        onChange={(e)=>setRating(e.target.value)}
+        className="input"
+        />
+        &nbsp; &nbsp;  &nbsp;
+        <button  className="green_btn" onChange={(e) => setCourses2(courses2)} >Filter
+        </button>
+</form>
+<form className="bottom_container" onSubmit={handleSubmit7}>
+        <input 
+        type={"text"}
+        placeholder="enter min price"
+        onChange={(e)=>setMinPrice(e.target.value)}
+        className="input"/>
+        &nbsp; &nbsp;  &nbsp;
+         <input 
+        type={"text"}
+        placeholder="enter max price"
+        onChange={(e)=>setMaxPrice(e.target.value)}
+        className="input"
+        />
+        &nbsp; &nbsp;  &nbsp;
+        <button className="green_btn" onChange={(e) => setCourses2(courses2)}
+        >Filter by Price  </button>
+        {error && <div className="error">{error}</div>}
+</form>
+<form className="bottom_container " onSubmit={handleSubmit8}>
+        <input
+        type="text"
+        id="search"
+        name="search"
+        placeholder="Search by subject or title"
+        className="input"
+        onChange={(e) => setSearch(e.target.value)}
+        value={search}
+        />
+         &nbsp; &nbsp;  &nbsp;
+       <button  className="green_btn" onChange={(e) => setCourses2(courses2)} >Search
+        </button>
+        </form>
+      
+          
+        </div>
+    );
+
+}
+export default InstHome;
