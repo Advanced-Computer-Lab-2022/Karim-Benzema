@@ -7,6 +7,7 @@ import CorrDetail from './corrDetail';
 import styles from './styles.module.css'
 const params = new URLSearchParams(window.location.search);
 const id = params.get('id');
+const itid = params.get('itid');
 
 const AnswerExams =()=> {
 
@@ -62,7 +63,7 @@ const handleSubmit2 = async (e) => {
 
  setCorrect(json)
  corr.push(json)
- const ress= await fetch('/api/it/getWrongAnswers')
+ const ress= await fetch('/api/it/getWrongAnswers/'+id+'/'+itid)
  const jsonn = await ress.json()
  const ressss= await fetch('/api/it/coloringAnswers')
 

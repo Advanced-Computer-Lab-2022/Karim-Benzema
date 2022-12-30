@@ -567,7 +567,7 @@ console.log(correctAnswer)
   res.status(200).json(correctAnswer)
 }
 const getAnswerss = async (req,res) => {
-
+    const {subid,itid} = req.params
     const array =[];
 //const {id} = req.params
 const corrects=[]
@@ -611,7 +611,7 @@ let id=allanswers[i].ques._id
    gradeComment ="Your Grade is" +".       "+grade
    wrong.push(gradeComment)
 if(grade>=50){
-    const sub = await subtitle.findOne({_id:id})
+    const sub = await subtitle.findOne({_id:subid})
     const subID = sub._id
     const array  = await it.findOne({_id:itid})
     console.log(array.solved)

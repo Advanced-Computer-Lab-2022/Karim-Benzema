@@ -12,6 +12,7 @@ import styles from './styles.module.css'
 const Swal = require('sweetalert2')
 const params = new URLSearchParams(window.location.search);
 const id = params.get('id');
+const ctid = params.get('ctid');
 
 
 const AnswerExamsCt =()=> {
@@ -68,7 +69,7 @@ const handleSubmit2 = async (e) => {
 
  setCorrect(json)
  corr.push(json)
- const ress= await fetch('/api/ct/getWrongAnswers')
+ const ress= await fetch('/api/ct/getWrongAnswers/'+id+'/'+ctid)
  const jsonn = await ress.json()
  const ressss= await fetch('/api/ct/coloringAnswers')
 

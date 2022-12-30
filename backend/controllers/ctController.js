@@ -423,7 +423,7 @@ const rateInstructor = async (req,res) =>{
 
     }
     const getAnswerss = async (req,res) => {
-
+const {subid,ctid} = req.params
         const array =[];
     //const {id} = req.params
     const corrects=[]
@@ -466,7 +466,20 @@ const rateInstructor = async (req,res) =>{
       grade=(((dataa.length)-wrongAnswers)/(dataa.length))*100
        gradeComment ="Your Grade is" +".       "+grade
        wrong.push(gradeComment)
+    if(grade>=50){
+        const sub = await subtitle.findOne({_id:subid})
+        const subID = sub._id
+        const array  = await ct.findOne({_id:ctid})
+        console.log(array.solved)
+    array.solved.push(subID)
+    console.log(array.solved)
     
+    console.log(subID)
+     const done = await ct.findOneAndUpdate({_id:ctid},{solved:array.solved},{new:true})
+    //    const data3= await it.findOneAndUpdate({_id:itid },
+    //     {$push:{ solved:[(id)]}},{new:true})
+    console.log(done)
+    }
        //console.log(wrong)
     
      if(!data){
@@ -581,18 +594,18 @@ const rateInstructor = async (req,res) =>{
        const ques= await que.findOne({name:name}).select('_id')
        let dataaa= await CtAnswers.findOne({ques:ques})
         //console.log(dataaa)
-        const sub = await subtitle.findOne({_id:id})
-        const subID = sub._id
-        const array  = await ct.findOne({_id:ctid})
-        console.log(array.solved)
-    array.solved.push(subID)
-    console.log(array.solved)
+    //     const sub = await subtitle.findOne({_id:id})
+    //     const subID = sub._id
+    //     const array  = await ct.findOne({_id:ctid})
+    //     console.log(array.solved)
+    // array.solved.push(subID)
+    // console.log(array.solved)
     
-    console.log(subID)
-     const done = await ct.findOneAndUpdate({_id:ctid},{solved:array.solved},{new:true})
-    //    const data3= await it.findOneAndUpdate({_id:itid },
-    //     {$push:{ solved:[(id)]}},{new:true})
-    console.log(done)
+    // console.log(subID)
+    //  const done = await ct.findOneAndUpdate({_id:ctid},{solved:array.solved},{new:true})
+    // //    const data3= await it.findOneAndUpdate({_id:itid },
+    // //     {$push:{ solved:[(id)]}},{new:true})
+    // console.log(done)
         if(dataaa==null ){
         dataa= await CtAnswers.create({ques,set})
        }

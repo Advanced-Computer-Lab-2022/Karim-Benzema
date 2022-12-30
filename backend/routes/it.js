@@ -61,7 +61,7 @@ router.get('/getproblems', getproblems)//it
 router.get('/getcoursebyitid/:id', getCoursebyitid)
 router.post('/createProblem/:id',createproblem)
 router.get('/viewExam/:id', viewExam)
-router.get('/getWrongAnswers',getAnswerss)
+router.get('/getWrongAnswers/:subid/:itid',getAnswerss)
 router.get('/coloringAnswers',coloringAnswers)
 router.get('/coloringWrongs',coloringWrongs)
 router.get('/getprogress/:id/:itid',getProgress)

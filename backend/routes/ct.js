@@ -50,7 +50,7 @@ router.get('/getrequests/:id', getrequests)
 router.get('/getproblems1', getproblems1)//for inst
 router.get('/getproblems2', getproblems2)//for ct
 router.get('/viewExam/:id', viewExam)
-router.get('/getWrongAnswers',getAnswerss)
+router.get('/getWrongAnswers/:subid/:ctid',getAnswerss)
 router.get('/coloringAnswers',coloringAnswers)
 router.get('/coloringWrongs',coloringWrongs)
 router.post('/answer/:id/:ctid', solve)
