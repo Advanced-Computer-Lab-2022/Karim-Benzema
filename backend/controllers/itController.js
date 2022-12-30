@@ -26,18 +26,18 @@ const solve = async (req,res) => {
    const ques= await que.findOne({name:name}).select('_id')
    let dataaa= await ItAnswers.findOne({ques:ques})
     //console.log(dataaa)
-    const sub = await subtitle.findOne({_id:id})
-    const subID = sub._id
-    const array  = await it.findOne({_id:itid})
-    console.log(array.solved)
-array.solved.push(subID)
-console.log(array.solved)
+//     const sub = await subtitle.findOne({_id:id})
+//     const subID = sub._id
+//     const array  = await it.findOne({_id:itid})
+//     console.log(array.solved)
+// array.solved.push(subID)
+// console.log(array.solved)
 
-console.log(subID)
- const done = await it.findOneAndUpdate({_id:itid},{solved:array.solved},{new:true})
-//    const data3= await it.findOneAndUpdate({_id:itid },
-//     {$push:{ solved:[(id)]}},{new:true})
-console.log(done)
+// console.log(subID)
+//  const done = await it.findOneAndUpdate({_id:itid},{solved:array.solved},{new:true})
+// //    const data3= await it.findOneAndUpdate({_id:itid },
+// //     {$push:{ solved:[(id)]}},{new:true})
+// console.log(done)
     if(dataaa==null ){
     dataa= await ItAnswers.create({ques,set})
    }
@@ -610,7 +610,20 @@ let id=allanswers[i].ques._id
   grade=(((dataa.length)-wrongAnswers)/(dataa.length))*100
    gradeComment ="Your Grade is" +".       "+grade
    wrong.push(gradeComment)
+if(grade>=50){
+    const sub = await subtitle.findOne({_id:id})
+    const subID = sub._id
+    const array  = await it.findOne({_id:itid})
+    console.log(array.solved)
+array.solved.push(subID)
+console.log(array.solved)
 
+console.log(subID)
+ const done = await it.findOneAndUpdate({_id:itid},{solved:array.solved},{new:true})
+//    const data3= await it.findOneAndUpdate({_id:itid },
+//     {$push:{ solved:[(id)]}},{new:true})
+console.log(done)
+}
    //console.log(wrong)
 
  if(!data){
