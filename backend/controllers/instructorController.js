@@ -198,15 +198,19 @@ const updateCountry = async (req,res) => {
     res.status(200).json(data)
     
 }
- const curr =  async (req,res) => {
+const curr =  async (req,res) => {
     const id  = req.params.id
     const data = await instructor.findById({_id:id})
-    console.log(data)
     const test =  data.country
-    console.log(test)
+    if(!test){
+        res.status(200).json("USD")
+    }
+    else{
     var currencySymbol = currency.getParamByParam('countryName', test, 'currency')
     console.log(currencySymbol)
     res.status(200).json(currencySymbol)
+    }
+    
  }
 const getcourse = async (req,res) => {
     const {id} = req.params 

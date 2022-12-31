@@ -9,7 +9,7 @@ const que =require('../models/questionModel')
 const Joi = require("joi");
 const passwordComplexity = require("joi-password-complexity");
 const bcrypt = require("bcrypt");
-const count=require('iso-country-currency');
+const currency=require('iso-country-currency');
 
 const subtitle =require('../models/subtitleModel')
 
@@ -207,23 +207,18 @@ const itAnswer = async (req,res) => {
     res.status(200).json(data)
 } 
 
-//add country 
 const updateCountry = async (req,res) => {
-    const { id } = req.params
+    console.log("in")
+    try{
+    const {id}  = req.params
+    console.log(id)
     const {country} = req.body
+    console.log(country)
     if (!country) {
         return res.status(400).json({ error: "Please enter a country" });
     }
     if(!mongoose.Types.ObjectId.isValid(id)){
         return res.status(404).json({ error: "No such instructor" })
-    }
-    var currency = " "
-    const countArray = count.getAllISOCodes()
-    for(var i=0;i<countArray.length;i++){
-        if(countArray[i].countryName.toString()==country){
-            currency = countArray[i].currency.toString()
-            break;
-        }
     }
     const data = await it.findOneAndUpdate({_id : id},{
         country : country,
@@ -232,9 +227,25 @@ const updateCountry = async (req,res) => {
         return res.status(404).json({error: "Not found"})
     }
     res.status(200).json(data)
-    
 }
-
+catch(err){
+    console.log(err)
+}
+}
+ const curr =  async (req,res) => {
+    const id  = req.params.id
+    const data = await it.findById({_id:id})
+    const test =  data.country
+    if(!test){
+        res.status(200).json("USD")
+    }
+    else{
+    var currencySymbol = currency.getParamByParam('countryName', test, 'currency')
+    console.log(currencySymbol)
+    res.status(200).json(currencySymbol)
+    }
+    
+ }
 const changePassword = async (req,res) => {
     console.log('in')
 const { id } = req.params
@@ -744,5 +755,6 @@ module.exports = {
     coloringWrongs,
     getProgress,
     check,
-    wallet
+    wallet,
+    curr
 }
