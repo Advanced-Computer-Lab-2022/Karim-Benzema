@@ -1,37 +1,60 @@
-
 const express = require('express')
-const ct = require('../models/ctModel') //vip
+const {
+    updateCountry,
+    getct,
+    getcourse,
+    // getcoursebysubject,
+    // getcoursebyrating,
+    getcoursebysubjectRating,
+    getcoursebysubjectorRating,
+    searchawy,
+    rateCourse,
+    rateInstructor,
+    changePassword,
+    reviewInstructor,
+    reviewCourse,
+    register,
+    getCoursebyCtid,
+    createproblem,
+    getproblems,
+    getproblems1,
+    getproblems2,
+    getrequests,
+    viewExam,
+    solve,
+    correctingg,
+    getAnswerss, coloringAnswers, coloringWrongs,
+    getProgress
+} = require('../controllers/ctController') //new
+
 const router = express.Router()
-
-router.get('/', (req,res) => 
-{
-    res.json({mssg: "get all workouts"})
-})
-
-router.get('/:id', (req,res) => 
-{
-    res.json({mssg: "get a single workout"})
-})
-
-router.post('/', async (req,res) => 
-{
-    const{name,username,password,country} = req.body
-    try{
-        const data= await ct.create({name,username,password,country}) //change
-        res.status(200).json(data)
-    }catch(error) {
-        res.status(400).json({error: error.message})
-    }
-})
-
-router.delete('/:id', (req,res) => 
-{
-    res.json({mssg: "DELETE a workout"})
-})
-
-router.patch('/:id', (req,res) => 
-{
-    res.json({mssg: "UPDATE a new workout"})
-})
+// /ct1/
+router.patch('/updateCountry/:id', updateCountry)
+router.patch('/changePassword/:id', changePassword)
+router.patch('/rateCourse', rateCourse)
+router.patch('/rateInstructor', rateInstructor)
+router.get('/viewcourses', getcourse)
+router.get('/araf/:id', getct)
+router.get('/getcoursebyctid/:id', getCoursebyCtid)
+// router.get('/subjects/:subject', getcoursebysubject)
+// router.get('/rating/:rating', getcoursebyrating)
+router.get('/getproblems', getproblems)
+router.get('/subjectRating/:subject/:rating', getcoursebysubjectRating)
+router.get('/subjectorRating/:subject/:rating', getcoursebysubjectorRating)
+router.get('/search/:input', searchawy)
+router.patch('/reviewInst', reviewInstructor)
+router.patch('/reviewCourse', reviewCourse)
+router.patch('/register/:id/:ctid',register)
+router.post('/createProblem/:id',createproblem)
+router.get('/getrequests/:id', getrequests)
+router.get('/getproblems1', getproblems1)//for inst
+router.get('/getproblems2', getproblems2)//for ct
+router.get('/viewExam/:id', viewExam)
+router.get('/getWrongAnswers/:subid/:ctid',getAnswerss)
+router.get('/coloringAnswers',coloringAnswers)
+router.get('/coloringWrongs',coloringWrongs)
+router.post('/answer/:id/:ctid', solve)
+router.get('/getAnswers', correctingg)
+router.get('/getprogress/:id/:ctid',getProgress)
 
 module.exports = router 

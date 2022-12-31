@@ -1,88 +1,281 @@
-const { json } = require('express')
-const admin = require('../models/adminModel')
-const mongoose = require('mongoose')
-
-//get all admins 
-const getAdmins = async (req,res) => {
-    const admins = await admin.find({}).sort({createdAt: -1}) //desc order
-
-    res.status(200).json(admins)
-}
-
-//get a single admin 
-const getAdmin = async (req,res) => {
-    const {id} = req.params
-   
-    
-    if(!mongoose.Types.ObjectId.isValid(id)){
-        return res.status(404).json({ error: "No such Admin" })
-    }
-
-    const data= await admin.findById(id)
-
-    if(!data){
-        return res.status(404).json({error: "Not found"})
-    }
-
-    res.status(200).json(data)
-}
+const { request } = require('express');
+const {admin} = require('../models/adminModel')
+const {instructor} = require('../models/instructorModel')
+const {ct} = require('../models/ctModel')
+const bcrypt = require("bcrypt");
+const ITproblem = require('../models/itProbModel');
+const CTproblem = require('../models/ctProbModel');
+const INSTproblem = require('../models/instProbModel,');
+const courses = require('../models/coursesModel');
 
 //create new admin 
 const createAdmin = async (req,res) => {
-    //add admin to DB 
-    const{name,username,password} = req.body
+    const{username,password} = req.body
     try{
-        const administrator= await admin.create({name,username,password}) //change
-        res.status(200).json(administrator)
+        const salt = await bcrypt.genSalt(Number(10));
+		const hashPassword = await bcrypt.hash(password, salt);
+        const data= await admin.create({username,password:hashPassword}) 
+		res.status(200).json(data)
     }catch(error) {
         res.status(400).json({error: error.message})
     }
 }
 
-//delete an admin 
-const deleteAdmin = async (req,res) => {
-    const { id } = req.params
-
-    if(!mongoose.Types.ObjectId.isValid(id)){
-        return res.status(404).json({ error: "No such Admin" })
+//create new instructor 
+const createinstructor = async (req,res) => {
+    //add instructor to DB 
+    const{username,password} = req.body
+    try{
+        const salt = await bcrypt.genSalt(Number(10));
+		const hashPassword = await bcrypt.hash(password, salt);
+        const data= await instructor.create({username,password:hashPassword}) 
+        res.status(200).json(data)
+    }catch(error) {
+        res.status(400).json({error: error.message})
     }
-
-    const data = await admin.findOneAndDelete({_id : id})
-
-    if(!data){
-        return res.status(404).json({error: "Not found"})
+}
+//create new corporate trainee 
+const createct = async (req,res) => {
+    //add corporate trainee to DB 
+    const{username,password} = req.body
+    try{
+        const salt = await bcrypt.genSalt(Number(10));
+		const hashPassword = await bcrypt.hash(password, salt);
+        const data= await ct.create({username,password:hashPassword}) 
+        res.status(200).json(data)
+    }catch(error) {
+        res.status(400).json({error: error.message})
     }
+}
 
-    res.status(200).json(data)
+//get all admins 
+const getAdmins = async (req,res) => {
+   const admins = await admin.find({}).sort({createdAt: -1}) //desc order
+
+   res.status(200).json(admins)
+}
+//follow up 
+const addFollowupIT = async(req,res)=>{
+    const {id} = req.params
+    console.log(id)
+    const {followup,resolved} = req.body
+    const result =await ITproblem.findOneAndUpdate({_id:id},
+        {followup:followup,
+        resolved:resolved} 
+        //resolved or pending
+    ,{new:true})
+    if(!result){
+        return res.status(404).json({error:"not found"})
+    }
+    res.status(200).json(result)
+}
+
+//followup ct
+const addFollowupCT = async(req,res)=>{
+    const {id} = req.params
+    console.log(id)
+    const {followup,resolved} = req.body
+    const result =await CTproblem.findOneAndUpdate({_id:id},
+        {followup:followup,
+        resolved:resolved} 
+        //resolved or pending
+    ,{new:true})
+    if(!result){
+        return res.status(404).json({error:"not found"})
+    }
+    res.status(200).json(result)
+}
+
+//followup inst
+const addFollowupINST = async(req,res)=>{
+    const {id} = req.params
+    console.log(id)
+    const {followup,resolved} = req.body
+    const result =await INSTproblem.findOneAndUpdate({_id:id},
+        {followup:followup,
+        resolved:resolved} 
+        //resolved or pending
+    ,{new:true})
+    if(!result){
+        return res.status(404).json({error:"not found"})
+    }
+    res.status(200).json(result)
+}
+const getrequests = async(req,res)=>{
+    const requests = await ct.find({})
+    if(!requests){
+        return res.status(404).json({error:"not found"})
+    }
+    res.status(200).json(requests)
+}
+// const acceptRequest = async(req,res)=>{
+//     const {id}= req.params
+//     const{courseID}= req.body
+    
+//     const CorpT = await ct.findOne({_id:id})
+//     const requests =  CorpT.requests
+//     const RegCourses = CorpT.courses
+//     if(!requests.includes(courseID)){
+//         return res.status(404).json({error:"not requested"})
+//     }
+//     else{
+//     RegCourses.push(courseID)
+//     requests.pop(courseID)
+//     const result = await ct.findOneAndUpdate({_id:id},{courses:RegCourses,requests:requests},{new:true})
+//     if(!result){
+//         return res.status(404).json({error:"not found"})
+//     }
+//     res.status(200).json(result)
+// }}
+const acceptRequest = async (req, res) => {
+    // Get the id of the trainee and request from the request parameters
+    const { id, requestId } = req.params;
+  
+    console.log(requestId)
+    // Find the trainee document in the database
+    const trainee = await ct.findById(id);
+  
+    // Check if the trainee exists
+    if (!trainee) {
+      return res.status(404).json({ error: 'Trainee not found' });
+    }
+  
+    // Find the index of the request in the trainee's requests array
+    // const requestIndex = trainee.requests.findIndex(
+    //   request => request.toString() === requestId
+    // );
+    const requestIndex = trainee.requests.findIndex(
+        request => request._id.equals(requestId.toString())
+      );
+      
+    // var requestIndex=-1;
+
+    // for(var i =0 ; i< trainee.requests.length;i++){
+    //     if(trainee.requests[i].equals(requestId)){
+    //          requestIndex=i
+    //        console.log(requestIndex)
+    //     }
+        
+    // }
+
+    //console.log(requestIndex)
+
+    // Check if the request exists
+    if (requestIndex === -1) {
+      return res.status(404).json({ error: 'Request not found' });
+    }
+  
+    // Get the course id from the request
+    const courseId = trainee.requests[requestIndex];
+  
+    console.log(courseId)
+
+    // Remove the request from the trainee's requests array
+    trainee.requests.pop(courseId);
+  
+    // Add the course id to the trainee's courses array
+    trainee.courses.push(courseId);
+  
+      // Update the trainee document in the database using findByIdAndUpdate
+  const updatedTrainee = await ct.findByIdAndUpdate(
+    id,
+    { requests: trainee.requests, courses: trainee.courses },
+    { new: true }
+  );
+
+  // Send the updated trainee document as the response
+  res.status(200).json(updatedTrainee);
+};
+
+  
+  
+const getproblems = async (req,res) => {
+    let result = []
+    //const data = await courses.find({},{projection : {title:1,totalHours:1,rating:1}});
+    const data = await ITproblem.find({}).select('_id Reporterid type report resolved')
+    const data1 = await INSTproblem.find({}).select('_id Reporterid type report resolved')
+    const data2 = await CTproblem.find({}).select('_id Reporterid type report resolved')
+    result.push(data)
+    result.push(data1)
+    result.push(data2)
+    res.status(200).json(result)
+}
+
+
+const discount1Course = async (req,res) => {
+    const{id}=req.params
+    const{discount,validDate} = req.body 
+    let currentDate = new Date().toJSON().slice(0,10);
+    const oldprice = await courses.findOne({_id:id}).select('price')
+    console.log(oldprice)
+    console.log(discount)
+    // const {newprice}=  Math.round(((100-discount)/100)*oldprice)
+    // console.log(newprice)
+
+    if( (discount!=null && discount!=0) && (validDate!=null) && (validDate>=currentDate)){
+    const data = await courses.findOneAndUpdate({_id:id},
+ {
+        discount : discount,
+        validDate : validDate
+        // ,
+        // price: newprice
+} ,{new:true})
+if(!data){
+    return res.status(404).json({error: "Not found"})
+}
+res.status(200).json(data)
+}
+else{
+    return res.status(400).json({error:error.message})
+}
 
 }
 
-//update an admin
- const updateAdmin = async (req,res) => {
-    const { id } = req.params
+const discountAllCourses = async (req,res) => {
+    //const{id}=req.params
+    const{discount,validDate} = req.body 
+    let currentDate = new Date().toJSON().slice(0,10);
+    // const oldprice = await courses.findOne({_id:id}).select('price')
+    // console.log(oldprice)
+    // console.log(discount)
+    // const {newprice}=  Math.round(((100-discount)/100)*oldprice)
+    // console.log(newprice)
 
-    if(!mongoose.Types.ObjectId.isValid(id)){
-        return res.status(404).json({ error: "No such Admin" })
-    }
+    if( (discount!=null && discount!=0) && (validDate!=null) && (validDate>=currentDate)){
+    const data1 = await courses.updateMany({},
+ {
+        discount : discount,
+        validDate : validDate
+        // ,
+        // price: newprice
+} ,{new:true})
+console.log(data1)
 
-    const data = await admin.findOneAndUpdate({_id : id},{
-        //name : "yasmine"
-        ...req.body
-    })
-    if(!data){
-        return res.status(404).json({error: "Not found"})
-    }
-    res.status(200).json(data)
-    
+if(!data1){
+    return res.status(404).json({error: "Not found"})
+}
+res.status(200).json(data1)
+}
+else{
+    return res.status(400).json({error:"Discount Added!"})
+}
 
 }
 
 //new 
 module.exports = {
     createAdmin,
-    getAdmin,
+    createinstructor,
+    createct,
     getAdmins,
-    deleteAdmin,
-    updateAdmin
+    addFollowupIT,
+    acceptRequest,
+    getproblems,
+    discount1Course,
+    discountAllCourses,
+    addFollowupCT,
+    addFollowupINST,
+    getrequests
 }
+
 

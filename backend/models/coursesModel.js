@@ -7,10 +7,6 @@ const coursesSchema = new Schema ({
         type: String,
         required: true 
     },
-    subtitle: {
-        type: String,
-        required: true 
-    },
     totalHours: {
         type: String,
         required: true
@@ -20,30 +16,49 @@ const coursesSchema = new Schema ({
         required: true
     },
     rating: {
-        type: String,
-        required: true
+        type: Number,
+        required: false
+    },
+    ratings:{
+    type : [Number],
+    required:false
     },
     subject: {
         type: String,
         required: true
     },
-    Instructor: {
-        type: String,
+    instructor: {
+        type: mongoose.Types.ObjectId,
+        ref:'instructorModel',
         required: true
     },
-    Exercises: {
+    instructorName: {
         type: String,
-        required: true
-    },
-    discount: {
+         required: false
+     },
+     discount: {
         type: Number,
-        required: true
+        min:0,
+        max:100,
+        default:0
+        // required: true
     },
     shortSummary: {
         type: String,
         required: true
     },
-
+    validDate: {
+        type: Date,
+        required: false
+    },
+    preview: {
+        type: String,
+        required: false
+    },
+    reviews: {
+        type: [String],
+        required: false
+    }
 }, {timestamps: true})
 
 

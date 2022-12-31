@@ -1,27 +1,35 @@
 
 const express = require('express')
-const courses = require('../models/coursesModel') //vip
+
+const {
+    createcourse,
+    getCourses,
+    searchSubjectOrTitle,
+    getcoursebyprice,
+    searchawy,
+    getcoursebysubjectRating,
+    getcoursebysubjectorRating,
+    //yasm
+    getCoursebyid,
+    getSubtitlebyid,
+    curr
+} = require('../controllers/courseController') //new
+
 const router = express.Router()
 
-router.get('/', (req,res) => 
-{
-    res.json({mssg: "get all workouts"})
-})
+router.post('/createcourse', createcourse)
 
-router.get('/:id', (req,res) => 
-{
-    res.json({mssg: "get a single workout"})
-})
+router.get('/getCourses', getCourses)
 
-router.post('/', )
+router.get('/search',  searchSubjectOrTitle)
 
-router.delete('/:id', (req,res) => 
-{
-    res.json({mssg: "DELETE a workout"})
-})
+router.get('/filterbyprice/:min/:max', getcoursebyprice)
+router.get('/search2', searchawy)
+router.get('/subjectRating', getcoursebysubjectRating)
+router.get('/subjectorRating', getcoursebysubjectorRating)
+//yasm
+router.get('/getcoursebyid/:id', getCoursebyid)
+router.get('/getSubtitleById/:id',getSubtitlebyid)
+router.get('/currency/:country', curr)
 
-router.patch('/:id', (req,res) => 
-{
-    res.json({mssg: "UPDATE a new workout"})
-})
 module.exports = router 
