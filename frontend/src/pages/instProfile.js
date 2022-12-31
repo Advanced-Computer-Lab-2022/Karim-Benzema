@@ -9,6 +9,8 @@ const InstProfile = () => {
     const [instructor, setInstructor] = useState('')
     const [error,setError] = useState(null)
     const [error1,setError1] = useState(null)
+    const [error2,setError2] = useState(null)
+    const [error3,setError3] = useState(null)
 
     const params = new URLSearchParams(window.location.search);
     const id = params.get('id');
@@ -32,6 +34,7 @@ const InstProfile = () => {
     const handleSubmit1 = async (e) => {
         e.preventDefault();
         const user = {miniBio}
+        if(miniBio!=='' ){
         const response = await fetch('/api/instructor/editbio/'+id, {
             method: 'PATCH',
             body:JSON.stringify(user),
@@ -45,10 +48,14 @@ const InstProfile = () => {
     }
     if(response.ok){
         setBio('');
-        //setUsername('')
         setError('Edited!')
         console.log("Changed!",json)
         }
+    }
+    else{
+        setError2("field required")
+
+    }
     }
     const handleSubmit2 = async(e) => {  
         e.preventDefault();
@@ -58,6 +65,7 @@ const InstProfile = () => {
     const handleSubmit3 = async (e) => {
         e.preventDefault();
         const user = {email}
+        if(email!=='' ){
         const response = await fetch('/api/instructor/editemail/'+id, {
             method: 'PATCH',
             body:JSON.stringify(user),
@@ -72,10 +80,13 @@ const InstProfile = () => {
     }
     if(response.ok){
         setEmail('');
-        //setUsername('')
         setError1('Edited!')
         console.log("Changed!",json)
         }
+    }
+    else{
+        setError3("field required")
+    }
     }
     const handleSubmit5 = async(e) => {  
         e.preventDefault();
@@ -112,6 +123,7 @@ const InstProfile = () => {
                     <button className="green_btn" onChange={(e) => setBio(e.target.value)}>Edit MiniBio</button>
                     <form className='bottom_container'>
                     {error && <div className="error_msg2">{error}</div>}
+                    {error2 && <div className="error_msg">{error2}</div>}
                     </form>
             </form>
             <form className="bottom_container" onSubmit={handleSubmit3}>
@@ -123,6 +135,7 @@ const InstProfile = () => {
                     <button className="green_btn" onChange={(e) => setEmail(e.target.value)}>Edit Email</button>
                     <form className='bottom_container'>
                     {error1 && <div className="error_msg2">{error1}</div>}
+                    {error3 && <div className="error_msg">{error3}</div>}
                     </form>
             </form>
         </div>

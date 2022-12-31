@@ -17,9 +17,11 @@ const { instructor } = require('../models/instructorModel')
 const inst = instructor
 var courseId = mongoose.Types.ObjectId();
 //create inst
+//profile instructor yasm
 const getMyRating = async(req,res)=>{
     const{id} = req.params
-    const data= await instructor.find({_id:id}).select('rating ratings reviews')
+    const data= await instructor.find({_id:id})
+    //.select('username email miniBio ratings reviews')
     if(!data){
         return res.status(404).json({error: "instructor not found"})
     }

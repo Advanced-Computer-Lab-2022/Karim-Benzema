@@ -65,6 +65,8 @@ import InstProfile from './pages/instProfile';
 import CourseRequests from './pages/courseRequests';
 import Ctrequest from './pages/ctrequest';
 import CourseReqs from './components/courseReqs';
+import NavbarInst from './components/navbarInst';
+import NavbarGuest from './components/navbarGuest';
 
 function App() {
   let role = Cookies.get('role')
@@ -72,7 +74,7 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-      <NavBar />
+      {/* <NavBar /> */}
       <div className= "pages">
         <Routes>
 
@@ -97,6 +99,7 @@ function App() {
             <Route path="/GuestCourse"element={<GuestCourses/>}/>
             <Route path="/guestSubtitles"element={<GuestSubtitles/>}/>
             <Route path="/viewExamGuest"element={<GuestExam/>}/>
+            <Route path="/navbarguest"element={<NavbarGuest/>}/>
 
             </Route>
           )

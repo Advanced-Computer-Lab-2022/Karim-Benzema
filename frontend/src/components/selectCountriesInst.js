@@ -31,24 +31,28 @@ if(!response.ok){
 if(response.ok){
   setCountry('');
     setUsername('')
-    setError(null)
+    setError('Added')
     console.log("Added!",json)
     }
 }
 return(
-  <div>
-           <form className="kd" onSubmit={handleSubmit}>
- <Select options={options}     
-onChange={(value) => setCountry(value.label)}
-value={country}
- onSubmit={handleSubmit}/>
-  &nbsp; &nbsp; &nbsp;
-  <div className="bottom_container" >
-  <button  className="green_btn" >Add</button>
-        {error && <div className="error">{error}</div>}
-  </div>
- </form>
-  </div>
+        <div>
+          <br></br>
+          <br></br>
+      <form className="form_container" onSubmit={handleSubmit}>         
+        <Select options={options}     
+        onChange={(value) => setCountry(value.label)}
+        value={country}
+        onSubmit={handleSubmit}/>
+          &nbsp; &nbsp; &nbsp;
+          <div className="bottom_container" >
+          <button  className="green_btn" >Add</button>
+          </div>
+          <form className='bottom_container'>
+                {error && <div className="error_msg2">{error}</div>}
+                </form>
+        </form>
+          </div>
 )
 }
 export default SelectCountriesInst

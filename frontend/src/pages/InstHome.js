@@ -4,6 +4,7 @@ import React from 'react';
 
 import InstCoursesOnly from '../components/instCoursesOnly';
 import AllCoursesInst from '../components/allCoursesInst';
+import NavbarInst from '../components/navbarInst';
 const InstHome = () => {
     const [courses,setCourses] = useState(null);
     const [courses2, setCourses2] = useState(null);
@@ -135,18 +136,11 @@ const handleSubmit6 = async(e) => {
     
     setCourses(json)
     }
-    const handleSubmit10 = async(e) => {  
-        e.preventDefault();
-        window.location=`/profileinst?id=${id}`
-    }
+ 
     
     return (
         <div className="InstHome">
-            <form className="bottom_container3" onSubmit={handleSubmit10} >
-                <button className="green_btn" >
-                   Profile </button>
-            </form>
-
+              <NavbarInst />
          <center> <h4>My Courses</h4></center> 
         <form className="course_container">
             {courses && courses.map((course) => (

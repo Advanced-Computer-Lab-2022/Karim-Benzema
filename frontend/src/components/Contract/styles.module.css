@@ -7,6 +7,8 @@
 }
 
 .form_container {
+	margin-left: auto;
+	margin-right: auto;
 	width: 480px;
 	padding: 10px;
 	background-color: white;

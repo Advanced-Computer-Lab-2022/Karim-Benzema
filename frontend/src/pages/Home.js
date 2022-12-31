@@ -2,6 +2,7 @@ import {useEffect,useState} from 'react';
 import React from 'react';
 //components 
 import CourseDetailsGuest from '../components/courseDetailsGuest';
+import NavbarGuest from '../components/navbarGuest';
 
 const Home = () => {
     const [courses,setCourses] = useState(null);
@@ -85,26 +86,11 @@ const handleSubmit3 = async (e) => {
 
 setCourses(json)
 }
-// const handleSubmit4 = async(e) => {  
-//     e.preventDefault();
-//     window.location=`/selectCountryIt`
 
-// }
-const handleSubmit5 = async(e) => {  
-    e.preventDefault();
-    window.location=`/Login`
-}
 
     return (
         <div className="home">
-         {/* &emsp;&emsp;&emsp; &emsp; &emsp; &emsp; &emsp; &emsp;&emsp;&emsp;&emsp; &emsp; &emsp; &emsp; &emsp; &emsp;
-             &emsp;&emsp;&emsp; &emsp; &emsp; &emsp; &emsp; &emsp;&emsp;&emsp;&emsp; &emsp; &emsp; &emsp; &emsp; &emsp;
-             &emsp;&emsp;&emsp; &emsp; &emsp; &emsp; &emsp; &emsp;&emsp;&emsp;&emsp; &emsp; &emsp; &emsp; &emsp; &emsp;
-             &emsp;&emsp;&emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &nbsp; &nbsp; */}
-             <form className="bottom_container3" onSubmit={handleSubmit5} >
-                <button className="green_btn" >
-                   Login </button>
-            </form>
+         <NavbarGuest />
         <center><h4>All Courses</h4></center> 
         <form className={"course_container"}>
             {courses && courses.map((course) => (
@@ -162,10 +148,6 @@ const handleSubmit5 = async(e) => {
        <button  className="green_btn" onChange={(e) => setCourses(courses)} >Search
         </button>
         </form>
-        {/* <form className=" bottom_container" onSubmit={handleSubmit4} >
-                <button className="green_btn" >
-                   Select Country</button>
-            </form> */}
         </div>
     );
 
