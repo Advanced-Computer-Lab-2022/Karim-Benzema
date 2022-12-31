@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import CheckoutForm from "../pages/checkoutForm";
+import NavbarIt from "./navbarIt";
 
 
 function Payment() {
@@ -32,6 +33,7 @@ function Payment() {
 
   return (
     <>
+    <NavbarIt/>
       {/* <h1>React Stripe and the Payment Element</h1> */}
       {clientSecret && stripePromise && (
         <Elements 

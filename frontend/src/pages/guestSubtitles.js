@@ -1,5 +1,6 @@
 import {useEffect,useState} from 'react';
 import GuestSubtitleDetails from '../components/guestSubtitleDetails';
+import NavbarInst from '../components/navbarInst';
 
 const GuestSubtitles = () => {
     const [subtitles,setSubtitles] = useState(null);

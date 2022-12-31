@@ -1,4 +1,5 @@
 import {useEffect,useState} from 'react';
+import NavbarIt from '../components/navbarIt';
 import SubtitleDetails from '../components/subtitleDetails';
 
 const ItSubtitles = ({}) => {
@@ -27,6 +28,7 @@ useEffect(() => {
 
     return (
         <div className="home">
+            	<NavbarIt/>
         <div className="courses">
             {subtitles && subtitles.map( (subtitle) => (
             <SubtitleDetails key={subtitle._id} subtitle={subtitle} itid={itid}/>

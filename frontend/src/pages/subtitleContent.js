@@ -1,4 +1,5 @@
 import {useEffect,useState} from 'react';
+import NavbarInst from '../components/navbarInst';
 import SubtitleDetails from '../components/subtitleDetails';
 
 //components 
@@ -55,6 +56,7 @@ if(response.ok){
 
     return (
         <div className="home">
+             <NavbarInst />
         <div className="courses">
             {subtitles && subtitles.map( (subtitle) => (
             <SubtitleDetails key={subtitle._id} subtitle={subtitle} />

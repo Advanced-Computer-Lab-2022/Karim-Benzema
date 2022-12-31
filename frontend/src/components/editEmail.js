@@ -1,23 +1,20 @@
 import { useState,useMemo } from 'react';
 import React from 'react';
 
-//import Select from 'react-select'
-//import countryList from 'react-select-country-list'
 
 const EditEmail =()=> {
   const [email, setEmail] = useState('')
-  //const [id, setId] = useState('')
-  const [error,setError] = useState(null)
- // const [username,setUsername] = useState('')
+  const [error1,setError1] = useState(null)
+  const [error3,setError3] = useState(null)
+  
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get('id');
 
-  //const options = useMemo(() => countryList().getData(), [])
-  
- 
-  
-  const handleSubmit = async (e) => {
+  const handleSubmit3 = async (e) => {
+    e.preventDefault();
     const user = {email}
-   // const x ={password}
-    const response = await fetch('/api/instructor/editemail', {
+    if(email!=='' ){
+    const response = await fetch('/api/instructor/editemail/'+id, {
         method: 'PATCH',
         body:JSON.stringify(user),
        // body: JSON.stringify(x),
@@ -27,28 +24,34 @@ const EditEmail =()=> {
 })
 const json = await response.json()
 if(!response.ok){
-    setError(json.error)
+    setError1(json.error)
 }
 if(response.ok){
     setEmail('');
-    //setUsername('')
-    setError(null)
+    setError1('Edited!')
     console.log("Changed!",json)
     }
 }
+else{
+    setError3("field required")
+}
+}
 return(
   <div>
-           <form className="create" onSubmit={handleSubmit}>
-           <input  className="new password" 
-        type={"text"}
-        placeholder="new email"
-        onChange={(e)=>  setEmail(e.target.value) }/>
-       
-
-          
- <button>Change</button>
-        {error && <div className="error">{error}</div>}
- </form>
+     <form className="form_container" onSubmit={handleSubmit3}>
+      <br>
+      </br>
+                    <input  className="input" 
+                    type={"text"}
+                    placeholder="enter email"
+                    onChange={(e)=>setEmail(e.target.value)}/>
+                     &nbsp; &nbsp;  &nbsp;
+                    <button className="green_btn" onChange={(e) => setEmail(e.target.value)}>Edit Email</button>
+                    <form className='bottom_container'>
+                    {error1 && <div className="error_msg2">{error1}</div>}
+                    {error3 && <div className="error_msg">{error3}</div>}
+                    </form>
+            </form>
 
   </div>
 )

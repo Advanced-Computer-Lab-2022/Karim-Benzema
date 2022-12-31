@@ -4,6 +4,7 @@ import React from 'react';
 import CoursesOnly from '../components/coursesOnly';
 import CourseDetailsGuest from '../components/courseDetailsGuest';
 import RegisterButtons from '../components/registerButtons';
+import NavbarIt from '../components/navbarIt';
 
 const ItHome = () => {
     const [courses, setCourses] = useState(null);
@@ -100,17 +101,11 @@ const handleSubmit3 = async (e) => {
 
 setCourses2(json)
 }
-const handleSubmit4 = async(e) => {  
-    e.preventDefault();
-    window.location=`/profileit?id=${itid}`
-}
+
    
     return (
         <div className="ITHome">
-             <form className="bottom_container3" onSubmit={handleSubmit4} >
-                <button className="green_btn" >
-                   Profile </button>
-            </form>
+            <NavbarIt/>
              <center> <h4>Registered Courses</h4></center> 
             <form className="course_container">
                 {courses && courses.map((course) => (

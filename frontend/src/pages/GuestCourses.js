@@ -2,6 +2,7 @@ import {useEffect,useState} from 'react';
 import React from 'react';
 //components 
 import CourseDetails from '../components/courseDetails';
+import NavbarInst from '../components/navbarInst';
 //import { set } from 'mongoose';
 
 const CourseDeets = () => {

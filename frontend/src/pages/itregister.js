@@ -3,6 +3,7 @@ import React from 'react';
 import axios from 'axios';
 //components 
 import CourseDetails from '../components/courseDetails';
+import NavbarIt from '../components/navbarIt';
 //import { set } from 'mongoose';
 
 const Itregister = () => {
@@ -48,6 +49,7 @@ const Itregister = () => {
     }   
     return (
         <div className="Home">
+            	<NavbarIt/>
         <div className="course_container">
             {courses && courses.map((course) => (
             < CourseDetails key={course._id} course={course} id={itid} />

@@ -3,6 +3,7 @@ import React from 'react';
 import styles from "./styles.module.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import NavbarInst from './navbarInst';
 
 const ChangePasswordINST =()=> {
   const [password, setPassword] = useState('')
@@ -31,6 +32,8 @@ const ChangePasswordINST =()=> {
 	};
 
 return(
+	<div>
+	<NavbarInst />
 	<div className={styles.container}>
 					<form className={styles.form_container} onSubmit={handleSubmit}>
 						<h1>Change Password</h1>
@@ -57,7 +60,7 @@ return(
 				</div>
 					</form>
 				</div>
-  
+				</div>
 )
 }
 export default ChangePasswordINST

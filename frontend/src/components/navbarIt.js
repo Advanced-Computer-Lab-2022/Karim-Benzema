@@ -2,14 +2,14 @@ import { useEffect, useState } from 'react';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const NavbarInst = () => {
+const NavbarIt = () => {
     const [error,setError] = useState(null)
     const params = new URLSearchParams(window.location.search);
-    const id = params.get('id');
+    const itid = params.get('id');
 
-    const handleSubmit10 = async(e) => {  
+    const handleSubmit4 = async(e) => {  
         e.preventDefault();
-        window.location=`/profileinst?id=${id}`
+        window.location=`/profileit?id=${itid}`
     }
 const logout = async(e) => {
     e.preventDefault();
@@ -32,11 +32,10 @@ window.location=`/`
 }
 
     return (
-   
         <h1 className="bottom_container2">   
         BLW 
         <div className="bottom_container4" >
-        <form  onSubmit={handleSubmit10} >
+        <form onSubmit={handleSubmit4} >
                 <button className="green_btn" >
                    Profile </button>
             </form>
@@ -49,7 +48,7 @@ window.location=`/`
            
     );
 }
-export default NavbarInst;
+export default NavbarIt;
   // <header>
         // <div className="container">
         // </div>

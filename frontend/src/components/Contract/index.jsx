@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import NavbarInst from "../navbarInst";
 //import axios from "axios";
 import styles from "./styles.module.css";
 
@@ -14,7 +15,8 @@ const Contract = () => {
 	};
 
 	return (
-		<div className={styles.container}>
+		<div className="contract">
+			    <NavbarInst />
 			<form className={styles.form_container} onSubmit={handleSubmit}>
 				<h1>Contract</h1>
                 <h2>Terms & Conditions</h2>

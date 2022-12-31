@@ -117,21 +117,21 @@ header a {
   align-items: center;
    align-self: center;
 } */
-/* guest */
+/* guest navbar */
 .bottom_container3 { 
   width:fit-content;
   height: fit-content;
   margin-right: auto;
   margin-left: 600px;
   margin-top: 6px;
-  /* padding: 10px; */
   border-radius: 10px;
   display: flex;
   flex-direction: row;
   align-items: center;
   align-self: center;
 }
-/* inst */
+/* inst navbar */
+/* it navbar */
 .bottom_container4 { 
 	width:fit-content;
 	height: fit-content;

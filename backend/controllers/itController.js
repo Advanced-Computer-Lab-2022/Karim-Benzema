@@ -406,14 +406,10 @@ const searchawy = async (req,res) => {
 // trial
 const getit = async (req,res) => {
     const {id} = req.params
-   
-    
     if(!mongoose.Types.ObjectId.isValid(id)){
         return res.status(404).json({ error: "No such it" })
     }
-
-    const data= await it.findById(id)
-
+    const data= await it.find({_id:id})
     if(!data){
         return res.status(404).json({error: "Not found"})
     }
@@ -425,6 +421,7 @@ const createIT = async (req,res) => {
     const newCT = await it.create({name,username,password,country,courses})
     res.status(200).json(newCT)
 }
+
 const register = async (req,res) =>{
     const  id  = req.params.id;
     const  itid  = req.params.itid;

@@ -151,9 +151,9 @@ if(response.ok){
 
         <button className='green_btn'>Create Course</button>
         {error && <div className="error">{error}</div>}
- 
-
         </form>
+        <br></br>
+        <br></br>
         <form className='form_container' onSubmit={handleSubmit2}>
             <h3>Create Subtitle</h3>
             <input className='input'

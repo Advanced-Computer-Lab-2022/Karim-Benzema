@@ -2,6 +2,7 @@ import {useEffect,useState} from 'react';
 
 //components 
 import CourseDetailsinst from '../components/courseDetailsinst';
+import NavbarInst from '../components/navbarInst';
 
 
 const InstCourses = () => {
@@ -115,6 +116,7 @@ const handleSubmit4 = async(e) => {
 
     return (
         <div className="home">
+             <NavbarInst />
         <div className="courses">
             {courses && courses.map( (course) => (
             <CourseDetailsinst key={course._id} course={course} />

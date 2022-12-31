@@ -114,7 +114,6 @@ function App() {
             <Route>
           <Route path="/InstCourses" element={<InstCourses />} />
           <Route path="/InstructorCourses" element={<InstructorCourses />}/>
-          <Route path="/InstructorCourses" element={<InstructorCourses />}/>
           <Route path="/SelectCountriesInst" element={<SelectCountriesInst />}/>
           <Route path="/insthome" element={<InstHome/>}/>
           <Route path="/instQuestion" element={<InstQuestion/>}/>
@@ -128,6 +127,8 @@ function App() {
           <Route path="/GuestCourse"element={<GuestCourses/>}/>
           <Route path="/guestSubtitles"element={<GuestSubtitles/>}/>
           <Route path="/profileinst"element={<InstProfile/>}/>
+          <Route path="/editemail"element={<InsteditEmail/>}/>
+          <Route path="/editbio"element={<InsteditBio/>}/>
           </Route>
            
           )
@@ -151,8 +152,6 @@ function App() {
           <Route path="/guestSubtitles"element={<GuestSubtitles/>}/>
           <Route path="/viewExam"element={<AnswerExam/>}/>
           <Route path="/viewproblems"element={<ViewProblems/>}/>
-          <Route path="/GuestCourse"element={<GuestCourses/>}/>
-          <Route path="/guestSubtitles"element={<GuestSubtitles/>}/>
           <Route path="/profileit"element={<ItProfile/>}/>
           </Route>
            

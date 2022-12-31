@@ -3,6 +3,7 @@ import React from 'react';
 import styles from "./styles.module.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import NavbarIt from './navbarIt';
 
 const ChangePasswordIT =()=> {
   const [password, setPassword] = useState('')
@@ -31,6 +32,8 @@ const ChangePasswordIT =()=> {
 	};
 
 return(
+	<div>
+		<NavbarIt/>
 	<div className={styles.container}>
 					<form className={styles.form_container} onSubmit={handleSubmit}>
 						<h1>Change Password</h1>
@@ -56,6 +59,7 @@ return(
 					</Link>
 				</div>
 					</form>
+				</div>
 				</div>
   
 )

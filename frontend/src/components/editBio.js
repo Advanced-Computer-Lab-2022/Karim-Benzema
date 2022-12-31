@@ -1,26 +1,21 @@
 import { useState,useMemo } from 'react';
 import React from 'react';
 
-//import Select from 'react-select'
-//import countryList from 'react-select-country-list'
 
 const EditBio =()=> {
   const [miniBio, setBio] = useState('')
-  //const [id, setId] = useState('')
   const [error,setError] = useState(null)
- // const [username,setUsername] = useState('')
-
-  //const options = useMemo(() => countryList().getData(), [])
+  const [error2,setError2] = useState(null)
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get('id');
   
- 
-  
-  const handleSubmit = async (e) => {
+  const handleSubmit1 = async (e) => {
+    e.preventDefault();
     const user = {miniBio}
-   // const x ={password}
-    const response = await fetch('/api/instructor/editbio', {
+    if(miniBio!=='' ){
+    const response = await fetch('/api/instructor/editbio/'+id, {
         method: 'PATCH',
         body:JSON.stringify(user),
-       // body: JSON.stringify(x),
         headers: {
             'Content-Type': 'application/json'
         }
@@ -31,24 +26,30 @@ if(!response.ok){
 }
 if(response.ok){
     setBio('');
-    //setUsername('')
-    setError(null)
+    setError('Edited!')
     console.log("Changed!",json)
     }
 }
+else{
+    setError2("field required")
+
+}
+}
 return(
   <div>
-           <form className="create" onSubmit={handleSubmit}>
-           <input  className="new password" 
-        type={"text"}
-        placeholder="new bio"
-        onChange={(e)=>  setBio(e.target.value) }/>
-       
-
-          
- <button>Change</button>
-        {error && <div className="error">{error}</div>}
- </form>
+          <form className="form_container" onSubmit={handleSubmit1}>
+            <br></br>
+                    <input  className="input" 
+                    type={"text"}
+                    placeholder="enter mini bio"
+                    onChange={(e)=>setBio(e.target.value)}/>
+                    &nbsp; &nbsp;  &nbsp;
+                    <button className="green_btn" onChange={(e) => setBio(e.target.value)}>Edit MiniBio</button>
+                    <form className='bottom_container'>
+                    {error && <div className="error_msg2">{error}</div>}
+                    {error2 && <div className="error_msg">{error2}</div>}
+                    </form>
+            </form>
 
   </div>
 )

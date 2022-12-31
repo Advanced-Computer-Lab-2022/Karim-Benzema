@@ -3,6 +3,7 @@ import React from 'react';
 //components 
 import CourseDetails from '../components/courseDetails';
 import pdf from "./images/certificate.pdf"
+import NavbarIt from '../components/navbarIt';
 //import { set } from 'mongoose';
 
 const CourseDeets = () => {
@@ -19,6 +20,7 @@ const CourseDeets = () => {
     const [error2,setError2] = useState(null)
     const [error3,setError3] = useState(null)
     const [error4,setError4] = useState(null)
+    const [error5,setError5] = useState(null)
     const [progress,setProgress] = useState(null);
     const params = new URLSearchParams(window.location.search);
     const id = params.get('id');
@@ -63,6 +65,9 @@ console.log(itid)
       setRating('')
         }
     }
+    else {
+        setError5("Required Field")
+    }
     }
     const handleSubmit1 = async(e) => {  
         e.preventDefault();
@@ -84,6 +89,9 @@ console.log(itid)
       setReview('')
         }
     }
+    else {
+        setError2("Required Field")
+    }
     }
     const handleSubmit2 = async(e) => {  
         e.preventDefault();
@@ -104,6 +112,9 @@ console.log(itid)
       setError3("Added")
       setRating2('')
         }
+    }
+    else {
+        setError3("Required Field")
     }
 }
 
@@ -132,6 +143,9 @@ if(response.ok){
   setError4("Added")
   setReview2('')
     }
+}
+else {
+    setError4("Required Field")
 }
 }
 const handleSubmit5 = async(e) => {  
@@ -162,14 +176,10 @@ if(response.ok){
     }
 }
 else {
-    
-    setError("Please enter both fields!")
+    setError5("Enter both fields!")
 }
 }
-
-
-
-if (progress == 100) {
+if (progress === 100) {
 
     prog="block"
      
@@ -180,6 +190,7 @@ if (progress == 100) {
  }
     return (
         <div className="ITHome">
+            	<NavbarIt/>
               <div className="container">
            <h1> Progress:{progress} %</h1>
         </div>
@@ -213,7 +224,8 @@ if (progress == 100) {
         &nbsp; &nbsp;  &nbsp;
         <button className="green_btn" > Submit Problem</button>
         &nbsp; &nbsp;  &nbsp;
-        {error && <div className="error">{error}</div>}
+        {error && <div className="error_msg2">{error}</div>}
+        {error5 && <div className="error_msg">{error5}</div>}
 </form>
 
         <form className="bottom_container" onSubmit={handleSubmit}>
@@ -225,7 +237,7 @@ if (progress == 100) {
              &nbsp; &nbsp;  &nbsp;
         <button className='green_btn' onChange={(e) => setRating(e.target.value)}>Add Rating</button>
         &nbsp; &nbsp;  &nbsp;
-        {error1 && <div className="error">{error1}</div>}
+        {error1 && <div className="error_msg2">{error1}</div>}
 </form>
 <form className="bottom_container" onSubmit={handleSubmit1}>
         <input className="input" 
@@ -236,7 +248,7 @@ if (progress == 100) {
              &nbsp; &nbsp;  &nbsp;
         <button className='green_btn' onChange={(e) => setReview(e.target.value)}>Add review</button>
         &nbsp; &nbsp;  &nbsp;
-        {error2 && <div className="error">{error2}</div>}
+        {error2 && <div className="error_msg2">{error2}</div>}
 </form>
 <form className="bottom_container" onSubmit={handleSubmit2}>
         <input className="input" 
@@ -247,7 +259,7 @@ if (progress == 100) {
              &nbsp; &nbsp;  &nbsp;
         <button className='green_btn' onChange={(e) => setRating2(e.target.value)}>Rate Instructor</button>
         &nbsp; &nbsp;  &nbsp;
-        {error3 && <div className="error">{error3}</div>}
+        {error3 && <div className="error_msg2">{error3}</div>}
 </form>
 <form className="bottom_container" onSubmit={handleSubmit4}>
         <input className="input" 
@@ -257,7 +269,7 @@ if (progress == 100) {
           &nbsp; &nbsp;  &nbsp;
         <button  className='green_btn' onChange={(e) => setReview2(e.target.value)}>Review Instructor</button>
         &nbsp; &nbsp;  &nbsp;
-        {error4 && <div className="error">{error4}</div>}
+        {error4 && <div className="error_msg2">{error4}</div>}
 </form>
 <a className="bottom_container" href={pdf} style={{display:prog}} download="cert.pdf">Download the Cerificate</a>        </div>
         

@@ -3,6 +3,7 @@ import React from 'react';
 
 import Select from 'react-select'
 import countryList from 'react-select-country-list'
+import NavbarIt from './navbarIt';
 
 const SelectCountriesIt =()=> {
   const params = new URLSearchParams(window.location.search);
@@ -10,12 +11,14 @@ const SelectCountriesIt =()=> {
   console.log(id)
   const [country, setCountry] = useState('')
   const [error,setError] = useState(null)
+  const [error2,setError2] = useState(null)
 
   const options = useMemo(() => countryList().getData(), [])
 
   
   const handleSubmit = async (e) => {
     const user = {country}
+    if(country!==''){
     const response = await fetch('/api/it/updateCountry/'+id, {
         method: 'PATCH',
         body: JSON.stringify(user),
@@ -29,13 +32,18 @@ if(!response.ok){
 }
 if(response.ok){
   setCountry('');
-    setError(null)
+    setError('Added')
     console.log("Added!",json)
     }
 }
+else{
+  setError2('Required Field')
+}}
 return(
   <div>
-           <form className="kd" onSubmit={handleSubmit}>
+    <br></br>
+    <br></br>
+<form className="form_container" onSubmit={handleSubmit}>
  <Select options={options}     
 onChange={(value) => setCountry(value.label)}
 value={country}
@@ -43,7 +51,9 @@ value={country}
   &nbsp; &nbsp; &nbsp;
   <div className="bottom_container" >
   <button  className="green_btn" >Add</button>
-        {error && <div className="error">{error}</div>}
+  &nbsp; &nbsp;  &nbsp;
+  {error && <div className="error_msg2">{error}</div>}
+  {error2 && <div className="error_msg">{error2}</div>}
   </div>
  </form>
   </div>

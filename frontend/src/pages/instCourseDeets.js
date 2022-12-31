@@ -3,6 +3,7 @@ import React from 'react';
 //components 
 import CourseDetails from '../components/courseDetails';
 import SubtitleDetails from '../components/subtitleDetails';
+import NavbarInst from '../components/navbarInst';
 //import { set } from 'mongoose';
 
 const InstCourseDeets = () => {
@@ -99,6 +100,7 @@ const InstCourseDeets = () => {
     }
     return (
         <div className="InstHome">
+             <NavbarInst />
         <div className="course_container">
             {courses && courses.map((course) => (
             < CourseDetails key={course._id} course={course} />

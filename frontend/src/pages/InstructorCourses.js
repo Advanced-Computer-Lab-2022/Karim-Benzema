@@ -1,4 +1,5 @@
 import {useEffect,useState} from 'react';
+import NavbarInst from '../components/navbarInst';
 
 //components 
 import ViewInstructorCourses from '../components/viewInstructorCourses';
@@ -24,6 +25,7 @@ useEffect(() => {
 
     return (
         <div className="home">
+             <NavbarInst />
         <div className="courses">
             {courses && courses.map( (course) => (
             <ViewInstructorCourses key={course._id} course={course} />
