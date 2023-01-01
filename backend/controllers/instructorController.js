@@ -20,6 +20,7 @@ var totalHours =0;
 var courseId = mongoose.Types.ObjectId();
 //create inst
 //profile instructor yasm
+
 const getMyRating = async(req,res)=>{
     const{id} = req.params
     const data= await instructor.find({_id:id})
@@ -333,6 +334,9 @@ const upload = async (req,res) => {
     const videoId = getId(link)
     console.log('Video ID:', videoId)
     const embed = `https://www.youtube.com/embed/${videoId}`
+
+        let url =`https://www.googleapis.com/youtube/v3/${videoId}`
+    const responding = await fetch(url).get((data )=>data.json());
 
     var data = mongoose.Types.ObjectId();
     data = await courses.findOne({_id:id}).select('_id')
