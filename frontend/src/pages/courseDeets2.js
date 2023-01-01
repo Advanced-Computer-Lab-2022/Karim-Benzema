@@ -40,6 +40,14 @@ const CourseDeets2 = () => {
 
 
     const onButtonClick = () => {
+
+        fetch('/api/email/'+ctid, {
+            method: 'POST',
+            body: JSON.stringify({ctid:ctid}),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
         // using Java Script method to get PDF file
         fetch(pdf).then(response => {
             response.blob().then(blob => {
@@ -195,12 +203,21 @@ if(response.ok){
         onChange={(e)=>setRating2(e.target.value)}
         />
           &nbsp; &nbsp;  &nbsp;
+        
         <button className='green_btn' onChange={(e) => setRating2(e.target.value)}>Rate Instructor</button>
-        < button className='green_btn'  style={{display:prog}}  onClick={onButtonClick}>
+<div>
+        
+                </div>
+       {error && <div className="error">{error}</div>}
+                </form>  
+
+                <div>
+                < button className='green_btn'  style={{display:prog}}  onClick={onButtonClick}>
                   Download Certificate
-                </button>        {error && <div className="error">{error}</div>}
-</form>
+                </button> 
+                </div>
         </div>
+        
     );
 }
 

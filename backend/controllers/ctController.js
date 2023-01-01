@@ -2,7 +2,7 @@ const { json } = require('express')
 const {ct} = require('../models/ctModel')
 const courses = require('../models/coursesModel')
 const mongoose = require('mongoose')
-const instructor = require('../models/instructorModel')
+const {instructor} = require('../models/instructorModel')
 const it = require('../models/itModel')
 const Joi = require("joi");
 const passwordComplexity = require("joi-password-complexity");
@@ -208,7 +208,7 @@ const rateCourse = async (req,res) =>{
 const rateInstructor = async (req,res) =>{
     const { id,rating} = req.body
     const inst = await instructor.findOne({_id:id})
-    const list = await inst.ratings
+    const list = inst.ratings
     console.log(list)
     let newratings=[Number]
     newratings=list 
