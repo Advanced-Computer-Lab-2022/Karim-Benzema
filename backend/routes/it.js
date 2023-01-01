@@ -30,7 +30,8 @@ const {
     check,
     register,
     wallet,
-    curr
+    curr,
+    watchedArray
 } = require('../controllers/itController') //new
 
 const router = express.Router()
@@ -71,5 +72,5 @@ router.get('/check/:id/:itid',check)
 router.patch('/register/:id/:itid',register)
 router.get('/wallet/:id/:itid',wallet)
 router.get('/currency/:id', curr)
-
+router.post('/watchedArray/:subid/:itid',watchedArray)
 module.exports = router

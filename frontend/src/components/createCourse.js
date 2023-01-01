@@ -21,7 +21,7 @@ const CreateCourse = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         
-        const course = {title,totalHours,price,subject,discount,shortSummary,period}
+        const course = {title,price,subject,shortSummary}
         const response = await fetch('/api/instructor/createcourse/'+instructor, {
             method: 'POST',
             body: JSON.stringify(course),
@@ -55,7 +55,7 @@ const CreateCourse = () => {
 const handleSubmit2 = async (e) => {
     e.preventDefault();
     
-    const subtitle = {totalHoursSUB,number}
+    const subtitle = {number}
     const response = await fetch('/api/instructor/createSubtitle', {
         method: 'POST',
         body: JSON.stringify(subtitle),
@@ -100,12 +100,7 @@ if(response.ok){
         />
 
  
-        <input className='input'
-        type="text"
-        placeholder="Total Hours"
-        onChange={(e) => setTotalHours(e.target.value)}
-        value={totalHours}
-        />
+       
 
        
         <input className='input'
@@ -126,12 +121,6 @@ if(response.ok){
         
         
   
-        <input className='input'
-        type="text"
-        placeholder="Discount"
-        onChange={(e) => setDiscount(e.target.value)}
-        value={discount}
-        /> 
 
      
         <input className='input'
@@ -142,12 +131,7 @@ if(response.ok){
         /> 
 
          {/* <label>Valid until date :</label> */}
-         <input className='input'
-        type="text"
-        placeholder="Discount Until (DD/MM/YY)"
-        onChange={(e) => setPeriod(e.target.value)}
-        value={period}
-        /> 
+        
 
         <button className='green_btn'>Create Course</button>
         {error && <div className="error">{error}</div>}
@@ -162,12 +146,7 @@ if(response.ok){
         onChange={(e) => setNumber(e.target.value)}
         value={number}
         /> 
-            <input className='input'
-        type="text"
-        placeholder="totalhours"
-        onChange={(e) => setTotalHoursSub(e.target.value)}
-        value={totalHoursSUB}
-        /> 
+       
 
         <button className='green_btn'>Create Subtitle</button>
         </form>

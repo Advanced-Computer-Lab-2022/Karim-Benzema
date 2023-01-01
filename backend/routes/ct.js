@@ -24,7 +24,8 @@ const {
     solve,
     correctingg,
     getAnswerss, coloringAnswers, coloringWrongs,
-    getProgress
+    getProgress,
+    watchedArray
 } = require('../controllers/ctController') //new
 
 const router = express.Router()
@@ -56,5 +57,6 @@ router.get('/coloringWrongs',coloringWrongs)
 router.post('/answer/:id/:ctid', solve)
 router.get('/getAnswers', correctingg)
 router.get('/getprogress/:id/:ctid',getProgress)
+router.post('watchedArray/:subtitle/:ctid',watchedArray)
 
 module.exports = router 

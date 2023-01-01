@@ -27,7 +27,8 @@ const {
     createQuestion,
     createproblem,
     getproblems,
-    curr
+    curr,
+    moneyOwed
     //yasm
     // ,getInstbyid
 } = require('../controllers/instructorController') //new
@@ -61,6 +62,7 @@ router.post('/createExam',createExam )
 router.post('/createQuestions',createQuestion )
 router.post('/createProblem/:id',createproblem )
 router.get('/currency/:id', curr)
+router.get('/calculateEarnings/:id',moneyOwed)
 //yasm
 // router.get('/getinstbyid/:id', getInstbyid)
 module.exports = router 

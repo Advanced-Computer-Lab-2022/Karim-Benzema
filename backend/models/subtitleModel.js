@@ -18,7 +18,7 @@ const subtitleSchema = new Schema ({
     },
     totalHoursSUB: {
         type: String,
-        required: true 
+        required: false 
     },
     video: {
         type: String,

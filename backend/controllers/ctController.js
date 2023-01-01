@@ -657,10 +657,16 @@ const {subid,ctid} = req.params
         console.log(user)
     
         const solvedSub = user.solved
+        const watchedSub = user.watched
+
         for(var x = 0;x<cSubtitles.length;x++){
             if(solvedSub.includes(cSubtitles[x]))
             {
+                for(var x = 0;x<cSubtitles.length;x++){
+if(watchedSub.includes(cSubtitles[x])){
                 count= count+1;
+}
+                }
             }
             
         }
@@ -678,6 +684,23 @@ const {subid,ctid} = req.params
     //     res.status(400).send("not found")
     // }
         
+    }
+
+
+
+    const watchedArray= async(req,res)=>{
+const subid=req.params.subtitle
+const ctid=req.params.ctid
+
+    const sub = await subtitle.findOne({_id:subid})
+        const subID = sub._id
+        const array  = await ct.findOne({_id:ctid})
+        console.log(array.watched)
+    array.watched.push(subID)
+    console.log(array.watched)
+    
+    console.log(subID)
+     const done = await ct.findOneAndUpdate({_id:ctid},{watched:array.solved},{new:true})
     }
 module.exports = {
     updateCountry,
@@ -708,5 +731,6 @@ module.exports = {
     correctingg, 
     correcting,
     solve, ctAnswer, 
-    getProgress
+    getProgress,
+watchedArray
 }
