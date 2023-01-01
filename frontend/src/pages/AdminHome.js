@@ -19,7 +19,7 @@ const AdminHome = () => {
         }
         const handlesubmit6 = async(e) =>{
             e.preventDefault();
-            window.location.href =`/refund?id=`+id;
+            window.location.href =`/ITrefunds?id=`+id;
         }
         const handlesubmit3 = async(e) =>{
             e.preventDefault();

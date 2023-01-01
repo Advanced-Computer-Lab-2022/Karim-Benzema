@@ -21,6 +21,7 @@ const CourseDeets = () => {
     const [error3,setError3] = useState(null)
     const [error4,setError4] = useState(null)
     const [error5,setError5] = useState(null)
+    const [error6,setError6] = useState(null)
     const [progress,setProgress] = useState(null);
     const params = new URLSearchParams(window.location.search);
     const id = params.get('id');
@@ -189,17 +190,24 @@ if (progress === 100) {
 
  }
 
- const handleRefund = async () => {
+ const handleRefund = async (e) => {
+    e.preventDefault()
     // Make an API call to update the trainee's courses array and refund the course price
-    const response = await fetch(`/api/ct/refundCourse/${id}`, {
-      method: 'PATCH'
-    });
-    const json = await response.json();
-    if (!response.ok) {
-      // Handle error
+    // if(progress<50){
+
+        const response = await fetch(`/api/it/requestrefund/${itid}/${id}`, {
+            method: 'PATCH'
+          });
+          const json = await response.json();
+          if (!response.ok) {
+            setError6("not possible")        //   }
     }
+    else{
+        setError6("request submitted")
+    }
+   
     // Update the courses state to reflect the change
-    setCourses(json.courses);
+   // setCourses(json.courses);
   };
   
     return (
@@ -284,6 +292,11 @@ if (progress === 100) {
             <button  className='green_btn' onChange={(e) => setReview2(e.target.value)}>Review Instructor</button>
             &nbsp; &nbsp;  &nbsp;
             {error4 && <div className="error_msg2">{error4}</div>}
+            </form>
+            <form className='bottom_container' onSubmit={handleRefund}>
+                    <button className='green_btn' onChange={(e) =>handleRefund}>Request Refund</button>
+                    &nbsp; &nbsp;  &nbsp;
+                    {error6 && <div className="error_msg2">{error6}</div>}  
             </form>
             <a className="bottom_container" href={pdf} style={{display:prog}} download="cert.pdf">Download the Cerificate</a>        </div>
             

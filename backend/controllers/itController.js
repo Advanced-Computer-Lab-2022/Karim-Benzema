@@ -1,4 +1,4 @@
-const { json } = require('express')
+const { json, request } = require('express')
 const {it} = require('../models/itModel')
 const courses = require('../models/coursesModel')
 const mongoose = require('mongoose')
@@ -640,8 +640,9 @@ console.log(done)
   res.status(200).json(wrong)
 }
 const getProgress= async(req,res)=>{
-    const id =req.params.id;
-    const itid  = req.params.itid
+    // const id =req.params.id;
+    // const itid  = req.params.itid
+    const { id, itid } = req.params;
     console.log(id)
     let cSubtitles = []
     const sub = await subtitle.findOne({course:id})
@@ -669,10 +670,12 @@ const getProgress= async(req,res)=>{
    const progress = (count/cSubtitles.length)*100
    //if((!data == null) && (!courseID==null)&&(!user==null))
    console.log(progress)
-   res.status(200).json(progress)
-// else{
-//     res.status(400).send("not found")
-// }
+   if(progress){  
+     res.status(200).json(progress)
+   }
+else{
+    res.status(400).send("not found")
+}
     
 }
 const check = async (req,res) => {
@@ -719,36 +722,24 @@ const wallet = async (req,res) => {
 
 // Request refund for a course
 const requestRefund = async (req, res) => {
-    // Extract the trainee ID and course ID from the request
-    const { traineeId, courseId } = req.body;
-    
-    // Find the trainee and course documents in the database
-    const trainee = await it.findById(traineeId);
-    const course = await courses.findById(courseId);
-    
-    // Check if the trainee is enrolled in the course
-    if (!trainee.courses.includes(courseId)) {
-    return res.status(400).json({ error: 'Trainee is not enrolled in this course.' });
-    }
-    
-    // Get the trainee's progress in the course
-    const progress = await getProgress(traineeId, courseId);
-    
-    // Check if the progress is below or equal to 50%
-    if (progress > 50) {
-    return res.status(400).json({ error: 'Cannot request refund for this course.' });
-    }
-    
-    // Remove the course from the trainee's courses array and add it to the refundRequests array
-    trainee.courses = trainee.courses.filter(id => id.toString() !== courseId);
-    trainee.refundRequests.push(courseId);
-    
-    // Save the updated trainee document
-    const updatedTrainee = await trainee.save();
-    
-    // Return the updated trainee document
-    res.status(200).json(updatedTrainee);
+ const itid = req.params.itid
+ const id = req.params.id
+ const trainee = await it.findOne({_id:itid})
+ let requests = trainee.requests
+ if(!requests.includes(id))
+ {
+ requests.push(id)
+const done = await it.findOneAndUpdate({_id:itid},{requests:requests},{new:true})
+res.status(200).json(done)
+
+ }
+ else{
+    res.status(400).json("already requested")
+ }
+//console.log(done)
+
     };
+//}
 
 
 
@@ -786,5 +777,6 @@ module.exports = {
     getProgress,
     check,
     wallet,
-    curr
+    curr,
+    requestRefund
 }

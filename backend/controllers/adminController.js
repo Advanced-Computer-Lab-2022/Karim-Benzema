@@ -7,6 +7,7 @@ const ITproblem = require('../models/itProbModel');
 const CTproblem = require('../models/ctProbModel');
 const INSTproblem = require('../models/instProbModel,');
 const courses = require('../models/coursesModel');
+const { it } = require('../models/itModel');
 
 //create new admin 
 const createAdmin = async (req,res) => {
@@ -103,6 +104,13 @@ const addFollowupINST = async(req,res)=>{
 }
 const getrequests = async(req,res)=>{
     const requests = await ct.find({})
+    if(!requests){
+        return res.status(404).json({error:"not found"})
+    }
+    res.status(200).json(requests)
+}
+const getrefunds = async(req,res)=>{
+    const requests = await it.find({})
     if(!requests){
         return res.status(404).json({error:"not found"})
     }
@@ -261,6 +269,43 @@ else{
 }
 
 }
+const AcceptRefund = async (req,res) =>{
+    const id = req.params.id
+    const itid = req.params.itid
+   // const course = await courses.findById(id)
+   // const trainee = await it.findById(itid)
+    // const price = course.price
+    // const oldWallet = trainee.wallet
+    // const newWallet = oldWallet+price
+    // const Oldregistered = trainee.courses
+    // const Oldrequests = trainee.requests
+    // const newRequests = Oldrequests
+    // const updatedtrainee = await it.findOneAndUpdate({_id:itid},{wallet:newWallet})
+    try {
+        // Find the trainee document
+        const trainee = await it.findById(itid);
+    
+        // Remove the request from the refundRequests array
+      trainee.requests.splice(trainee.requests.indexOf(id), 1);
+    
+        // Remove the course from the courses array
+       trainee.courses.splice(trainee.courses.indexOf(id), 1);
+    
+        // Find the course document
+        const course = await courses.findById(id);
+    
+        // Add the course price to the trainee's wallet
+       const newWallet= trainee.wallet + course.price;
+    
+        // Save the updated trainee document
+        const updatedTrainee = await it.findOneAndUpdate({_id:itid},{wallet:newWallet,courses:trainee.courses,requests:trainee.requests},{new:true})
+    
+        res.status(200).json({ message: 'Refund request accepted' });
+      } catch (error) {
+        res.status(400).json({ error: error.message });
+      }
+    };
+
 
 //new 
 module.exports = {
@@ -275,7 +320,9 @@ module.exports = {
     discountAllCourses,
     addFollowupCT,
     addFollowupINST,
-    getrequests
+    getrequests,
+    AcceptRefund,
+    getrefunds
 }
 
 

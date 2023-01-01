@@ -70,6 +70,7 @@ import NavbarGuest from './components/navbarGuest';
 import SelectCountriesGuest from './components/selectCountriesGuest';
 import AddDiscount from './pages/AdminDiscount';
 import AdminRequest from './pages/AdminRequest';
+import AdminRefund from './pages/AdminRefund';
 
 function App() {
   let role = Cookies.get('role')
@@ -199,6 +200,7 @@ function App() {
           <Route path="/CourseRequests"element={<CourseRequests />}/>
           <Route path="/AddDiscount"element={<AddDiscount />}/>
           <Route path="/CourseRequests"element={<AdminRequest />}/>
+          <Route path="/ITrefunds"element={<AdminRefund />}/>
 
           </Route>
            

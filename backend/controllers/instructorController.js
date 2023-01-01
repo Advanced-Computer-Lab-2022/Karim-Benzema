@@ -396,6 +396,26 @@ const createQuestion = async (req,res) => {
         res.status(400).json({error: error.message})
     }
 }
+const moneyOwed= async (req, res) => {
+    const instructorId = req.params.id;
+  
+    // Find all courses with the matching instructor id
+    const Instcourses = await courses.find({ instructor: instructorId });
+    console.log(Instcourses)
+
+    // Calculate the total number of courses
+    const courseCount = Instcourses.length;
+  
+    // Set the fixed rate per course
+    const ratePerCourse = 50;
+  
+    // Calculate the total earnings by multiplying the course count by the rate per course
+    const totalEarnings = courseCount * ratePerCourse;
+  
+    // Return the total earnings to the client
+    res.send({ earnings: totalEarnings });
+  };
+  
 module.exports = {
     getCourseTitle,
     createcourse,
@@ -424,6 +444,7 @@ module.exports = {
     createQuestion,
     createproblem,
     getproblems,
-    curr
+    curr,
+    moneyOwed
 }
 

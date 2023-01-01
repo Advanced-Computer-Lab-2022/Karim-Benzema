@@ -11,7 +11,9 @@ const {
     discountAllCourses,
     addFollowupCT,
     addFollowupINST,
-    getrequests
+    getrequests,
+    AcceptRefund,
+    getrefunds
 } = require('../controllers/adminController') //new
 const router = express.Router()
 
@@ -27,6 +29,8 @@ router.patch('/discountall',discountAllCourses)
 router.patch('/followupCT/:id',addFollowupCT)
 router.patch('/followupINST/:id',addFollowupINST)
 router.get('/getrequests', getrequests)
+router.get('/getrefunds', getrefunds)
+router.patch('/acceptrefund/:id/:itid',AcceptRefund)
 
 
 

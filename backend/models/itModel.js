@@ -16,7 +16,7 @@ const itSchema = new Schema ({
     courses: {type: [mongoose.Types.ObjectId],required: false,ref: 'courseModel'},
     solved: {type: [mongoose.Types.ObjectId],required: false,ref: 'subtitleModel'},
     wallet: {type: Number,required: false},
-    courses: {type: [mongoose.Types.ObjectId],required: false,ref: 'courseModel'}
+    requests: {type: [mongoose.Types.ObjectId],required: false,ref: 'courseModel'}
 	
 }, {timestamps: true})
 
