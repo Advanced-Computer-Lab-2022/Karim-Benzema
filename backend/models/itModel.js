@@ -16,8 +16,9 @@ const itSchema = new Schema ({
     courses: {type: [mongoose.Types.ObjectId],required: false,ref: 'courseModel'},
     solved: {type: [mongoose.Types.ObjectId],required: false,ref: 'subtitleModel'},
     wallet: {type: Number,required: false},
-    requests: {type: [mongoose.Types.ObjectId],required: false,ref: 'courseModel'}
-	
+    requests: {type: [mongoose.Types.ObjectId],required: false,ref: 'courseModel'},
+    watched: {type: [mongoose.Types.ObjectId],required: false,ref: 'subtitleModel'}
+
 }, {timestamps: true})
 
 itSchema.methods.generateAuthToken = function () {

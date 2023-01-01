@@ -15,6 +15,8 @@ const ctSchema = new Schema ({
     courses: {type: [mongoose.Types.ObjectId],required: false,ref: 'courseModel'},
 	solved: {type: [mongoose.Types.ObjectId],required: false,ref: 'subtitleModel'},
 	requests:{type: [mongoose.Types.ObjectId],required: false,ref: 'courseModel'},
+	watched: {type: [mongoose.Types.ObjectId],required: false,ref: 'subtitleModel'},
+
 
 	flag : {type: Boolean, default: false}
 }, {timestamps: true})

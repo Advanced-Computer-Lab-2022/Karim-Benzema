@@ -14,7 +14,9 @@ const ITproblem = require('../models/itProbModel')
 const CTproblem = require('../models/ctProbModel')
 const INSTproblem = require('../models/instProbModel,')
 const { instructor } = require('../models/instructorModel')
+const { getVideoDurationInSeconds } = require('get-video-duration')
 const inst = instructor
+var totalHours =0;
 var courseId = mongoose.Types.ObjectId();
 //create inst
 //profile instructor yasm
@@ -125,13 +127,18 @@ const searchSubjectOrTitle = async (req,res) => {
 }
 const createcourse = async (req,res) => {
     const instructorIdd=req.params.instructor
-    const{title,totalHours,price,subject,discount,shortSummary,period} = req.body
+    const{title,price,subject,shortSummary} = req.body
     const instructor = await inst.findOne({_id:instructorIdd}).select('_id')
 
 
     try{
-        const data= await courses.create({title,totalHours,price,subject,instructor,discount,shortSummary,period}) 
+        const data= await (await courses.create({title,price,subject,instructor,shortSummary}))
+
+
         courseId = data._id
+
+
+
     
         res.status(200).json(data)
     }catch(error) {
@@ -139,13 +146,14 @@ const createcourse = async (req,res) => {
     }   
 }
 const createSubtitle= async (req,res) => {
-    const{totalHoursSUB,number} = req.body
+    const{number} = req.body
     try{
         const count =1
        // while(number>0){
         const title = "Lecture "+number
         console.log(courseId)
-        const data= await subtitle.create({course:courseId,number:number,title:title,totalHoursSUB:totalHoursSUB}) //change
+        const data= await subtitle.create({course:courseId,number:number,title:title}) //change
+     
         res.status(200).json(data)
         //count++
       //  number--
@@ -325,12 +333,24 @@ const upload = async (req,res) => {
     const videoId = getId(link)
     console.log('Video ID:', videoId)
     const embed = `https://www.youtube.com/embed/${videoId}`
+
     var data = mongoose.Types.ObjectId();
     data = await courses.findOne({_id:id}).select('_id')
-    const test = await subtitle.findOneAndUpdate({$and: [{course:data,number:number}]},
-        {video:embed,
-        description:description},
+    getVideoDurationInSeconds(
+        'https://www.youtube.com/watch?v=EHI7E3Af824&list=RDEHI7E3Af824&start_radio=1'
+      ).then((duration) => {
+        console.log(duration)
+      })
+    totalHours=totalHours+5
+
+    var totalHoursSUB=5
+    const testing = await courses.findOneAndUpdate({_id:data},
+        {totalHours:totalHours},
         {new:true})
+        const testingg = await subtitle.findOneAndUpdate({$and: [{course:data,number:number}]},
+            {})
+    const test = await subtitle.findOneAndUpdate({$and: [{course:data,number:number}]},
+        {totalHoursSUB:totalHoursSUB})
     if(!test){
             return res.status(404).json({error: "Not found"})//redundant prob
         }

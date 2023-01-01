@@ -660,10 +660,17 @@ const getProgress= async(req,res)=>{
     console.log(user)
 
     const solvedSub = user.solved
+    const watchedSub = user.watched
+
     for(var x = 0;x<cSubtitles.length;x++){
         if(solvedSub.includes(cSubtitles[x]))
         {
+            for(var x = 0;x<cSubtitles.length;x++){
+                if(watchedSub.includes(cSubtitles[x])){
+
             count= count+1;
+                }
+            }
         }
         
     }
@@ -741,7 +748,23 @@ res.status(200).json(done)
     };
 //}
 
+    const watchedArray= async(req,res)=>{
+        const {subid,itid} = req.params
 
+        console.log("hhhhhhhh")
+        const sub = await subtitle.findOne({_id:subid})
+        const subID = sub._id
+        const array  = await it.findOne({_id:itid})
+        console.log(array.watched)
+    array.watched.push(subID)
+    console.log(array.watched)
+    
+    console.log(subID)
+     const done = await it.findOneAndUpdate({_id:itid},{watched:array.watched},{new:true})
+    //    const data3= await it.findOneAndUpdate({_id:itid },
+    //     {$push:{ solved:[(id)]}},{new:true})
+    console.log(done)
+            }
 
 module.exports = {
     updateCountry,
@@ -778,5 +801,6 @@ module.exports = {
     check,
     wallet,
     curr,
-    requestRefund
+    requestRefund,
+    watchedArray
 }

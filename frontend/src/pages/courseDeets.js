@@ -29,6 +29,20 @@ const CourseDeets = () => {
 
     let prog="none";
 console.log(itid)
+const onButtonClick = () => {
+    // using Java Script method to get PDF file
+    fetch(pdf).then(response => {
+        response.blob().then(blob => {
+            // Creating new object of PDF file
+            const fileURL = window.URL.createObjectURL(blob);
+            // Setting various property values
+            let alink = document.createElement('a');
+            alink.href = fileURL;
+            alink.download = pdf;
+            alink.click();
+        })
+    })
+}
     useEffect(() => {
         const fetchCourses = async () => {
         const response = await fetch('/api/courses/getcoursebyid/'+id)
@@ -298,7 +312,11 @@ if (progress === 100) {
                     &nbsp; &nbsp;  &nbsp;
                     {error6 && <div className="error_msg2">{error6}</div>}  
             </form>
-            <a className="bottom_container" href={pdf} style={{display:prog}} download="cert.pdf">Download the Cerificate</a>        </div>
+
+           < button className='green_btn'  style={{display:prog}}  onClick={onButtonClick}>
+                  Download Certificate
+                </button>
+       </div>
             
             
               
