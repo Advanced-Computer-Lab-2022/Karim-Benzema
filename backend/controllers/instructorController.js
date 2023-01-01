@@ -334,27 +334,17 @@ const upload = async (req,res) => {
     const videoId = getId(link)
     console.log('Video ID:', videoId)
     const embed = `https://www.youtube.com/embed/${videoId}`
-
-        let url =`https://www.googleapis.com/youtube/v3/${videoId}`
-    const responding = await fetch(url).get((data )=>data.json());
-
+    let url='https://www.googleapis.com/youtube/v3/videos?';
+    url+=`id=${videoId}&`;
+    url+=`&part=contentDetails&key=${process.env.YOUTUBE_API_KEY}`
+    const respondingg = await fetch(url).then((data)=> data.json())
+    console.log(respondingg.duration)
     var data = mongoose.Types.ObjectId();
     data = await courses.findOne({_id:id}).select('_id')
-    getVideoDurationInSeconds(
-        'https://www.youtube.com/watch?v=EHI7E3Af824&list=RDEHI7E3Af824&start_radio=1'
-      ).then((duration) => {
-        console.log(duration)
-      })
-    totalHours=totalHours+5
-
-    var totalHoursSUB=5
-    const testing = await courses.findOneAndUpdate({_id:data},
-        {totalHours:totalHours},
-        {new:true})
-        const testingg = await subtitle.findOneAndUpdate({$and: [{course:data,number:number}]},
-            {})
     const test = await subtitle.findOneAndUpdate({$and: [{course:data,number:number}]},
-        {totalHoursSUB:totalHoursSUB})
+        {video:embed,
+        description:description},
+        {new:true})
     if(!test){
             return res.status(404).json({error: "Not found"})//redundant prob
         }

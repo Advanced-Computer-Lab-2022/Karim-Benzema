@@ -689,8 +689,7 @@ if(watchedSub.includes(cSubtitles[x])){
 
 
     const watchedArray= async(req,res)=>{
-const subid=req.params.subtitle
-const ctid=req.params.ctid
+const {subid,ctid}=req.params
 
     const sub = await subtitle.findOne({_id:subid})
         const subID = sub._id
@@ -700,8 +699,11 @@ const ctid=req.params.ctid
     console.log(array.watched)
     
     console.log(subID)
-     const done = await ct.findOneAndUpdate({_id:ctid},{watched:array.solved},{new:true})
+     const done = await ct.findOneAndUpdate({_id:ctid},{watched:array.watched},{new:true})
     }
+
+   
+
 module.exports = {
     updateCountry,
     getct,

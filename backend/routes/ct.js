@@ -57,6 +57,6 @@ router.get('/coloringWrongs',coloringWrongs)
 router.post('/answer/:id/:ctid', solve)
 router.get('/getAnswers', correctingg)
 router.get('/getprogress/:id/:ctid',getProgress)
-router.post('watchedArray/:subtitle/:ctid',watchedArray)
+router.post('/watchedArray/:subid/:ctid',watchedArray)
 
 module.exports = router 

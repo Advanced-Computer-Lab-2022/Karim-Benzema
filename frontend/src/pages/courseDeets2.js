@@ -37,6 +37,22 @@ const CourseDeets2 = () => {
         }
         fetchCourses();
     }, []);
+
+
+    const onButtonClick = () => {
+        // using Java Script method to get PDF file
+        fetch(pdf).then(response => {
+            response.blob().then(blob => {
+                // Creating new object of PDF file
+                const fileURL = window.URL.createObjectURL(blob);
+                // Setting various property values
+                let alink = document.createElement('a');
+                alink.href = fileURL;
+                alink.download = pdf;
+                alink.click();
+            })
+        })
+    }
     const handleSubmit = async(e) => {  
         e.preventDefault();
         const inputVal= {id:id,rating:rating}
@@ -180,8 +196,9 @@ if(response.ok){
         />
           &nbsp; &nbsp;  &nbsp;
         <button className='green_btn' onChange={(e) => setRating2(e.target.value)}>Rate Instructor</button>
-        <a href={pdf} style={{display:prog}} download="cert.pdf">Download the Cerificate</a>
-        {error && <div className="error">{error}</div>}
+        < button className='green_btn'  style={{display:prog}}  onClick={onButtonClick}>
+                  Download Certificate
+                </button>        {error && <div className="error">{error}</div>}
 </form>
         </div>
     );
