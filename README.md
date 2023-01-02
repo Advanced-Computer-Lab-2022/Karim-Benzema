@@ -148,12 +148,14 @@ a field for the user's email address, a field for the user's desired password,
 and gender. There is also a button 
 labeled "Sign Up" that the user can click to submit the form.The 
 user has to accept the terms and conditions before signing up 
+
 ![SignUp](https://github.com/Advanced-Computer-Lab-2022/Karim-Benzema/blob/e9cfa4cf37205757e26f422bc6bc63b07a47e22b/SignUp.png?raw=true)
 
 The image shows a graphical representation of a stripe payment 
 component. The student uses the stripe component to pay for a 
 course. He can also pay using a wallet that must has sufficient
 balance. 
+
 ![payment](https://github.com/Advanced-Computer-Lab-2022/Karim-Benzema/blob/485cfef48ab65d59bde64f78ee6d24e7b48fe1b8/Payment.PNG)
 
 
