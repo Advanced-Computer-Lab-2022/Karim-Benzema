@@ -1,0 +1,22 @@
+
+//components 
+
+import ViewSubjectRatingsCt from "../components/viewSubjectRatingsCt";
+import React from 'react';
+import NavBar from "../components/Navbar";
+
+const ViewSubjectRatingIt = () => {
+    return (
+        <div className="view">
+            <NavBar/>
+        <div className="courses">
+    <ViewSubjectRatingsCt/>
+
+        </div>
+        </div>
+        
+    );
+
+}
+
+export default ViewSubjectRatingIt;
