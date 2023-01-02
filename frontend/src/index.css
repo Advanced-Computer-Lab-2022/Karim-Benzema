@@ -1,0 +1,218 @@
+/* google font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;800&family=VT323&display=swap');
+
+/* layout */
+:root {
+  --primary: #1aac83;
+  --error: #e7195a;
+}
+body {
+  background:rgb(151, 222, 206);
+  margin: 0;
+  font-family: "Poppins";
+}
+header {
+  background:rgb(151, 222, 206);
+}
+header .container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+header a {
+  color: #333;
+  text-decoration: none;
+}
+.pages{
+  max-width: 1400px;
+  padding: 20px;
+  margin: 0 auto;
+  align-items: center;
+}
+
+.form_container {
+	width: 480px;
+	padding: 10px;
+	background-color: white;
+	border-radius: 10px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-left: auto;
+	margin-right: auto;
+	box-shadow: 0px 3px 3px -2px rgb(0 0 0 / 20%),
+		0px 3px 4px 0px rgb(0 0 0 / 14%), 0px 1px 8px 0px rgb(0 0 0 / 12%);
+}
+.form_container2 {
+	width: 600px;
+	height: fit-content;
+	padding: 10px;
+	background-color: #ccede5; 
+	border-radius: 10px;
+	display: flex; 
+	flex-direction: column;
+	align-self: center;
+	margin-left: auto;
+	margin-right: auto;
+	align-items: center;
+	box-shadow: 0px 3px 3px -2px rgb(0 0 0 / 20%),
+		0px 3px 4px 0px rgb(0 0 0 / 14%), 0px 1px 8px 0px rgb(0 0 0 / 12%);
+}
+
+.form_container3{
+	width: fit-content;
+	height: fit-content;
+	padding: 10px;
+	background-color: #ccede5; 
+	border-radius: 10px;
+	display: flex; 
+	flex-direction: column;
+	align-self: center;
+	margin-left: auto;
+	margin-right: auto;
+	align-items: center;
+	box-shadow: 0px 3px 3px -2px rgb(0 0 0 / 20%),
+		0px 3px 4px 0px rgb(0 0 0 / 14%), 0px 1px 8px 0px rgb(0 0 0 / 12%);
+}
+.course_container {
+	width: 700px;;
+  	height: fit-content;
+	padding: 20px;
+	margin-left: auto;
+    margin-right: auto;
+	background-color:#3bb19b;
+	border-radius: 10px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+ 	align-self: center;
+	box-shadow: 0px 3px 3px -2px rgb(0 0 0 / 20%),
+		0px 3px 4px 0px rgb(0 0 0 / 14%), 0px 1px 8px 0px rgb(0 0 0 / 12%);
+}
+.bottom_container {
+	width:fit-content;
+  	height: fit-content;
+	padding: 10px;
+	margin-left: auto;
+    margin-right: auto;
+	border-radius: 10px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+ 	align-self: center;
+}
+.bottom_container2 {
+	width:fit-content;
+  	height: fit-content;
+	padding: 10px;
+	padding-left: 50px;
+	padding-right: 50px;
+	margin: auto;
+	margin-left: auto;
+    margin-right: auto;
+	border-radius: 50px;
+	display: inline-flex;
+	flex-direction: row;
+	align-items: center;
+ 	align-self: center;
+}
+/* .bottom_container3 {
+	width:fit-content;
+	height: fit-content;
+  padding: 10px;
+  margin-left: auto;
+  margin-top: -118px;
+  margin-right: 180px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+   align-self: center;
+} */
+/* guest navbar */
+.bottom_container3 { 
+  width:fit-content;
+  height: fit-content;
+  margin-right: auto;
+  margin-left: 600px;
+  margin-top: 6px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-self: center;
+}
+/* inst navbar */
+/* it navbar */
+.bottom_container4 { 
+	width:fit-content;
+	height: fit-content;
+	margin-right: auto;
+	margin-left: 800px;
+	margin-top: 6px;
+	border-radius: 10px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	align-self: center;
+  }
+
+.course_container div{
+	width: 600px;
+  	height: fit-content;
+	padding: 10px;
+	background-color: #ccede5;
+	border-radius: 10px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	box-shadow: 0px 3px 3px -2px rgb(0 0 0 / 20%),
+		0px 3px 4px 0px rgb(0 0 0 / 14%), 0px 1px 8px 0px rgb(0 0 0 / 12%);
+}
+
+.input {
+	outline: none;
+	border: none;
+	width: 370px;
+	padding: 15px;
+	border-radius: 10px;
+	background-color: #edf5f3;
+	margin: 5px 0;
+	font-size: 14px;
+}
+.green_btn {
+	border: none;
+	outline: none;
+	padding: 12px 0;
+	background-color: #3bb19b;
+	color: white;
+	border-radius: 20px;
+	width: 180px;
+	font-weight: bold;
+	font-size: 14px;
+	cursor: pointer;
+	margin: 10px auto;
+}
+.error_msg {
+	width: 160px;
+	padding: 15px;
+	margin: 5px 0;
+	font-size: 14px;
+	background-color: #f34646;
+	color: white;
+	border-radius: 5px;
+	text-align: center;
+}
+.error_msg2 {
+	width: 160px;
+	padding: 15px;
+	margin: 5px 0;
+	font-size: 14px;
+	background-color: rgb(93, 191, 123);
+	color: white;
+	border-radius: 5px;
+	text-align: center;
+}
