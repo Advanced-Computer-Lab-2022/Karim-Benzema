@@ -347,6 +347,287 @@ The base URL for the API is http://localhost:3000/api.
 
 
 ## Tests
+1. Login 
+ {
+
+"username":"achraf_hakimi",
+"password":"Rola_2001"
+}
+body :
+{"data":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Mzk1ZTc4YzFlOWQxODBhZWIwN2YxOTMiLCJpYXQiOjE2NzMwNDA2NzksImV4cCI6MTY3MzI5OTg3OX0.fnfzPV-3edBj25qbNaEFcX_9jeiFvtyxDgZkrvqi3nI","message":"Logged in Successfully","role":"it","id":"6395e78c1e9d180aeb07f193"}
+2.Sign up
+{
+
+"firstName":"farah",
+"lastName":"taher",
+"username":"farahtaher",
+"email":"farahtaher@gmail.com",
+"password":"Rola_2001",
+"gender":"f"
+}
+body:
+{
+    "message": "User created successfully"
+}
+3. get subtitles in guest 
+http://localhost:3000/api/courses/getSubtitleById/63b593ccc635d15f5dcfe94b
+body:
+[
+    {
+        "_id": "63b593d4c635d15f5dcfe94d",
+        "course": "63b593ccc635d15f5dcfe94b",
+        "number": 1,
+        "title": "Lecture 1",
+        "createdAt": "2023-01-04T14:57:24.045Z",
+        "updatedAt": "2023-01-04T16:58:39.405Z",
+        "__v": 0,
+        "description": "w",
+        "video": "https://www.youtube.com/embed/EHI7E3Af824",
+        "totalHoursSUB": "8.416666666666666"
+    }
+]
+
+
+
+5.http://localhost:4000/api/guest/viewExamGuest/63b593ccc635d15f5dcfe94b/63b593d4c635d15f5dcfe94d
+body:
+
+
+{
+    "_id": "63b59b0f51f1ef647ca92154",
+    "questions": [
+        [
+            {
+                "name": "Is Rola a good friend",
+                "questionSet": [
+                    "yes ",
+                    "maybe",
+                    "no",
+                    "all of the above "
+                ],
+                "questionAnswer": "1"
+            }
+        ]
+    ]
+}
+
+
+
+6.http://localhost:4000/api/courses/getcoursebyid/63b593ccc635d15f5dcfe94b
+body:
+[
+    {
+        "_id": "63b593ccc635d15f5dcfe94b",
+        "title": "Science 1 ",
+        "price": 5000,
+        "ratings": [
+            7,
+            6,
+            7
+        ],
+        "subject": "Science",
+        "instructor": "63962bbe8acd12dd262bfa19",
+        "discount": 0,
+        "shortSummary": "Introduction to Science",
+        "reviews": [
+            "Great Course",
+            "Amazing course!"
+        ],
+        "registeredTrainees": 1,
+        "createdAt": "2023-01-04T14:57:16.885Z",
+        "updatedAt": "2023-01-05T18:14:20.338Z",
+        "__v": 0,
+        "preview": "https://www.youtube.com/embed/6IdPpiW1hDs",
+        "totalHours": "8.416666666666666",
+        "rating": 6.666666666666667
+    }
+]
+
+7.http://localhost:4000/api/instructor/viewCourses/63962bbe8acd12dd262bfa19
+
+body :
+[
+    {
+        "registeredTrainees": 0,
+        "_id": "639ef4aca236b6a180500c4e",
+        "title": "Olympia",
+        "totalHours": "212",
+        "price": 100,
+        "ratings": [],
+        "subject": "mens Physique",
+        "instructor": "63962bbe8acd12dd262bfa19",
+        "discount": 15,
+        "shortSummary": "CBUM is Goat",
+        "period": "2022-12-31T22:00:00.000Z",
+        "reviews": [],
+        "createdAt": "2022-12-18T11:08:28.790Z",
+        "updatedAt": "2023-01-01T22:34:09.643Z",
+        "__v": 0,
+        "validDate": "2025-01-01T00:00:00.000Z",
+        "preview": "https://www.youtube.com/embed/yXrlhebkpIQ"
+    },
+    {
+        "registeredTrainees": 0,
+        "_id": "639ef71e88c498f45766aef3",
+        "title": "El A7MAR",
+        "totalHours": "66",
+        "price": 66,
+        "ratings": [],
+        "subject": "back right",
+        "instructor": "63962bbe8acd12dd262bfa19",
+        "discount": 15,
+        "shortSummary": "EL ABYAD EL DAHABY EL A7MAR EL NARY",
+        "period": "1966-06-05T21:00:00.000Z",
+        "reviews": [],
+        "createdAt": "2022-12-18T11:18:54.554Z",
+        "updatedAt": "2022-12-31T17:34:04.090Z",
+        "__v": 0,
+        "validDate": "2025-01-01T00:00:00.000Z"
+    },
+    {
+        "registeredTrainees": 0,
+        "_id": "63af05334a368879179e1f16",
+        "title": "science2",
+        "totalHours": "132",
+        "price": 2000,
+        "ratings": [],
+        "subject": "hello",
+        "instructor": "63962bbe8acd12dd262bfa19",
+        "discount": 15,
+        "shortSummary": "hellooo",
+        "reviews": [],
+        "createdAt": "2022-12-30T15:35:15.912Z",
+        "updatedAt": "2023-01-04T14:55:10.954Z",
+        "__v": 0,
+        "validDate": "2025-01-01T00:00:00.000Z",
+        "preview": "https://www.youtube.com/embed/6IdPpiW1hDs"
+    },
+    {
+        "_id": "63b593ccc635d15f5dcfe94b",
+        "title": "Science 1 ",
+        "price": 5000,
+        "ratings": [
+            7,
+            6,
+            7
+        ],
+        "subject": "Science",
+        "instructor": "63962bbe8acd12dd262bfa19",
+        "discount": 0,
+        "shortSummary": "Introduction to Science",
+        "reviews": [
+            "Great Course",
+            "Amazing course!"
+        ],
+        "registeredTrainees": 1,
+        "createdAt": "2023-01-04T14:57:16.885Z",
+        "updatedAt": "2023-01-05T18:14:20.338Z",
+        "__v": 0,
+        "preview": "https://www.youtube.com/embed/6IdPpiW1hDs",
+        "totalHours": "8.416666666666666",
+        "rating": 6.666666666666667
+    }
+]
+8.http://localhost:4000/api/courses/mostpopular
+
+[
+    {
+        "_id": "63b593ccc635d15f5dcfe94b",
+        "title": "Science 1 ",
+        "price": 5000,
+        "ratings": [
+            7,
+            6,
+            7
+        ],
+        "subject": "Science",
+        "instructor": "63962bbe8acd12dd262bfa19",
+        "discount": 0,
+        "shortSummary": "Introduction to Science",
+        "reviews": [
+            "Great Course",
+            "Amazing course!"
+        ],
+        "registeredTrainees": 1,
+        "createdAt": "2023-01-04T14:57:16.885Z",
+        "updatedAt": "2023-01-05T18:14:20.338Z",
+        "__v": 0,
+        "preview": "https://www.youtube.com/embed/6IdPpiW1hDs",
+        "totalHours": "8.416666666666666",
+        "rating": 6.666666666666667
+    },
+    {
+        "reviews": [],
+        "registeredTrainees": 0,
+        "_id": "6387ed30334b7a830c887731",
+        "title": "science",
+        "totalHours": "10",
+        "price": 120,
+        "ratings": [],
+        "subject": "science",
+        "instructor": "638351d52618087cf2322787",
+        "discount": 15,
+        "shortSummary": "chem phys bio",
+        "preview": "",
+        "createdAt": "2022-11-30T23:54:24.254Z",
+        "updatedAt": "2022-12-31T17:34:04.090Z",
+        "__v": 0,
+        "instructorName": "mona",
+        "validDate": "2025-01-01T00:00:00.000Z"
+    },
+    {
+        "registeredTrainees": 0,
+        "_id": "639ef4aca236b6a180500c4e",
+        "title": "Olympia",
+        "totalHours": "212",
+        "price": 100,
+        "ratings": [],
+        "subject": "mens Physique",
+        "instructor": "63962bbe8acd12dd262bfa19",
+        "discount": 15,
+        "shortSummary": "CBUM is Goat",
+        "period": "2022-12-31T22:00:00.000Z",
+        "reviews": [],
+        "createdAt": "2022-12-18T11:08:28.790Z",
+        "updatedAt": "2023-01-01T22:34:09.643Z",
+        "__v": 0,
+        "validDate": "2025-01-01T00:00:00.000Z",
+        "preview": "https://www.youtube.com/embed/yXrlhebkpIQ"
+    }
+]
+9.http://localhost:4000/api/instructor/updateCountry/63962bbe8acd12dd262bfa19
+{
+
+
+"username":"cristiano_ronaldo",
+"country":"egypt"
+
+}
+
+body :
+{
+    "_id": "63962bbe8acd12dd262bfa19",
+    "username": "cristiano_ronaldo",
+    "password": "$2b$10$x9WpnPSAUzjYKu3aycYWUu45tvjUkSmXrwMCOCC7s.0Vytltrdrn.",
+    "ratings": [
+        5,
+        9
+    ],
+    "reviews": [
+        "Sui",
+        "GOAT"
+    ],
+    "createdAt": "2022-12-11T19:13:02.875Z",
+    "updatedAt": "2023-01-06T22:00:56.402Z",
+    "__v": 0,
+    "miniBio": "I play in KSA at AL-NASR Football Club",
+    "email": "yasmine@yahoo.com",
+    "name": "Rimon",
+    "country": "egypt",
+    "flag": true,
+    "rating": null,
+    "earnings": 200
+}
 ## Screenshots
 The image shows a webpage with a form for users to create an account.
 The form consists of several input fields, including first name , last name,
