@@ -149,7 +149,7 @@ version of Node.js and npm to be installed on your system.
 2. Download the project files and clone the project repository 
 from Github using the following command: 
 
-    git clone https://github.com/Advanced-Computer-Lab-2022/Karim-Benzema.git
+      git clone https://github.com/Advanced-Computer-Lab-2022/Karim-Benzema.git
 
 3. Alternatively, you can download the project as a ZIP file and extract 
 it to your desired location.
