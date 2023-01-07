@@ -628,6 +628,313 @@ body :
     "rating": null,
     "earnings": 200
 }
+10.http://localhost:4000/api/admin/acceptrefund/63b593ccc635d15f5dcfe94b/6395e78c1e9d180aeb07f193
+
+{
+    "message": "Refund request accepted"
+}
+
+11.http://localhost:4000/api/admin/getrefunds
+[
+    {
+        "_id": "6395e78c1e9d180aeb07f193",
+        "firstName": "Achraf",
+        "lastName": "Hakimi",
+        "username": "achraf_hakimi",
+        "password": "$2b$10$nlPPtKkqr7BXt.oQCnD.dunt0eb1sB04iIH2aSAvNHHIEW8UN6M4S",
+        "gender": "Male",
+        "courses": [],
+        "createdAt": "2022-12-11T14:22:04.879Z",
+        "updatedAt": "2023-01-07T13:40:18.207Z",
+        "__v": 0,
+        "email": "rolasameh13@yahoo.com",
+        "flag": true,
+        "solved": [
+            "6388d8827347b020159a9329",
+            "6388d8827347b020159a9329",
+            "6388d8827347b020159a9329",
+            "6388d8827347b020159a9329",
+            "6388d8827347b020159a9329",
+            "6388d8827347b020159a9329",
+            "63b593d4c635d15f5dcfe94d"
+        ],
+        "wallet": 99999999763552,
+        "country": "Angola",
+        "requests": [],
+        "watched": [
+            "63b593d4c635d15f5dcfe94d"
+        ]
+    },
+    {
+        "_id": "63b897006908ca0a2acbdd9c",
+        "firstName": "farah",
+        "lastName": "taher",
+        "username": "farahtaher",
+        "email": "farahtaher@gmail.com",
+        "password": "$2b$10$y5KzAKjiNjgyqFEiPg3g8.mYwMFs.LNXyLQqB8sDLuF4XT7BHht32",
+        "gender": "f",
+        "courses": [],
+        "solved": [],
+        "requests": [],
+        "watched": [],
+        "createdAt": "2023-01-06T21:47:44.520Z",
+        "updatedAt": "2023-01-06T21:47:44.520Z",
+        "__v": 0
+    }
+]
+
+12.http://localhost:4000/api/it/getAnswers
+[
+    "question.            is rola a good friendwrong.     correct Answer:1",
+    "Your Grade is.       50"
+]
+
+13.http://localhost:4000/api/admin/followupCT/639f0f84c63be574cfb13577
+
+{
+    "_id": "639f0f84c63be574cfb13577",
+    "ReporterID": "63551dda420c53c9f8b88953",
+    "type": "technical",
+    "createdAt": "2022-12-18T13:03:00.622Z",
+    "updatedAt": "2023-01-07T13:47:43.469Z",
+    "__v": 0,
+    "followup": "dont cry",
+    "resolved": "resolved"
+}
+14.
+http://localhost:4000/api/logout
+{
+    "msg": "logged out!"
+}
+15.http://localhost:4000/api/instructor/createExam
+
+{
+    "course": null,
+    "subtitle": {
+        "_id": "639efb07906dd3460a7ce17a",
+        "number": 2
+    },
+    "examName": "hello",
+    "questions": [],
+    "answers": [],
+    "_id": "63b97d1fa02378ce963c22ed",
+    "createdAt": "2023-01-07T14:09:35.848Z",
+    "updatedAt": "2023-01-07T14:09:35.848Z",
+    "__v": 0
+}
+
+
+
+16http://localhost:4000/api/instructor/createQuestions
+{
+    "_id": "63b97d1fa02378ce963c22ed",
+    "course": null,
+    "subtitle": "639efb07906dd3460a7ce17a",
+    "examName": "hello",
+    "questions": [],
+    "answers": [],
+    "createdAt": "2023-01-07T14:09:35.848Z",
+    "updatedAt": "2023-01-07T14:09:35.848Z",
+    "__v": 0
+}
+17.http://localhost:4000/api/instructor/editemail/63962bbe8acd12dd262bfa19
+{
+    "email":"help20000000@hotmail.com"
+}
+
+{
+    "_id": "63962bbe8acd12dd262bfa19",
+    "username": "cristiano_ronaldo",
+    "password": "$2b$10$x9WpnPSAUzjYKu3aycYWUu45tvjUkSmXrwMCOCC7s.0Vytltrdrn.",
+    "ratings": [
+        5,
+        9
+    ],
+    "reviews": [
+        "Sui",
+        "GOAT"
+    ],
+    "createdAt": "2022-12-11T19:13:02.875Z",
+    "updatedAt": "2023-01-07T14:14:05.088Z",
+    "__v": 0,
+    "miniBio": "I play in KSA at AL-NASR Football Club",
+    "email": "help20000000@hotmail.com",
+    "name": "Rimon",
+    "country": "egypt",
+    "flag": true,
+    "rating": null,
+    "earnings": 200
+}
+18.http://localhost:4000/api/instructor/viewCourses/63962bbe8acd12dd262bfa19
+[
+    {
+        "registeredTrainees": 0,
+        "_id": "639ef4aca236b6a180500c4e",
+        "title": "Olympia",
+        "totalHours": "212",
+        "price": 100,
+        "ratings": [],
+        "subject": "mens Physique",
+        "instructor": "63962bbe8acd12dd262bfa19",
+        "discount": 15,
+        "shortSummary": "CBUM is Goat",
+        "period": "2022-12-31T22:00:00.000Z",
+        "reviews": [],
+        "createdAt": "2022-12-18T11:08:28.790Z",
+        "updatedAt": "2023-01-01T22:34:09.643Z",
+        "__v": 0,
+        "validDate": "2025-01-01T00:00:00.000Z",
+        "preview": "https://www.youtube.com/embed/yXrlhebkpIQ"
+    },
+    {
+        "registeredTrainees": 0,
+        "_id": "639ef71e88c498f45766aef3",
+        "title": "El A7MAR",
+        "totalHours": "66",
+        "price": 66,
+        "ratings": [],
+        "subject": "back right",
+        "instructor": "63962bbe8acd12dd262bfa19",
+        "discount": 15,
+        "shortSummary": "EL ABYAD EL DAHABY EL A7MAR EL NARY",
+        "period": "1966-06-05T21:00:00.000Z",
+        "reviews": [],
+        "createdAt": "2022-12-18T11:18:54.554Z",
+        "updatedAt": "2022-12-31T17:34:04.090Z",
+        "__v": 0,
+        "validDate": "2025-01-01T00:00:00.000Z"
+    },
+    {
+        "registeredTrainees": 0,
+        "_id": "63af05334a368879179e1f16",
+        "title": "science2",
+        "totalHours": "132",
+        "price": 2000,
+        "ratings": [],
+        "subject": "hello",
+        "instructor": "63962bbe8acd12dd262bfa19",
+        "discount": 15,
+        "shortSummary": "hellooo",
+        "reviews": [],
+        "createdAt": "2022-12-30T15:35:15.912Z",
+        "updatedAt": "2023-01-04T14:55:10.954Z",
+        "__v": 0,
+        "validDate": "2025-01-01T00:00:00.000Z",
+        "preview": "https://www.youtube.com/embed/6IdPpiW1hDs"
+    },
+    {
+        "_id": "63b593ccc635d15f5dcfe94b",
+        "title": "Science 1 ",
+        "price": 5000,
+        "ratings": [
+            7,
+            6,
+            7
+        ],
+        "subject": "Science",
+        "instructor": "63962bbe8acd12dd262bfa19",
+        "discount": 0,
+        "shortSummary": "Introduction to Science",
+        "reviews": [
+            "Great Course",
+            "Amazing course!"
+        ],
+        "registeredTrainees": 1,
+        "createdAt": "2023-01-04T14:57:16.885Z",
+        "updatedAt": "2023-01-05T18:14:20.338Z",
+        "__v": 0,
+        "preview": "https://www.youtube.com/embed/6IdPpiW1hDs",
+        "totalHours": "8.416666666666666",
+        "rating": 6.666666666666667
+    }
+]
+19.http://localhost:4000/api/courses/mostpopular
+[
+    {
+        "_id": "63b593ccc635d15f5dcfe94b",
+        "title": "Science 1 ",
+        "price": 5000,
+        "ratings": [
+            7,
+            6,
+            7
+        ],
+        "subject": "Science",
+        "instructor": "63962bbe8acd12dd262bfa19",
+        "discount": 0,
+        "shortSummary": "Introduction to Science",
+        "reviews": [
+            "Great Course",
+            "Amazing course!"
+        ],
+        "registeredTrainees": 1,
+        "createdAt": "2023-01-04T14:57:16.885Z",
+        "updatedAt": "2023-01-05T18:14:20.338Z",
+        "__v": 0,
+        "preview": "https://www.youtube.com/embed/6IdPpiW1hDs",
+        "totalHours": "8.416666666666666",
+        "rating": 6.666666666666667
+    },
+    {
+        "reviews": [],
+        "registeredTrainees": 0,
+        "_id": "6387ed30334b7a830c887731",
+        "title": "science",
+        "totalHours": "10",
+        "price": 120,
+        "ratings": [],
+        "subject": "science",
+        "instructor": "638351d52618087cf2322787",
+        "discount": 15,
+        "shortSummary": "chem phys bio",
+        "preview": "",
+        "createdAt": "2022-11-30T23:54:24.254Z",
+        "updatedAt": "2022-12-31T17:34:04.090Z",
+        "__v": 0,
+        "instructorName": "mona",
+        "validDate": "2025-01-01T00:00:00.000Z"
+    },
+    {
+        "registeredTrainees": 0,
+        "_id": "639ef4aca236b6a180500c4e",
+        "title": "Olympia",
+        "totalHours": "212",
+        "price": 100,
+        "ratings": [],
+        "subject": "mens Physique",
+        "instructor": "63962bbe8acd12dd262bfa19",
+        "discount": 15,
+        "shortSummary": "CBUM is Goat",
+        "period": "2022-12-31T22:00:00.000Z",
+        "reviews": [],
+        "createdAt": "2022-12-18T11:08:28.790Z",
+        "updatedAt": "2023-01-01T22:34:09.643Z",
+        "__v": 0,
+        "validDate": "2025-01-01T00:00:00.000Z",
+        "preview": "https://www.youtube.com/embed/yXrlhebkpIQ"
+    }
+]
+20.http://localhost:4000/api/courses/subjectorRating?=science
+[
+    {
+        "reviews": [],
+        "registeredTrainees": 0,
+        "_id": "6387ed30334b7a830c887731",
+        "title": "science",
+        "totalHours": "10",
+        "price": 120,
+        "ratings": [],
+        "subject": "science",
+        "instructor": "638351d52618087cf2322787",
+        "discount": 15,
+        "shortSummary": "chem phys bio",
+        "preview": "",
+        "createdAt": "2022-11-30T23:54:24.254Z",
+        "updatedAt": "2022-12-31T17:34:04.090Z",
+        "__v": 0,
+        "instructorName": "mona",
+        "validDate": "2025-01-01T00:00:00.000Z"
+    }]
 ## Screenshots
 The image shows a webpage with a form for users to create an account.
 The form consists of several input fields, including first name , last name,
